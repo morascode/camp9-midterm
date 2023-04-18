@@ -39,13 +39,13 @@ function GenreFavorites() {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
             className="w-6 h-6"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M8.25 4.5l7.5 7.5-7.5 7.5"
             />
           </svg>
@@ -57,6 +57,7 @@ function GenreFavorites() {
             emojie={emojie.Emoji}
             genre={emojie.Genre}
             id={emojie.id}
+            key={emojie.id}
           />
         ))}
       </div>
