@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import GenresSelectionPage from './components/genre/genres_selection/GenresSelection';
+import GenreFavorites from './components/genre/GenreFavorites';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ export const router = createBrowserRouter([
         element: <h1>hellou movies</h1>,
       },
     ],
+  },
+
+  {
+    path: '/GenreFavorites',
+    element: <GenreFavorites />,
   },
   {
     path: '/genres',
