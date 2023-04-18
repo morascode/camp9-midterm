@@ -7,7 +7,7 @@ import { EmojiLibary } from './GenresSelectorLayout';
 function GenresSelectionPage() {
   const [counter, setCounter] = useState(0);
   return (
-    <div className="flex flex-col px-5 pt-8 pb-6 gap-10 bg-[#1C1C27]">
+    <div className="flex flex-col px-5 pt-8 pb-6 gap-10 bg-[#1C1C27] w-full h-full">
       <div className="flex flex-row justify-center">
         <Link to={'/'}>
           <svg
