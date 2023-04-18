@@ -16,6 +16,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/components/UpcomingMovies.tsx",
+    "src/pages/MovieDetails.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

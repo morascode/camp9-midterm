@@ -1,21 +1,47 @@
 import React from 'react';
+import './NavigationLayout.css';
 import { Outlet } from 'react-router-dom';
+import {
+  FilmIcon,
+  HomeIcon,
+  QueueListIcon,
+  UserIcon,
+} from '@heroicons/react/24/solid';
+import { NavLink } from 'react-router-dom';
 
 function NavigationLayout() {
   return (
-    <div>
-      <header>
-        <nav>
-          <ul>
-            <li>Hello</li>
-            <li>world</li>
-          </ul>
-        </nav>
-      </header>
+    <>
       <main>
         <Outlet />
       </main>
-    </div>
+      <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0">
+        <nav>
+          <ul className="flex flex-row justify-between max-w-xs m-auto">
+            <li>
+              <NavLink to="/">
+                <HomeIcon className="w-6" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/movies">
+                <FilmIcon className="w-6" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/bookmarks">
+                <QueueListIcon className="w-6" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/account">
+                <UserIcon className="w-6" />
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </>
   );
 }
 
