@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
+import GenreFavorites from './components/genre/GenreFavorites';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
         element: <h1>hellou movies</h1>,
       },
     ],
+  },
+  {
+    path: '/GenreFavorites',
+    element: <GenreFavorites />,
   },
 ]);
 
