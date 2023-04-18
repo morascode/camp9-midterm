@@ -13,7 +13,7 @@ function Genreonclick(props: Props) {
     <div key={props.id} onClick={() => setSelected(!selected)}>
       <div
         className={clsx(
-          'w-[56px] h-[56px] flex justify-center items-center rounded-lg text-center',
+          'w-[56px] h-[56px] text-[30px] flex justify-center items-center rounded-lg text-centerp',
           selected ? 'bg-white/40' : 'bg-[#363740]'
         )}
       >

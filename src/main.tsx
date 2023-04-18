@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>Hai Home</h1>,
+        element: <GenreFavorites />,
       },
       {
         path: '/movies',
@@ -26,10 +26,6 @@ export const router = createBrowserRouter([
     ],
   },
 
-  {
-    path: '/GenreFavorites',
-    element: <GenreFavorites />,
-  },
   {
     path: '/genres',
     element: <GenresSelectionPage />,
