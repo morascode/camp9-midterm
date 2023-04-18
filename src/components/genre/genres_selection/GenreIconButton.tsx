@@ -31,7 +31,9 @@ function GenreIconButton(props: Emoji) {
       >
         <span>{props.emoji}</span>
       </div>
-      <h3 className="text-xs font-bold text-white/40">{props.genre}</h3>
+      <h3 className="text-xs font-bold text-white/40 font-inter">
+        {props.genre}
+      </h3>
     </div>
   );
 }
