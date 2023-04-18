@@ -9,7 +9,7 @@ interface Props {
 
 function MovieDetailHeader(props: Props) {
   return (
-    <div>
+    <div className="flex flex-col justify-between">
       <Link to={props.goBackTo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
