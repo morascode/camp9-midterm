@@ -10,10 +10,14 @@ interface Props {
 function Genreonclick(props: Props) {
   const [selected, setSelected] = useState(false);
   return (
-    <div key={props.id} onClick={() => setSelected(!selected)}>
+    <div
+      key={props.id}
+      onClick={() => setSelected(!selected)}
+      className="flex flex-col justify-center items-center gap-2"
+    >
       <div
         className={clsx(
-          'w-[56px] h-[56px] text-[30px] flex justify-center items-center rounded-lg text-centerp',
+          'w-[56px] h-[56px] text-[30px] flex justify-center items-center rounded-lg text-center',
           selected ? 'bg-white/40' : 'bg-[#363740]'
         )}
       >

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { RadioGroup } from '@headlessui/react';
 import Genreonclick from './Genreonclick';
 import { Link } from 'react-router-dom';
 
@@ -30,11 +29,10 @@ export const EmojiLibary = [
 ];
 
 function GenreFavorites() {
-  const [selected, setSelected] = useState(EmojiLibary[0]);
   return (
     <div className="bg-[#1C1C27]">
-      <div className="flex justify-between">
-        <h2 className="text-white/40 text-[19px]">Genre</h2>
+      <div className="flex justify-between px-5">
+        <h2 className="text-white/40 text-[19px] ">Genre</h2>
         <Link to={'/genres'} className="text-[#FFB43A] stroke-[#FFB43A] flex">
           See All
           <svg
