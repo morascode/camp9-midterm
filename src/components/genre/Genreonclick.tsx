@@ -13,7 +13,7 @@ function Genreonclick(props: Props) {
     <div
       key={props.id}
       onClick={() => setSelected(!selected)}
-      className="flex flex-col justify-center items-center gap-2"
+      className="flex flex-col justify-center items-center gap-2 cursor-pointer"
     >
       <div
         className={clsx(

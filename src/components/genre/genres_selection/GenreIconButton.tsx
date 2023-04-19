@@ -25,7 +25,7 @@ function GenreIconButton(props: Emoji) {
     >
       <div
         className={clsx(
-          'rounded-xl w-14 h-14 text-3xl flex flex-col justify-center items-center',
+          'rounded-xl w-14 h-14 text-3xl flex flex-col justify-center items-center cursor-pointer',
           isSelected ? 'bg-white/40' : 'bg-[#363740]'
         )}
       >
