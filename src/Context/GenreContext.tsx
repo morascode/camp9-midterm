@@ -14,12 +14,6 @@ export const EmojieContext = createContext({
 export const useEmojieLibrary = () => useContext(EmojieContext);
 
 function EmojieProvider({ children }: { children: any }) {
-  const [emojieLibrary, setEmojieLibrary] = useState(EmojieLibrary);
-
-  useEffect(() => {
-    setEmojieLibrary(emojieLibrary);
-  });
-
   return (
     <EmojieContext.Provider value={{ EmojieLibrary }}>
       {children}
