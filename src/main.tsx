@@ -64,9 +64,7 @@ export const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <EmojieProvider>
-      <RouterProvider router={router} />
-    </EmojieProvider>
-  </React.StrictMode>
+  <EmojieProvider>
+    <RouterProvider router={router} />
+  </EmojieProvider>
 );

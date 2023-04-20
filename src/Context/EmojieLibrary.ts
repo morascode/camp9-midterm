@@ -1,4 +1,4 @@
-export const EmojieLibrary = [
+export const emojieLibrary = [
   {
     Genre: 'Action',
     Emoji: '🧨',

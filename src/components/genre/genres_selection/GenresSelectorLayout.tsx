@@ -9,10 +9,10 @@ interface Props {
 }
 
 function GenresSelectorLayout(props: Props) {
-  const { EmojieLibrary } = useEmojieLibrary();
+  const { emojieLibrary } = useEmojieLibrary();
   return (
     <div className="grid grid-cols-4 gap-8">
-      {EmojieLibrary.map(param => (
+      {emojieLibrary.map(param => (
         <GenreIconButton
           emoji={param.Emoji}
           genre={param.Genre}
