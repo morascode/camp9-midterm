@@ -33,6 +33,7 @@ function GenreFavorites() {
             genre={emojie.Genre}
             id={emojie.id}
             key={emojie.id}
+            selected={emojie.isSelected}
           />
         ))}
       </div>

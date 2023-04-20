@@ -5,6 +5,7 @@ export interface Props {
   emojie: string;
   genre: string;
   id: number;
+  selected: boolean;
 }
 
 function Genreonclick(props: Props) {
