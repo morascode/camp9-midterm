@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
 
-interface Props {
+export interface Props {
   emojie: string;
   genre: string;
   id: number;
