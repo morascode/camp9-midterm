@@ -17,7 +17,7 @@ function GenreIconButton(props: Emoji) {
     <div
       className="flex flex-col items-center gap-1"
       key={props.id}
-      onClick={() => toggleEmojie(props.id)}
+      onClick={e => toggleEmojie(props.id)}
     >
       <div
         className={clsx(

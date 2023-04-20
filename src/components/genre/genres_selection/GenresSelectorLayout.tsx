@@ -10,6 +10,7 @@ interface Props {
 
 function GenresSelectorLayout(props: Props) {
   const { emojieLibrary } = useEmojieLibrary();
+
   return (
     <div className="grid grid-cols-4 gap-8">
       {emojieLibrary.map(param => (
@@ -17,6 +18,7 @@ function GenresSelectorLayout(props: Props) {
           emoji={param.Emoji}
           genre={param.Genre}
           id={param.id}
+          isSelected={param.isSelected}
           counter={props.counter}
           setCounter={props.setCounter}
           key={param.id}

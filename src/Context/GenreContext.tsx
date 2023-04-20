@@ -33,15 +33,17 @@ function EmojieProvider({ children }: { children: any }) {
   //change state of that object
   //set the state again - don't loose other object (spread)
   function toggleEmojie(id: number) {
-    emojieLibrary.filter(param => {
+    const newEmojieLibrary = emojieLibrary.filter(param => {
       if (param.id === id) {
         param.isSelected = param.isSelected ? false : true;
+        [...emojieLibrary];
         return param;
       }
     });
-    useEffect(() => setEmojieState(emojieLibrary));
+
+    setEmojieState(newEmojieLibrary);
   }
-  toggleEmojie(1);
+
   return (
     <EmojieContext.Provider
       value={{ emojieLibrary: emojiesState, toggleEmojie }}
