@@ -1,32 +1,7 @@
 import { useState } from 'react';
 import Genreonclick from './Genreonclick';
 import { Link } from 'react-router-dom';
-
-export const EmojiLibary = [
-  {
-    Genre: 'Comedy',
-    Emoji: '🤣',
-    id: 4,
-  },
-
-  {
-    Genre: 'Drama',
-    Emoji: '🎭',
-    id: 7,
-  },
-
-  {
-    Genre: 'Horror',
-    Emoji: '🔪',
-    id: 11,
-  },
-
-  {
-    Genre: 'Romance',
-    Emoji: '😍',
-    id: 14,
-  },
-];
+import { EmojiLibary } from './genres_selection/GenresSelectorLayout';
 
 function GenreFavorites() {
   return (
@@ -52,7 +27,7 @@ function GenreFavorites() {
         </Link>
       </div>
       <div className="w-full px-5 py-4 flex gap-[37px] justify-center bg-[#1C1C27]">
-        {EmojiLibary.map(emojie => (
+        {EmojiLibary.slice(0, 4).map(emojie => (
           <Genreonclick
             emojie={emojie.Emoji}
             genre={emojie.Genre}
