@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../Button';
 import GenresSelectorLayout from './GenresSelectorLayout';
-import { EmojiLibary } from './GenresSelectorLayout';
 
 function GenresSelectionPage() {
   const [counter, setCounter] = useState(0);

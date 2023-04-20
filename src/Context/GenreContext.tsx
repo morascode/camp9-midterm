@@ -1,21 +1,30 @@
-import React, { Children, createContext, useEffect, useState } from 'react';
-import Genreonclick, { Props } from '../components/genre/Genreonclick';
+import React, {
+  Children,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { EmojieLibrary } from './EmojieLibrary';
 
-export const GenreContext = createContext({
-  toggleGenre: () => {},
+export const EmojieContext = createContext({
+  EmojieLibrary,
 });
-function GenreProvider(children: Props) {
-  const [Genre, setGenre] = useState();
-  const toggleGenre = () => {};
+
+export const useEmojieLibrary = () => useContext(EmojieContext);
+
+function EmojieProvider({ children }: { children: any }) {
+  const [emojieLibrary, setEmojieLibrary] = useState(EmojieLibrary);
+
   useEffect(() => {
-    const selection = localStorage.getItem('Genre');
-    if (selection) setGenre(selection);
-  }, []);
+    setEmojieLibrary(emojieLibrary);
+  });
+
   return (
-    <GenreContext.Provider value={{ toggleGenre }}>
-      {children.id}
-    </GenreContext.Provider>
+    <EmojieContext.Provider value={{ EmojieLibrary }}>
+      {children}
+    </EmojieContext.Provider>
   );
 }
 
-export default GenreProvider;
+export default EmojieProvider;

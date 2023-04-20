@@ -7,6 +7,7 @@ import NavigationLayout from './components/NavigationLayout';
 import GenresSelectionPage from './components/genre/genres_selection/GenresSelection';
 import GenreFavorites from './components/genre/GenreFavorites';
 import MovieDetails from './pages/MovieDetails';
+import EmojieProvider from './Context/GenreContext';
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,8 @@ export const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <EmojieProvider>
+      <RouterProvider router={router} />
+    </EmojieProvider>
   </React.StrictMode>
 );

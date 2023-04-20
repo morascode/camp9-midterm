@@ -10,6 +10,7 @@ export interface Props {
 
 function Genreonclick(props: Props) {
   const [selected, setSelected] = useState(false);
+
   return (
     <div
       key={props.id}
