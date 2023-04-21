@@ -57,8 +57,11 @@ function EmojieProvider({ children }: { children: any }) {
       if (emojie.isSelected === true) {
         return emojie;
       }
+      if (emojiesState.length < 4) {
+        console.log(emojiesState.length);
+      }
     });
-
+    console.log(emojiesState.length);
     console.log(filteredEmojieLibrary);
     setFilteredEmojie(filteredEmojieLibrary);
   }
