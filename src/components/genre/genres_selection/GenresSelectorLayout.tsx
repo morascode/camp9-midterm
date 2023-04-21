@@ -7,7 +7,7 @@ function GenresSelectorLayout() {
   const { emojieLibrary } = useEmojieLibrary();
 
   return (
-    <div className="grid grid-cols-4 gap-8">
+    <div className="grid text-center grid-cols-4 gap-8">
       {emojieLibrary.map(param => (
         <GenreIconButton
           emoji={param.Emoji}
