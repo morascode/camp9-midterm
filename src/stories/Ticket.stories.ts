@@ -1,17 +1,18 @@
-import Ticket from "../pages/Ticket";
-import type { Meta, StoryObj } from "@storybook/react";
+import React from 'react'
+import { Story, Meta } from "@storybook/react";
 
-const meta: Meta<typeof Ticket> = {
-   title: "Pages/Ticket",
-    component: Ticket,
-    parameters: {
-        viewport: {
-            defaultViewport: "mobile1",
-        },
-    },
+import Ticket from "./pages/Ticket";
+
+export default {
+  title: "Components/Ticket",
+  component: Ticket,
+} as Meta;
+
+const Template: Story<TicketProps> = (args) => <Ticket {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  movieTitle: "The Matrix",
+  movieTime: "7:00 PM",
+  movieDate: "April 21, 2023",
 };
-
-export default meta;
-type Story = StoryObj<typeof Ticket>;
-
-export const Default = () => <Ticket title="Ticket title"/>;

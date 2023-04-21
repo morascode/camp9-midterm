@@ -1,5 +1,5 @@
 import React from "react";
-import Barcode from "react-barcode";
+// import Barcode from "react-barcode";
 import { useParams } from "react-router-dom";
 import { TicketProps } from "../utilities/types";
 
@@ -17,7 +17,7 @@ function Ticket({ movieTitle, movieTime, movieDate }: TicketProps) {
                   </div>
                   <div className="barcode-container relative">
                     <hr className="barcode-separator absolute top-[50%] left-[-10px] right-[-10px]" />
-                    <Barcode value="1234567890" />
+                    {/* <Barcode value="1234567890" /> */}
                     <span className="barcode-separator__circle absolute top-[-5px] left-[-5px] w-4 h-4 rounded-full bg-black"></span>
                     <span className="barcode-separator__circle absolute top-[-5px] right-[-5px] w-4 h-4 rounded-full bg-black"></span>
                   </div>
