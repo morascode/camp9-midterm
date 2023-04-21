@@ -15,7 +15,7 @@ interface EmojieLibraryEntry {
 }
 
 type EmojieContextType = {
-  EmojieLibrary: EmojieLibraryEntry;
+  EmojieLibrary: EmojieLibraryEntry[];
 };
 
 export const EmojieContext = createContext({
@@ -34,13 +34,22 @@ function EmojieProvider({ children }: { children: any }) {
   //set the state again - don't loose other object (spread)
   //hope thuis helps
   function toggleEmojie(id: number) {
-    const newEmojieLibrary = emojieLibrary.filter(param => {
-      if (param.id === id) {
-        param.isSelected = param.isSelected ? false : true;
-        return param;
+    // const newEmojieLibrary = emojieLibrary.filter(
+    //   (emojie, emojieIndex, emojies) => {
+    //     if (emojie.id === id) {
+    //       emojie.isSelected = !emojie.isSelected;
+    //     }
+    //     if (emojie.id !== id) {
+    //       return emojie;
+    //     }
+    //   }
+    // );
+    const newEmojieLibrary = emojieLibrary.map(emojie => {
+      if (emojie.id === id) {
+        emojie.isSelected = !emojie.isSelected;
       }
+      return emojie;
     });
-
     setEmojieState(newEmojieLibrary);
   }
 
