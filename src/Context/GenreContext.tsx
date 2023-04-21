@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { emojieLibrary } from './EmojieLibrary';
+import { Emojie } from '../stories/GenreEmojies.stories';
 
 interface EmojieLibraryEntry {
   Genre: string;
@@ -18,7 +19,7 @@ interface EmojieLibraryContext {
   emojieLibrary: EmojieLibraryEntry[];
   toggleEmojie: (id: number) => void;
   filteredEmojieLibrary: EmojieLibraryEntry[];
-  filteredLibrary: (isSelected: boolean) => void;
+  /*filteredLibrary: (isSelected: boolean) => void;*/
   counter: number;
   countingEmojies: (isSelected: boolean) => void;
 }
@@ -27,7 +28,7 @@ export const EmojieContext = createContext<EmojieLibraryContext>({
   emojieLibrary: emojieLibrary,
   toggleEmojie: (id: number) => {},
   filteredEmojieLibrary: emojieLibrary,
-  filteredLibrary: (isSelected: boolean) => {},
+  /*filteredLibrary: (isSelected: boolean) => {},*/
   counter: 0,
   countingEmojies: (isSelected: boolean) => {},
 });
@@ -37,7 +38,6 @@ export const useEmojieLibrary = () => useContext(EmojieContext);
 function EmojieProvider({ children }: { children: any }) {
   const [emojiesState, setEmojieState] = useState(emojieLibrary);
   const [filteredEmojies, setFilteredEmojie] = useState(emojiesState);
-
   const [counter, setCounter] = useState(0);
 
   function toggleEmojie(id: number) {
@@ -48,23 +48,41 @@ function EmojieProvider({ children }: { children: any }) {
       }
       return emojie;
     });
-    setEmojieState(newEmojieLibrary);
-  }
-
-  ///FilterFunction --- to show selected emojies in Favorites List
-  function filteredLibrary() {
     const filteredEmojieLibrary = emojiesState.filter(emojie => {
       if (emojie.isSelected === true) {
         return emojie;
       }
-      if (emojiesState.length < 4) {
-        console.log(emojiesState.length);
-      }
     });
-    console.log(emojiesState.length);
-    console.log(filteredEmojieLibrary);
+    setEmojieState(newEmojieLibrary);
+    if (filteredEmojieLibrary.length <= 4) {
+      const notSelectedEmojies = newEmojieLibrary.filter(emojie => {
+        return emojie.isSelected === false;
+      });
+      console.log(notSelectedEmojies[0 + 1]);
+      return setFilteredEmojie([
+        ...filteredEmojieLibrary,
+        notSelectedEmojies[0],
+        notSelectedEmojies[1],
+        notSelectedEmojies[2],
+        notSelectedEmojies[3],
+      ]);
+    }
     setFilteredEmojie(filteredEmojieLibrary);
   }
+
+  ///FilterFunction --- to show selected emojies in Favorites List
+  // function filteredLibrary() {
+  //   const filteredEmojieLibrary = emojiesState.filter(emojie => {
+  //     if (emojie.isSelected === true) {
+  //       return emojie;
+  //     }
+  //   });
+  //   if (filteredEmojieLibrary.length <= 4) {
+  //     console.log('filteredEmojieLibrary');
+  //   }
+  //   console.log(filteredEmojieLibrary.length + 1);
+  //   setFilteredEmojie(filteredEmojieLibrary);
+  // }
 
   function countingEmojies(isSelected: boolean) {
     if (isSelected) {
@@ -80,7 +98,7 @@ function EmojieProvider({ children }: { children: any }) {
         emojieLibrary: emojiesState,
         toggleEmojie,
         filteredEmojieLibrary: filteredEmojies,
-        filteredLibrary,
+        /*filteredLibrary,*/
         counter,
         countingEmojies,
       }}

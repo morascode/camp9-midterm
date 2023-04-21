@@ -5,7 +5,6 @@ import { useEmojieLibrary } from '../../Context/GenreContext';
 
 function GenreFavorites() {
   const { filteredEmojieLibrary } = useEmojieLibrary();
-  console.log(filteredEmojieLibrary);
   return (
     <div className="bg-[#1C1C27]">
       <div className="flex justify-between px-5">
