@@ -3,12 +3,7 @@ import React, { useState } from 'react';
 import { useEmojieLibrary } from '../../../Context/GenreContext';
 import GenreIconButton from './GenreIconButton';
 
-interface Props {
-  setCounter: React.Dispatch<React.SetStateAction<number>>;
-  counter: number;
-}
-
-function GenresSelectorLayout(props: Props) {
+function GenresSelectorLayout() {
   const { emojieLibrary } = useEmojieLibrary();
 
   return (
@@ -19,8 +14,6 @@ function GenresSelectorLayout(props: Props) {
           genre={param.Genre}
           id={param.id}
           isSelected={param.isSelected}
-          counter={props.counter}
-          setCounter={props.setCounter}
           key={param.id}
         ></GenreIconButton>
       ))}

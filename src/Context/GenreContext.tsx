@@ -14,36 +14,27 @@ interface EmojieLibraryEntry {
   isSelected: boolean;
 }
 
-type EmojieContextType = {
-  EmojieLibrary: EmojieLibraryEntry[];
-};
+interface EmojieLibraryContext {
+  emojieLibrary: EmojieLibraryEntry[];
+  toggleEmojie: (id: number) => void;
+  counter: number;
+  countingEmojies: (isSelected: boolean) => void;
+}
 
-export const EmojieContext = createContext({
+export const EmojieContext = createContext<EmojieLibraryContext>({
   emojieLibrary: emojieLibrary,
   toggleEmojie: (id: number) => {},
+  counter: 0,
+  countingEmojies: (isSelected: boolean) => {},
 });
 
 export const useEmojieLibrary = () => useContext(EmojieContext);
 
 function EmojieProvider({ children }: { children: any }) {
   const [emojiesState, setEmojieState] = useState(emojieLibrary);
-  console.log(emojiesState);
-  //find by id (emojielibrary)
-  //get back a single object
-  //change state of that object
-  //set the state again - don't loose other object (spread)
-  //hope thuis helps
+  const [counter, setCounter] = useState(0);
+
   function toggleEmojie(id: number) {
-    // const newEmojieLibrary = emojieLibrary.filter(
-    //   (emojie, emojieIndex, emojies) => {
-    //     if (emojie.id === id) {
-    //       emojie.isSelected = !emojie.isSelected;
-    //     }
-    //     if (emojie.id !== id) {
-    //       return emojie;
-    //     }
-    //   }
-    // );
     const newEmojieLibrary = emojieLibrary.map(emojie => {
       if (emojie.id === id) {
         emojie.isSelected = !emojie.isSelected;
@@ -53,9 +44,22 @@ function EmojieProvider({ children }: { children: any }) {
     setEmojieState(newEmojieLibrary);
   }
 
+  function countingEmojies(isSelected: boolean) {
+    if (isSelected) {
+      setCounter(counter - 1);
+    } else {
+      setCounter(counter + 1);
+    }
+  }
+
   return (
     <EmojieContext.Provider
-      value={{ emojieLibrary: emojiesState, toggleEmojie }}
+      value={{
+        emojieLibrary: emojiesState,
+        toggleEmojie,
+        counter,
+        countingEmojies,
+      }}
     >
       {children}
     </EmojieContext.Provider>

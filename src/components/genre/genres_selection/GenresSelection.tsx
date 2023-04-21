@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEmojieLibrary } from '../../../Context/GenreContext';
 import Button from '../../Button';
 import GenresSelectorLayout from './GenresSelectorLayout';
 
 function GenresSelectionPage() {
-  const [counter, setCounter] = useState(0);
+  const { counter } = useEmojieLibrary();
   return (
     <div className="flex flex-col px-5 pt-8 pb-6 gap-10 bg-[#1C1C27] w-full h-full">
       <div className="flex flex-row justify-center">
@@ -26,10 +27,7 @@ function GenresSelectionPage() {
         </Link>
         <h2 className="text-white">Genres</h2>
       </div>
-      <GenresSelectorLayout
-        setCounter={setCounter}
-        counter={counter}
-      ></GenresSelectorLayout>
+      <GenresSelectorLayout></GenresSelectorLayout>
       <div className="flex flex-row gap-1">
         <p className="text-white">{counter}</p>
         <p className="text-white/40">Genre selected</p>

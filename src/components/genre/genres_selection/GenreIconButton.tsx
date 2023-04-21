@@ -6,27 +6,19 @@ export interface Emoji {
   emoji: string;
   genre: string;
   id: number;
-  counter: number;
   isSelected: boolean;
-  setCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function GenreIconButton(props: Emoji) {
-  const { toggleEmojie } = useEmojieLibrary();
+  const { toggleEmojie, countingEmojies } = useEmojieLibrary();
   console.log(props.isSelected);
   return (
     <div
       className="flex flex-col items-center gap-1"
       key={props.id}
       onClick={() => {
-        if (props.isSelected === false) {
-          toggleEmojie(props.id);
-          props.setCounter(props.counter + 1);
-        }
-        if (props.isSelected === true) {
-          toggleEmojie(props.id);
-          props.setCounter(props.counter - 1);
-        }
+        toggleEmojie(props.id);
+        countingEmojies(props.isSelected);
       }}
     >
       <div

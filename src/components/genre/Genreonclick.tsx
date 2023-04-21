@@ -10,19 +10,13 @@ export interface Props {
 }
 
 function Genreonclick(props: Props) {
-  const { toggleEmojie } = useEmojieLibrary();
+  const { toggleEmojie, countingEmojies } = useEmojieLibrary();
   return (
     <div
       key={props.id}
       onClick={() => {
-        if (props.isSelected === false) {
-          toggleEmojie(props.id);
-          props.setCounter(props.counter + 1);
-        }
-        if (props.isSelected === true) {
-          toggleEmojie(props.id);
-          props.setCounter(props.counter - 1);
-        }
+        toggleEmojie(props.id);
+        countingEmojies(props.isSelected);
       }}
       className="flex flex-col justify-center items-center gap-2 cursor-pointer"
     >
