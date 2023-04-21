@@ -5,11 +5,9 @@ import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
 import Ticket from './pages/Ticket';
-
+import Credits from './pages/Credits';
 import SearchBar from './components/Searchbar';
-
 import LogInPage from './pages/LogInPage';
-
 
 export const router = createBrowserRouter([
   {
@@ -47,8 +45,8 @@ export const router = createBrowserRouter([
     element: <MovieDetails />,
   },
   {
-    path: '/cast/:id',
-    element: <h1>CAST AND CREW</h1>, // insert your page here
+    path: '/credits/:id',
+    element: <Credits />,
   },
   {
     path: '/dates',
@@ -66,8 +64,7 @@ export const router = createBrowserRouter([
     path: '/searchbar',
     element: <SearchBar />, // insert your page here
   },
-  {path: '/ticket', element: <Ticket />
-   }
+  { path: '/ticket', element: <Ticket /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
