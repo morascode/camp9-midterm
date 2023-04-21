@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>HOME</h1>, // insert your page here
+        element: <h1>Hello</h1>, // insert your page here
       },
       {
         path: '/movies',
