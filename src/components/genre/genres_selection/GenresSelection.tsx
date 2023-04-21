@@ -30,9 +30,11 @@ function GenresSelectionPage() {
       <GenresSelectorLayout></GenresSelectorLayout>
       <div className="flex flex-row gap-1">
         <p className="text-white">{counter}</p>
-        <p className="text-white/40">Genre selected</p>
+        <p className="text-white/40">Genres selected</p>
       </div>
-      <Button>Confirm selected Genres</Button>
+      <Link to={'/'} className="w-full rounded-lg bg-yellow text-center py-4">
+        Confirm selected Genres
+      </Link>
     </div>
   );
 }

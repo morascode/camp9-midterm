@@ -17,6 +17,8 @@ interface EmojieLibraryEntry {
 interface EmojieLibraryContext {
   emojieLibrary: EmojieLibraryEntry[];
   toggleEmojie: (id: number) => void;
+  filteredEmojieLibrary: EmojieLibraryEntry[];
+  filteredLibrary: (isSelected: boolean) => void;
   counter: number;
   countingEmojies: (isSelected: boolean) => void;
 }
@@ -24,6 +26,8 @@ interface EmojieLibraryContext {
 export const EmojieContext = createContext<EmojieLibraryContext>({
   emojieLibrary: emojieLibrary,
   toggleEmojie: (id: number) => {},
+  filteredEmojieLibrary: emojieLibrary,
+  filteredLibrary: (isSelected: boolean) => {},
   counter: 0,
   countingEmojies: (isSelected: boolean) => {},
 });
@@ -32,9 +36,12 @@ export const useEmojieLibrary = () => useContext(EmojieContext);
 
 function EmojieProvider({ children }: { children: any }) {
   const [emojiesState, setEmojieState] = useState(emojieLibrary);
+  const [filteredEmojies, setFilteredEmojie] = useState(emojiesState);
+
   const [counter, setCounter] = useState(0);
 
   function toggleEmojie(id: number) {
+    ///SelectFunction to display when emojie is selected
     const newEmojieLibrary = emojieLibrary.map(emojie => {
       if (emojie.id === id) {
         emojie.isSelected = !emojie.isSelected;
@@ -42,6 +49,18 @@ function EmojieProvider({ children }: { children: any }) {
       return emojie;
     });
     setEmojieState(newEmojieLibrary);
+  }
+
+  ///FilterFunction --- to show selected emojies in Favorites List
+  function filteredLibrary() {
+    const filteredEmojieLibrary = emojiesState.filter(emojie => {
+      if (emojie.isSelected === true) {
+        return emojie;
+      }
+    });
+
+    console.log(filteredEmojieLibrary);
+    setFilteredEmojie(filteredEmojieLibrary);
   }
 
   function countingEmojies(isSelected: boolean) {
@@ -57,6 +76,8 @@ function EmojieProvider({ children }: { children: any }) {
       value={{
         emojieLibrary: emojiesState,
         toggleEmojie,
+        filteredEmojieLibrary: filteredEmojies,
+        filteredLibrary,
         counter,
         countingEmojies,
       }}

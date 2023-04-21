@@ -10,8 +10,8 @@ export interface Emoji {
 }
 
 function GenreIconButton(props: Emoji) {
-  const { toggleEmojie, countingEmojies } = useEmojieLibrary();
-  console.log(props.isSelected);
+  const { toggleEmojie, countingEmojies, filteredLibrary } = useEmojieLibrary();
+
   return (
     <div
       className="flex flex-col items-center gap-1"
@@ -19,6 +19,7 @@ function GenreIconButton(props: Emoji) {
       onClick={() => {
         toggleEmojie(props.id);
         countingEmojies(props.isSelected);
+        filteredLibrary(props.isSelected);
       }}
     >
       <div

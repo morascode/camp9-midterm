@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useEmojieLibrary } from '../../Context/GenreContext';
 
 function GenreFavorites() {
-  const { emojieLibrary } = useEmojieLibrary();
+  const { filteredEmojieLibrary } = useEmojieLibrary();
+  console.log(filteredEmojieLibrary);
   return (
     <div className="bg-[#1C1C27]">
       <div className="flex justify-between px-5">
@@ -28,7 +29,7 @@ function GenreFavorites() {
         </Link>
       </div>
       <div className="w-full px-5 py-4 flex gap-[37px] justify-center bg-[#1C1C27]">
-        {emojieLibrary.slice(0, 4).map(emojie => (
+        {filteredEmojieLibrary.slice(0, 4).map(emojie => (
           <Genreonclick
             emojie={emojie.Emoji}
             genre={emojie.Genre}
