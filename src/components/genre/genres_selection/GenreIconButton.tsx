@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { useState } from 'react';
 import { useEmojieLibrary } from '../../../Context/GenreContext';
 
-interface Emoji {
+export interface Emoji {
   emoji: string;
   genre: string;
   id: number;
