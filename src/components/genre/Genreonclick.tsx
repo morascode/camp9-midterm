@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
+import { useEmojieLibrary } from '../../Context/GenreContext';
 
 export interface Props {
   emojie: string;
@@ -9,18 +10,17 @@ export interface Props {
 }
 
 function Genreonclick(props: Props) {
-  const [selected, setSelected] = useState(false);
-
+  const { toggleEmojie } = useEmojieLibrary();
   return (
     <div
       key={props.id}
-      onClick={() => setSelected(!selected)}
+      onClick={() => toggleEmojie(props.id)}
       className="flex flex-col justify-center items-center gap-2 cursor-pointer"
     >
       <div
         className={clsx(
           'w-[56px] h-[56px] text-[30px] flex justify-center items-center rounded-lg text-center',
-          selected ? 'bg-white/40' : 'bg-[#363740]'
+          props.selected ? 'bg-white/40' : 'bg-[#363740]'
         )}
       >
         {props.emojie}

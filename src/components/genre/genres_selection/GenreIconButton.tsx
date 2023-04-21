@@ -13,11 +13,21 @@ interface Emoji {
 
 function GenreIconButton(props: Emoji) {
   const { toggleEmojie } = useEmojieLibrary();
+  console.log(props.isSelected);
   return (
     <div
       className="flex flex-col items-center gap-1"
       key={props.id}
-      onClick={e => toggleEmojie(props.id)}
+      onClick={() => {
+        if (props.isSelected === false) {
+          toggleEmojie(props.id);
+          props.setCounter(props.counter + 1);
+        }
+        if (props.isSelected === true) {
+          toggleEmojie(props.id);
+          props.setCounter(props.counter - 1);
+        }
+      }}
     >
       <div
         className={clsx(
