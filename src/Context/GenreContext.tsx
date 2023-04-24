@@ -58,7 +58,6 @@ function EmojieProvider({ children }: { children: any }) {
       const notSelectedEmojies = newEmojieLibrary.filter(emojie => {
         return emojie.isSelected === false;
       });
-      console.log(notSelectedEmojies[0 + 1]);
       return setFilteredEmojie([
         ...filteredEmojieLibrary,
         notSelectedEmojies[0],
