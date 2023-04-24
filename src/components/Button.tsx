@@ -17,7 +17,7 @@ function Button({ variant = 'primary', size = 'lg', ...props }: Props) {
       className={clsx(
         'w-full rounded-lg disabled:opacity-50',
         variant === 'primary' ? 'bg-yellow' : 'bg-[#363740] text-white',
-        size === 'lg' ? 'py-4' : 'py-3' 
+        size === 'lg' ? 'py-4' : 'py-3'
       )}
     >
       {props.children}
