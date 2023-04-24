@@ -21,21 +21,27 @@ function Ticket() {
   
   
     return (
-              <div className="  grid place-items-center py-8 px-5 ">
-                <div className="bg-[#494952] top-8 ticket rounded-[12px] items-center ">
+              <div className="  grid place-items-center pt-8 px-5 ">
+                <div className="bg-[#494952] debug min-h-screen	 rounded-[12px] items-center ">
                   <div className=" ">
-                    <img src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`} alt="Movie Poster" className="sticky top-0 rounded-t-[12px]" />
+                    <img src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`} alt="Movie Poster" className=" top-0 rounded-t-[12px]  object-cover w-full h-[160px]" />
                   </div>
-                  <div className="">
+                  <div className=" grid">
                     <div className="">
-                      <h2 className="typography-title">{data.title}</h2>
+                      <h2 className="typography-title pt-2 pb-6 px-6">{data.title}</h2>
                 
+                    </div>
+                    <div className="flex px-6 flex-c-3" >
+                      <div className="grid"><span className="debug">Date</span><br /><p className="debug">08 jan</p></div>
+                      <div className="grid"><span>Time</span><p>12:30</p></div>
+                      <div className="grid"><span>Price</span><p>56,00</p></div>
+                      <div className="grid"><span>Seats</span><p>c-3,c-4,c-5</p></div>
                     </div>
                     
                   </div>
                   
                 </div>
-                <div className=" debug  py-4"><Button className=" 	">Back To Home</Button></div>
+                <div className=" debug w-[335px] py-4"><Button className=" 	">Back To Home</Button></div>
               </div>
             );
           };
