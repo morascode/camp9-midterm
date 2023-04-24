@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import GenreIconButton from '../components/genre/genres_selection/GenreIconButton';
 import Genreonclick from '../components/genre/Genreonclick';
 
 const meta: Meta<typeof Genreonclick> = {

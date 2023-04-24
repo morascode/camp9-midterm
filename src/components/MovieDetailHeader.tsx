@@ -1,15 +1,17 @@
-import React from 'react';
+import clsx from 'clsx';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface Props {
   goBackTo: string;
   children: string;
-  svg?: SVGElement;
+  svg?: boolean;
 }
 
 function MovieDetailHeader(props: Props) {
+  const [isLiked, setIsLiked] = useState(false);
   return (
-    <div className="flex flex-col justify-between">
+    <div className="relative">
       <Link to={props.goBackTo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +19,7 @@ function MovieDetailHeader(props: Props) {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="white"
-          className="w-6 h-4 absolute top-9 left-5"
+          className="w-6 h-4 text-white absolute top-1 left-5"
         >
           <path
             strokeLinecap="round"
@@ -26,14 +28,22 @@ function MovieDetailHeader(props: Props) {
           />
         </svg>
       </Link>
-      <p>{props.children}</p>
+      <p className="text-white text-[16px] font-bold text-center">
+        {props.children}
+      </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="none"
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6"
+        onClick={() => {
+          setIsLiked(!isLiked);
+        }}
+        className={clsx(
+          'w-5 h-4 absolute top-1 right-5',
+          props.svg ? 'stroke-red' : 'hidden',
+          props.svg && isLiked ? 'stroke-red fill-red' : 'stroke-red'
+        )}
       >
         <path
           strokeLinecap="round"

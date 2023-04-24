@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
+import WelcomeHeader from './components/WelcomeHeader';
 import NavigationLayout from './components/NavigationLayout';
-
-import GenresSelectionPage from './components/genre/genres_selection/GenresSelection';
-import GenreFavorites from './components/genre/GenreFavorites';
 import MovieDetails from './pages/MovieDetails';
+import Home from './pages/Home';
+import Genres from './pages/Genres';
+import Credits from './pages/Credits';
+import SearchBar from './components/Searchbar';
+import LogInPage from './pages/LogInPage';
+import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
 
 export const router = createBrowserRouter([
@@ -16,38 +20,29 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <GenreFavorites />, // insert your page here
+        element: <Home/>,
       },
       {
         path: '/movies',
-        element: <h1>MOVIES</h1>, // insert your page here
-      },
-      {
-        path: '/bookmarks',
-        element: <h1>BOOKMARKS</h1>, // insert your page here
-      },
-      {
-        path: '/account',
-        element: <h1>ACCOUNT</h1>, // insert your page here
+        element: <Movies />,
       },
     ],
   },
-
   {
     path: '/login',
-    element: <h1>Login</h1>, // insert your page here
+    element: <LogInPage />, // insert your page here
   },
   {
     path: '/genres',
-    element: <GenresSelectionPage />, // insert your page here
+    element: <Genres/>, // insert your page here
   },
   {
     path: '/movies/:id',
     element: <MovieDetails />,
   },
   {
-    path: '/cast/:id',
-    element: <h1>CAST AND CREW</h1>, // insert your page here
+    path: '/credits/:id',
+    element: <Credits />,
   },
   {
     path: '/dates',
@@ -64,7 +59,9 @@ export const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
   <EmojieProvider>
     <RouterProvider router={router} />
-  </EmojieProvider>
+    </EmojieProvider>
+  </React.StrictMode>
 );
