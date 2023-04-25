@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import CastCrewButton from '../components/CastCrewButton';
 import CastCrewListItem from '../components/CastCrewListItem';
-import MovieDetailHeader from '../components/MovieDetailHeader';
+import MovieDetailHeader from '../components/HeaderPages';
 
 //
 // Image fetching function
