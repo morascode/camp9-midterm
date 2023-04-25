@@ -11,6 +11,8 @@ import Genres from './pages/Genres';
 import Credits from './pages/Credits';
 import SearchBar from './components/Searchbar';
 import LogInPage from './pages/LogInPage';
+import Movies from './pages/Movies';
+import EmojieProvider from './Context/GenreContext';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +61,8 @@ export const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+  <EmojieProvider>
     <RouterProvider router={router} />
+    </EmojieProvider>
   </React.StrictMode>
 );
