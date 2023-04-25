@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider,  } from '@tanstack/react-query'
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
@@ -57,10 +58,14 @@ export const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <EmojieProvider>
-      <RouterProvider router={router} />
-    </EmojieProvider>
+    <QueryClientProvider client={queryClient}>
+      <EmojieProvider>
+        <RouterProvider router={router} />
+      </EmojieProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
