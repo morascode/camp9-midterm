@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Movie, MovieDbResponse } from '../utilities/types';
-import useGetMovies from '../hook/useGetUpcomingMovies';
+import useGetUpcomingMovies from '../hook/useGetUpcomingMovies';
 
 function UpcomingMovies() {
-  const { isLoading, isError, data } = useGetMovies<MovieDbResponse>();
+  const { isLoading, isError, data } = useGetUpcomingMovies<MovieDbResponse>();
 
   if (isLoading) {
     return <span>Loading...</span>;
