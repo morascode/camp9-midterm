@@ -12,6 +12,7 @@ interface EmojieLibraryEntry {
   Genre: string;
   Emoji: string;
   id: number;
+  GenreId: number;
   isSelected: boolean;
 }
 

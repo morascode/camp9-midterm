@@ -1,14 +1,28 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import { emojieLibrary } from '../Context/EmojieLibrary';
+import { useEmojieLibrary } from '../Context/GenreContext';
 import useQuery from '../hook/useQuery';
 import type { MovieDbResponse } from '../utilities/types';
 import type { Movie } from '../utilities/types';
+import GenreId from './genre/genre_filter/GenreId';
+import useMovieHook from './genre/genre_filter/genre_hook/GenreHook';
 
 interface PaginationMovies {
   state: number;
 }
 
 export default function PaginationMovies({ state }: PaginationMovies) {
+  const { filteredEmojieLibrary } = useEmojieLibrary();
+  console.log(
+    filteredEmojieLibrary.map(genreid => {
+      if (genreid.isSelected === true) {
+        return genreid.GenreId;
+      }
+    })
+  );
+  const { data: MovieData } = useMovieHook();
+  console.log(MovieData);
   const { isError, isLoading, data } = useQuery<MovieDbResponse>(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b`
   );
