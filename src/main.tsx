@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
-import WelcomeHeader from './components/WelcomeHeader';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
 import BookDateAndTime from './pages/BookDateAndTime';
 import Home from './pages/Home';
 import Genres from './pages/Genres';
 import Credits from './pages/Credits';
-import SearchBar from './components/Searchbar';
 import LogInPage from './pages/LogInPage';
+import Movies from './pages/Movies';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: '/movies',
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/genres',
-    element: <Genres/>, // insert your page here
+    element: <Genres />, // insert your page here
   },
   {
     path: '/movies/:id',
@@ -57,8 +57,12 @@ export const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient({});
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

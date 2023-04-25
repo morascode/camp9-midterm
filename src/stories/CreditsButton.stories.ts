@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import CastCrewButton from '../components/CastCrewButton';
+import CreditsButton from '../components/credits/CreditsButton';
 
-const meta: Meta<typeof CastCrewButton> = {
-  title: 'CastCrewButton',
-  component: CastCrewButton,
+const meta: Meta<typeof CreditsButton> = {
+  title: 'CreditsButton',
+  component: CreditsButton,
   parameters: {
     viewport: {
       defaultViewport: 'mobile1',
@@ -12,7 +12,7 @@ const meta: Meta<typeof CastCrewButton> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CastCrewButton>;
+type Story = StoryObj<typeof CreditsButton>;
 
 export const Default: Story = {
   args: {

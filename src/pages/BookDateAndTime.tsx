@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import BookingDate from '../components/BookingDate';
 import BookingTime from '../components/BookingTime';
-import PageHeader from '../components/PageHeader';
 
 export default function BookDateAndTime() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -16,7 +15,6 @@ export default function BookDateAndTime() {
   }
   return (
     <div className="mx-5 my-6">
-      <PageHeader children={'Select Date & Time'} />
       <div className="py-6 border-b border-white-dimmed">
         <h2 className="text-sm text-white-dimmed font-bold ml-1">Date</h2>
         <div className="pt-5 grid grid-cols-4 gap-[18px]">
