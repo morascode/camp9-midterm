@@ -61,10 +61,7 @@ function EmojieProvider({ children }: { children: any }) {
       });
       return setFilteredEmojie([
         ...filteredEmojieLibrary,
-        notSelectedEmojies[0],
-        notSelectedEmojies[1],
-        notSelectedEmojies[2],
-        notSelectedEmojies[3],
+        ...notSelectedEmojies.slice(0, 4 - filteredEmojieLibrary.length),
       ]);
     }
     setFilteredEmojie(filteredEmojieLibrary);
