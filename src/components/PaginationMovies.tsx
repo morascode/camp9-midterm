@@ -9,7 +9,6 @@ interface PaginationMovies {
 }
 
 export default function PaginationMovies({ state }: PaginationMovies) {
-  console.log(state);
   const { isError, isLoading, data } = useQuery<MovieDbResponse>(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b`
   );
@@ -40,7 +39,6 @@ export default function PaginationMovies({ state }: PaginationMovies) {
       break;
   }
 
-  console.log({ fourMovies });
   return (
     <div className="flex flex-row flex-wrap gap-5 justify-between w-full h-[full]">
       {fourMovies?.map((movie, index) => {

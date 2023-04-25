@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 
-export default function useQuery<T>(url: string) {
-  const [data, setData] = useState<T | null>(null);
+export default function useMovieHook() {
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState<null | string>(null);
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get<T>(url);
-
+        const { data } = await axios.get(
+          'https://api.themoviedb.org/3/genre/movie/list?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US'
+        );
+        console.log(data);
         setData(() => data);
       } catch (err) {
         const error = err as AxiosError;
@@ -19,6 +21,6 @@ export default function useQuery<T>(url: string) {
     })();
     setIsLoading(false);
   }, []);
-
+  console.log(data);
   return { data, isLoading, isError };
 }
