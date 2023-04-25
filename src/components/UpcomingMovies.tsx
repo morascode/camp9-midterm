@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Movie, MovieDbResponse } from '../utilities/types';
+import { Movie } from '../utilities/types';
 import useGetUpcomingMovies from '../hook/useGetUpcomingMovies';
 
 function UpcomingMovies() {
-  const { isLoading, isError, data } = useGetUpcomingMovies<MovieDbResponse>();
+  const { isLoading, isError, data } = useGetUpcomingMovies();
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -23,7 +23,7 @@ function UpcomingMovies() {
     <>
       <h2 className="typography-title">Upcoming Movies</h2>
       <section className="flex gap-5 overflow-y-hidden snap-mandatory snap-x -mx-5 py-3">
-        {movies?.map((movie: Movie) => (
+        {movies.map((movie: Movie) => (
           <div className="w-32 shrink-0 snap-center" key={movie.id}>
             <Link to={`/movies/${movie.id} `}>
               <img
