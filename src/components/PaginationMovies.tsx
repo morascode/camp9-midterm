@@ -15,21 +15,25 @@ interface PaginationMovies {
 export default function PaginationMovies({ state }: PaginationMovies) {
   const { filteredEmojieLibrary } = useEmojieLibrary();
 
-  const genreIds = filteredEmojieLibrary.map(genreid => {
-    if (genreid.isSelected === true) {
-      return genreid.GenreId;
-    }
-    if (genreid.isSelected === false) {
-      return genreid.GenreId;
-    }
-  });
+  const genreIds = filteredEmojieLibrary
+    .filter(genreid => {
+      if (genreid.isSelected === true) return genreid.GenreId;
+    })
+    .map(genreid => genreid.GenreId);
 
   console.log(genreIds);
 
-  const { data: MovieData } = useMovieHook();
-  console.log(MovieData);
+  function movieAPI() {
+    if (genreIds.length === 0) {
+      return 'movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b';
+    }
+    return `discover/movie?api_key=b83392e48747a4845ad80c2011eaa33b&with_genres=${genreIds}`;
+  }
+
+  const moviesAPI = movieAPI();
+
   const { isError, isLoading, data } = useQuery<MovieDbResponse>(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b`
+    `https://api.themoviedb.org/3/${moviesAPI}`
   );
 
   const allMovies = data?.results;
