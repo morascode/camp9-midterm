@@ -14,13 +14,18 @@ interface PaginationMovies {
 
 export default function PaginationMovies({ state }: PaginationMovies) {
   const { filteredEmojieLibrary } = useEmojieLibrary();
-  console.log(
-    filteredEmojieLibrary.map(genreid => {
-      if (genreid.isSelected === true) {
-        return genreid.GenreId;
-      }
-    })
-  );
+
+  const genreIds = filteredEmojieLibrary.map(genreid => {
+    if (genreid.isSelected === true) {
+      return genreid.GenreId;
+    }
+    if (genreid.isSelected === false) {
+      return genreid.GenreId;
+    }
+  });
+
+  console.log(genreIds);
+
   const { data: MovieData } = useMovieHook();
   console.log(MovieData);
   const { isError, isLoading, data } = useQuery<MovieDbResponse>(
