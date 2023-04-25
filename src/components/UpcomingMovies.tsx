@@ -4,7 +4,9 @@ import { Movie, MovieDbResponse } from '../utilities/types';
 
 function UpcomingMovies() {
   const { data } = useQuery<MovieDbResponse>(
-    'https://api.themoviedb.org/3/movie/upcoming?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US'
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&language=en-US`
   );
 
   const movies = data?.results;

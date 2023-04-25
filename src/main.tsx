@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: '/movies',
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/genres',
-    element: <Genres/>, // insert your page here
+    element: <Genres />, // insert your page here
   },
   {
     path: '/movies/:id',
