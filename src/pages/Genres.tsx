@@ -1,6 +1,6 @@
 import PageHeader from '../components/CreditsPageHeader';
 import GenresSelectionPage from '../components/genre/genres_selection/GenresSelection';
-import MovieDetailHeader from '../components/MovieDetailHeader';
+import MovieDetailHeader from '../components/HeaderPages';
 
 function Genres() {
   return (
