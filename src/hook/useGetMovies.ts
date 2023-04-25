@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 
 export default function useGetMovies<T>(url: string) {
-  useQuery({
+  return useQuery({
     queryKey: ['movies'],
     queryFn: async () => {
       try {
