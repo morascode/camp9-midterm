@@ -21,27 +21,43 @@ function Ticket() {
   
   
     return (
-              <div className=" grid place-items-center pt-8 px-5 ">
-                <div className="bg-[#494952] min-h-screen	 rounded-[12px] items-center ">
-                  <div className=" ">
-                    <img src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`} alt="Movie Poster" className=" top-0 rounded-t-[12px]  object-cover w-full h-[160px]" />
-                  </div>
-                  <div className=" grid">
+              <div className=" grid justify-center place-items-center pt-8 px-5 ">
+                 <div className="  " > {/*BUG: This div is kind of behind the ticket and if I set a min-h-screen it does not make the ticket + the button fullscreen, pl hepl me with this one. the className="debug" for seeing this */}
+                  <div className="  grid content-between bg-[#494952]	 rounded-[12px] items-center ">
                     <div className="">
-                      <h2 className="typography-title pt-2 pb-6 px-6">{data.title}</h2>
-                
+                  
+                        <img src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`} alt="Movie Poster" className="  rounded-t-[12px]  object-cover w-full h-[160px]" />
+                  
+                      <div className=" grid">
+                        <div className="">
+                          <h2 className="typography-title pt-2 pb-6 px-6">{data.title}</h2>
+                        </div>
+                        <div className=" flex justify-between px-6 " >
+                          <div className="grid"><span className="text-xs font-medium">Date</span><p className="font-semibold text-white  ">08 jan</p></div>
+                          <div className="grid"><span className="text-xs font-medium">Time</span><p className="font-semibold text-white  ">12:30</p></div>
+                          <div className="grid"><span className="text-xs font-medium">Price</span><p className="font-semibold text-white  ">56,00</p></div></div>
+                          <div className="grid pt-2 px-6"><span className="text-xs font-medium">Seats</span ><p className="font-semibold text-white  ">c-3,c-4,c-5</p></div>
+                        
+                      </div>
                     </div>
-                    <div className="flex px-6 " >
-                      <div className="grid"><span className="">Date</span><br/><p className="">08 jan</p></div>
-                      <div className="grid"><span className="">Time</span><p className="">12:30</p></div>
-                      <div className="grid"><span className="">Price</span><p className="">56,00</p></div>
-                      <div className="grid"><span className="">Seats</span ><p className="">c-3,c-4,c-5</p></div>
+                    <div className=" " >
+                      {/* This div puts the barcode, the line and the circle in the end of the ticket */}
+                      <hr className="translate-y-8  border-dashed" />
+                      <div className=" flex justify-between items-center" >
+                        <span className=" -translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
+                        
+                  
+                          <span className=" translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
+                      </div>
+                      <div className="flex justify-center 	 " >
+                  
+                  {/* here goes the barcode */}
+                    <img src="src\assets\barcode.png " className="pb-3" alt="barcode" /></div>
                     </div>
-                    
+                  
                   </div>
-                  <div className="">Barcode</div>
+                  <div className=" w-[335px] px-5 py-4"><Button className=" 	">Back To Home</Button></div>
                 </div>
-                <div className=" debug w-[335px] py-4"><Button className=" 	">Back To Home</Button></div>
               </div>
             );
           };
