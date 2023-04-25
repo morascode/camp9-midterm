@@ -3,7 +3,7 @@ import BookingDate from '../components/BookingDate';
 import BookingTime from '../components/BookingTime';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
-import MovieDetailHeader from '../components/MovieDetailHeader';
+import PageHeader from '../components/CreditsPageHeader';
 
 export default function BookDateAndTime() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -32,7 +32,7 @@ export default function BookDateAndTime() {
 
   return (
     <div className="px-5 py-6 h-screen flex flex-col">
-      <MovieDetailHeader children={'Select Date & Time'} />
+      <PageHeader children={'Select Date & Time'} />
       <div className="py-6 border-b border-white-dimmed">
         <h2 className="text-sm text-white-dimmed font-bold ml-1">Date</h2>
         <div className="pt-5 grid grid-cols-4 gap-[18px]">

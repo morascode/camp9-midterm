@@ -2,7 +2,7 @@ import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
 import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';
-import MovieDetailHeader from '../components/MovieDetailHeader';
+import MovieDetailHeader from '../components/HeaderPages';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
@@ -11,7 +11,9 @@ function MovieDetails() {
   const { id } = useParams();
 
   const { data, isLoading } = useQuery<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US&append_to_response=credits`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&language=en-US&append_to_response=credits`
   );
 
   if (isLoading || !data) {

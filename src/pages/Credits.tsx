@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import CastCrewButton from '../components/CastCrewButton';
 import CastCrewListItem from '../components/CastCrewListItem';
-import MovieDetailHeader from '../components/MovieDetailHeader';
+import MovieDetailHeader from '../components/HeaderPages';
 
 //
 // Image fetching function
@@ -31,7 +31,9 @@ function getImages(
       };
       axios
         .get(
-          `https://api.themoviedb.org/3/person/${castMember.id}/images?api_key=b83392e48747a4845ad80c2011eaa33b`
+          `https://api.themoviedb.org/3/person/${
+            castMember.id
+          }/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
         )
         .then(result => {
           try {
