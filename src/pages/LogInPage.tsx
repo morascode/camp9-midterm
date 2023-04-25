@@ -7,14 +7,15 @@ function LogInPage() {
   const [paths, setPaths] = useState('/login');
 
   return (
-    <div className="mx-5 my-8 h-screen relative">
+    <div className="px-5 py-8 h-screen relative flex flex-col">
       <h1 className="typography-title">Welcome to Cine-Scape</h1>
-      <p className="typography-body mt-3 mb-8">
+      <p className="typography-body pt-3 pb-5">
         You need to log in to be able to make reservations and add movies to
         your watchlist.
       </p>
       <LogInForm></LogInForm>
-      <Link to="/" className="absolute bottom-20 right-0 w-full">
+      <div className='flex-auto'></div>
+      <Link to="/" className=" w-full">
         <Button className="typography-primary">Login</Button>
       </Link>
     </div>
