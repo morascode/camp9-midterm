@@ -9,14 +9,20 @@ interface Props {
 export default function BookingDate({ onSelect, selectedTime }: Props) {
   const today = new Date();
 
+  // make sure the minutes are rounded to the next 30
+  today.setMinutes(today.getMinutes() + 59);
+
   const day = selectedTime ? new Date(selectedTime) : today;
+
   day.setMinutes(0);
-  const startHour = isSameDay(day, today) ? new Date().getHours() : 11;
+  const startHour = isSameDay(day, today) ? today.getHours() : 11;
 
   const intervals = eachMinuteOfInterval({
     start: setHours(day, startHour),
-    end: setHours(day, 23),
-  }).filter(date => date.getMinutes() === 0 && date.getHours() % 2 === 0);
+    end: setHours(day, 21),
+  }).filter(date => date.getMinutes() === 0 || date.getMinutes() === 30);
+
+  const filteredIntervals = intervals.filter((_, i) => i % 3 == 0);
 
   function onClickHandler(date: Date) {
     onSelect(date);
@@ -24,7 +30,7 @@ export default function BookingDate({ onSelect, selectedTime }: Props) {
 
   return (
     <>
-      {intervals.map(date => (
+      {filteredIntervals.map(date => (
         <BookingBtn
           key={date.toISOString()}
           isSelected={

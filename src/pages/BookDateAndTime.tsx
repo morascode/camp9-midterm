@@ -58,7 +58,10 @@ export default function BookDateAndTime() {
       <Link
         to={`/seats?date=${selectedDate
           ?.toISOString()
-          .substring(0, 10)}&time=${selectedTime?.getHours()}:00`}
+          .substring(
+            0,
+            10
+          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes()}}`}
         className="mt-auto"
       >
         <Button disabled={!selectedDateAndTime}>Select Seats</Button>
