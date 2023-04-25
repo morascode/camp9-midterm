@@ -30,7 +30,7 @@ export const emojieLibrary = [
     isSelected: false,
   },
   {
-    Genre: 'Documentary',
+    Genre: 'Factual Film',
     Emoji: '🎥',
     id: 6,
     isSelected: false,

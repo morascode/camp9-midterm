@@ -27,7 +27,7 @@ function GenreFavorites() {
           </svg>
         </Link>
       </div>
-      <div className="w-full px-5 py-4 flex gap-[37px] justify-center text-center items-baseline bg-[#1C1C27]">
+      <div className="w-full px-5 py-4 flex gap-7 justify-center text-center items-baseline bg-[#1C1C27]">
         {filteredEmojieLibrary.slice(0, 4).map(emojie => (
           <Genreonclick
             emojie={emojie.Emoji}
