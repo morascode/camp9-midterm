@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Movie, MovieDbResponse } from '../utilities/types';
-import useGetMovies from '../hook/useGetMovies';
+import useGetMovies from '../hook/useGetUpcomingMovies';
 
 function UpcomingMovies() {
-  const { isLoading, isError, data } = useGetMovies<MovieDbResponse>(
-    'https://api.themoviedb.org/3/movie/upcoming?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US'
-  );
+  const { isLoading, isError, data } = useGetMovies<MovieDbResponse>();
 
   if (isLoading) {
     return <span>Loading...</span>;
