@@ -16,52 +16,62 @@ export default function BookingDate({ onSelect, selectedDate }: Props) {
     onSelect(date);
   }
 
-  // create 12 buttons
-  const dateBtns = days.map(date => (
+  // array of 4 random dates
+  const generateDisabledDates = (days: Date[]) => {
+    const randomDates: Date[] = [];
+    while (randomDates.length < 4) {
+      const randomIndex = Math.floor(Math.random() * days.length);
+      if (
+        !randomDates.some(
+          date => date.getTime() === days[randomIndex].getTime()
+        )
+      ) {
+        randomDates.push(days[randomIndex]);
+      } //splice returns modified array
+      days.splice(randomIndex, 1);
+    }
+    return randomDates;
+  };
+
+  const disabledDates = generateDisabledDates(days);
+
+  // subtract 4 random dates from the array of days
+  const availableDays = days.filter(
+    day => !disabledDates.some(date => date.getTime() === day.getTime())
+  );
+
+  // creating buttons for the random dates
+  const randomDatesButtons = disabledDates.map(date => (
     <BookingBtn
       key={date.getTime()}
       isSelected={
-        selectedDate ? selectedDate.toISOString() === date.toISOString() : false
+        selectedDate ? selectedDate.getTime() === date.getTime() : false
       }
       onClick={() => onClickHandler(date)}
+      disabled
     >
-      {format(new Date(date), 'dd MMM')}
+      {format(date, 'dd MMM')}
     </BookingBtn>
   ));
 
-  // select 4 random dates buttons
-  function FourDates(dateBtns: JSX.Element[]) {
-    const disabledDates: JSX.Element[] = [];
-    while (disabledDates.length < 4) {
-      const randomIndex = Math.floor(Math.random() * dateBtns.length);
-      if (!disabledDates.some(date => date.key === dateBtns[randomIndex].key)) {
-        disabledDates.push(dateBtns[randomIndex]);
-      } //splice returns modified array
-      dateBtns.splice(randomIndex, 1);
-    }
+  // create remaining buttons
+  const remainingDatesButtons = availableDays.map(date => (
+    <BookingBtn
+      key={date.getTime()}
+      isSelected={
+        selectedDate ? selectedDate.getTime() === date.getTime() : false
+      }
+      onClick={() => onClickHandler(date)}
+    >
+      {format(date, 'dd MMM')}
+    </BookingBtn>
+  ));
 
-    // adding disable to the four random dates buttons
-    const disabledDatesWithKey = disabledDates.map(date => (
-      <BookingBtn
-        key={date.key}
-        isSelected={date.props.isSelected}
-        onClick={date.props.onClick}
-        disabled
-      >
-        {date.props.children}
-      </BookingBtn>
-    ));
-    return disabledDatesWithKey;
-  }
-
-  const finalDisabledDates = FourDates(dateBtns);
-  console.log(finalDisabledDates);
-
-  const allDates = [...dateBtns, ...finalDisabledDates];
+  const allDates = [...randomDatesButtons, ...remainingDatesButtons];
 
   const sortedDates = allDates.sort(function (a, b) {
-    let x = parseInt(a.key as string);
-    let y = parseInt(b.key as string);
+    const x = parseInt(a.key as string);
+    const y = parseInt(b.key as string);
     const result = x - y;
     return result;
   });

@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import BookingDate from '../components/BookingDate';
 import BookingTime from '../components/BookingTime';
-import PageHeader from '../components/PageHeader';
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
+import MovieDetailHeader from '../components/MovieDetailHeader';
 
 export default function BookDateAndTime() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+  const [selectedDateAndTime, setSelectedDateAndTime] = useState<Date | null>();
 
   function handleDataSelected(date: Date) {
     setSelectedDate(prevDate => {
@@ -13,10 +17,22 @@ export default function BookDateAndTime() {
       }
       return date;
     });
+    setSelectedTime(date);
   }
+
+  function handleTimeSelected(date: Date) {
+    setSelectedTime(prevDate => {
+      if (prevDate?.toISOString() === date.toISOString()) {
+        return null;
+      }
+      return date;
+    });
+    setSelectedDateAndTime(date);
+  }
+
   return (
-    <div className="mx-5 my-6">
-      <PageHeader children={'Select Date & Time'} />
+    <div className="px-5 py-6 h-screen flex flex-col">
+      <MovieDetailHeader children={'Select Date & Time'} />
       <div className="py-6 border-b border-white-dimmed">
         <h2 className="text-sm text-white-dimmed font-bold ml-1">Date</h2>
         <div className="pt-5 grid grid-cols-4 gap-[18px]">
@@ -32,13 +48,21 @@ export default function BookDateAndTime() {
           <div className="pt-5 grid grid-cols-4 gap-[18px]">
             {
               <BookingTime
-                onSelect={handleDataSelected}
-                selectedDate={selectedDate}
+                onSelect={handleTimeSelected}
+                selectedTime={selectedTime}
               />
             }
           </div>
         </div>
-      )}
+      )}{' '}
+      <Link
+        to={`/seats?date=${selectedDate
+          ?.toISOString()
+          .substring(0, 10)}&time=${selectedTime?.getHours()}:00`}
+        className="mt-auto"
+      >
+        <Button disabled={!selectedDateAndTime}>Select Seats</Button>
+      </Link>
     </div>
   );
 }
