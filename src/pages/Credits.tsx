@@ -13,7 +13,7 @@ import loading from 'react-useanimations/lib/loading';
 function Credits({ movieId }: { movieId?: number }) {
   const { id } = useParams();
   const { data, isLoading, error, isError } = useGetCredits(
-    movieId ? movieId : id!
+    movieId ? movieId : parseInt(id!)
   );
 
   const [crewOrCast, setCrewOrCast] = useState<'cast' | 'crew'>('cast');

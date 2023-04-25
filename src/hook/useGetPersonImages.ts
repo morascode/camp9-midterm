@@ -4,16 +4,18 @@ import { PersonImagesRequest } from '../utilities/types';
 
 async function getPersonImages(id: number) {
   const response = await axios.get<PersonImagesRequest>(
-    `https://api.themoviedb.org/3/person/${id}/images?api_key=b83392e48747a4845ad80c2011eaa33b`
+    `https://api.themoviedb.org/3/person/${id}/images?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }`
   );
   return response.data;
 }
 
 export function useGetPersonImages(id: number) {
-  const { data, isLoading, error, isError } = useQuery({
+  const query = useQuery({
     queryKey: ['person', id],
     queryFn: () => getPersonImages(id),
   });
 
-  return { data, isLoading, error, isError };
+  return { ...query, personImage: query.data };
 }

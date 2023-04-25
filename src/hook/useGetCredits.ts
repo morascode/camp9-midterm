@@ -2,18 +2,19 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { MovieDbCreditsResponse } from '../utilities/types';
 
-async function getCredits(id: number | string) {
+async function getCredits(id: number) {
   const response = await axios.get<MovieDbCreditsResponse>(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=b83392e48747a4845ad80c2011eaa33b&language=en-US`
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&language=en-US`
   );
   return response.data;
 }
 
-export function useGetCredits(id: number | string) {
-  const { data, isLoading, error, isError } = useQuery({
+export function useGetCredits(id: number) {
+  const query = useQuery({
     queryKey: [id],
     queryFn: () => getCredits(id),
   });
-
-  return { data, isLoading, error, isError };
+  return query;
 }
