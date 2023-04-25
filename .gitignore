@@ -27,3 +27,5 @@ dist-ssr
 
 # camp9 additions
 pnpm-lock.yaml
+.env
+
