@@ -34,7 +34,7 @@ function Seats() {
   const disabledSeats = randomSeats(seatsWithoutNull as string[]);
 
   return (
-    <div className="grid grid-rows-6 grid-cols-9 gap-3">
+    <div className="grid grid-rows-6 grid-cols-9 gap-3 m-5">
       {seatsArray.map(item1 => {
         return item1.map((item, index) => {
           return item ? (
