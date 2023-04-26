@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CreditsButton from '../components/credits/CreditsButton';
 import CreditsListItem from '../components/credits/CreditsListItem';
 import HeaderPage from '../components/HeaderPage';
-import { useGetCredits } from '../hook/useGetCredits';
 import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
+import { useGetMovieDetails } from '../hook/useGetMovieDetails';
 
 //
 // Component
 //
 function Credits({ movieId }: { movieId?: number }) {
   const { id } = useParams();
-  const { data, isLoading, error, isError } = useGetCredits(
+  const { data, isLoading, error, isError } = useGetMovieDetails(
     movieId ? movieId : parseInt(id!)
   );
 
@@ -23,6 +23,7 @@ function Credits({ movieId }: { movieId?: number }) {
   //
   return (
     <>
+      {/* the header and the cast/crew buttons */}
       <HeaderPage>Cast & Crew</HeaderPage>
       <div className="text-white flex justify-between px-5 pt-2 pb-7 bg-dark select-none sticky top-[76px] h-[25px] box-content">
         <CreditsButton
@@ -38,6 +39,7 @@ function Credits({ movieId }: { movieId?: number }) {
           Crew
         </CreditsButton>
       </div>
+      {/* the section with content */}
       <section className="pt-0 pb-9 px-6 mb-2">
         {isLoading ? (
           // if the credits data is still loading
@@ -60,17 +62,21 @@ function Credits({ movieId }: { movieId?: number }) {
 
           <ul className="flex flex-col text-white gap-4">
             {crewOrCast === 'cast'
-              ? data.cast.map(castmember => (
+              ? data.credits.cast.map(castmember => (
                   <CreditsListItem
-                    key={`${castmember.id}-${data.cast.indexOf(castmember)}`}
+                    key={`${castmember.id}-${data.credits.cast.indexOf(
+                      castmember
+                    )}`}
                     id={castmember.id}
                     actorName={castmember.name}
                     character={castmember.character}
                   />
                 ))
-              : data?.crew.map(castmember => (
+              : data.credits.crew.map(castmember => (
                   <CreditsListItem
-                    key={`${castmember.id}-${data.crew.indexOf(castmember)}`}
+                    key={`${castmember.id}-${data.credits.crew.indexOf(
+                      castmember
+                    )}`}
                     id={castmember.id}
                     actorName={castmember.name}
                     character={castmember.job}
