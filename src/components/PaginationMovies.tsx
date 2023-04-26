@@ -41,15 +41,12 @@ export default function PaginationMovies({ state }: PaginationMovies) {
 
   console.log({ fourMovies });
   return (
-    <div className="flex flex-row px-5 py-8 flex-wrap gap-5 justify-between w-full h-[full]">
+    <div className="grid grid-rows-2 grid-cols-2 gap-5">
       {fourMovies?.map((movie, index) => {
         let image = movie.poster_path;
         return (
-          <div className={'h-auto'} key={index}>
-            <img
-              className={' max-h-56'}
-              src={`https://image.tmdb.org/t/p/original/${image}`}
-            ></img>
+          <div key={index}>
+            <img src={`https://image.tmdb.org/t/p/original/${image}`} />
           </div>
         );
       })}
