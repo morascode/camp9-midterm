@@ -77,7 +77,7 @@ function MovieDetails() {
           Read more
         </a>
         <div className="flex-auto"></div>
-        <Link to="/dates">
+        <Link to={`/dates/${id}`}>
           <Button>Get Reservation</Button>
         </Link>
       </div>
