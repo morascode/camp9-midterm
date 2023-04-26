@@ -3,7 +3,7 @@ import BookingDate from '../components/BookingDate';
 import BookingTime from '../components/BookingTime';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../components/Button';
-import PageHeader from '../components/CreditsPageHeader';
+import PageHeader from '../components/HeaderPage';
 
 export default function BookDateAndTime() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
