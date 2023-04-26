@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import BookingDate from '../components/BookingDate';
 import BookingTime from '../components/BookingTime';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import PageHeader from '../components/CreditsPageHeader';
 
@@ -9,6 +9,9 @@ export default function BookDateAndTime() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<Date | null>(null);
   const [selectedDateAndTime, setSelectedDateAndTime] = useState<Date | null>();
+
+  const { id } = useParams();
+  console.log(id);
 
   function handleDataSelected(date: Date) {
     setSelectedDate(prevDate => {
@@ -56,12 +59,12 @@ export default function BookDateAndTime() {
         </div>
       )}{' '}
       <Link
-        to={`/seats?date=${selectedDate
+        to={`/seats/${id}/${selectedDate
           ?.toISOString()
           .substring(
             0,
             10
-          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes()}0`}
+          )}/${selectedTime?.getHours()}:${selectedTime?.getMinutes()}0`}
         className="mt-auto"
       >
         <Button disabled={!selectedDateAndTime}>Select Seats</Button>

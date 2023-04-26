@@ -22,7 +22,7 @@ function MovieDetails() {
 
   return (
     <article className="py-7 h-screen">
-      <MovieDetailHeader children="Movie Detail" goBackTo="/" svg={true} />
+      <MovieDetailHeader children="Movie Detail" svg={true} />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
@@ -76,7 +76,7 @@ function MovieDetails() {
           Read more
         </a>
         <div className="flex-auto"></div>
-        <Link to="/dates">
+        <Link to={`/dates/${id}`}>
           <Button>Get Reservation</Button>
         </Link>
       </div>

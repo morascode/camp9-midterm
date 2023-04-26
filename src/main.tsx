@@ -44,11 +44,11 @@ export const router = createBrowserRouter([
     element: <Credits />,
   },
   {
-    path: '/dates',
+    path: '/dates/:id',
     element: <BookDateAndTime />, // insert your page here
   },
   {
-    path: '/seats',
+    path: '/seats/:id/:date/:time',
     element: <h1>SELECT SEATS</h1>, // insert your page here
   },
   {
