@@ -13,6 +13,8 @@ import SearchBar from './components/Searchbar';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: '/movies',
@@ -35,7 +37,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/genres',
-    element: <Genres/>, // insert your page here
+    element: <Genres />, // insert your page here
   },
   {
     path: '/movies/:id',
@@ -59,10 +61,22 @@ export const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      //refetchOnWindowFocus: true,
+      //refetchInterval: 1000,
+    },
+  },
+});
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-  <EmojieProvider>
-    <RouterProvider router={router} />
-    </EmojieProvider>
+    <QueryClientProvider client={queryClient}>
+      <EmojieProvider>
+        <RouterProvider router={router} />
+      </EmojieProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

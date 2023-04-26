@@ -1,7 +1,6 @@
 import SearchBar from '../components/Searchbar';
 import UpcomingMovies from '../components/UpcomingMovies';
 import GenreFavorites from '../components/genre/GenreFavorites';
-import GenreId from '../components/genre/genre_filter/GenreId';
 
 function Home() {
   return (

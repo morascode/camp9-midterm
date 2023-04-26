@@ -2,11 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { emojieLibrary } from '../Context/EmojieLibrary';
 import { useEmojieLibrary } from '../Context/GenreContext';
-import useQuery from '../hook/useQuery';
-import type { MovieDbResponse } from '../utilities/types';
-import type { Movie } from '../utilities/types';
-import GenreId from './genre/genre_filter/GenreId';
-import useMovieHook from './genre/genre_filter/genre_hook/GenreHook';
+import { useEmojieMovies } from '../hook/useEmojieSorting';
 
 interface PaginationMovies {
   state: number;
@@ -14,35 +10,21 @@ interface PaginationMovies {
 
 export default function PaginationMovies({ state }: PaginationMovies) {
   const { filteredEmojieLibrary } = useEmojieLibrary();
-
   const genreIds = filteredEmojieLibrary
     .filter(genreid => {
       if (genreid.isSelected === true) return genreid.GenreId;
     })
     .map(genreid => genreid.GenreId);
 
-  console.log(genreIds);
+  const { isError, isLoading, movies } = useEmojieMovies(genreIds);
 
-  function movieAPI() {
-    if (genreIds.length === 0) {
-      return 'movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b';
-    }
-    return `discover/movie?api_key=b83392e48747a4845ad80c2011eaa33b&with_genres=${genreIds}`;
-  }
-
-  const moviesAPI = movieAPI();
-
-  const { isError, isLoading, data } = useQuery<MovieDbResponse>(
-    `https://api.themoviedb.org/3/${moviesAPI}`
-  );
-
-  const allMovies = data?.results;
   if (isError) {
     return <h1>"Couldn't find the movies, sorry"</h1>;
   }
   if (isLoading) {
     return <h1>'wait a sec...'</h1>;
   }
+  const allMovies = movies;
   let fourMovies = allMovies;
   switch (state) {
     case 1:
