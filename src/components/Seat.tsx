@@ -3,11 +3,13 @@ import clsx from 'clsx';
 
 type Props = {
   disabled: Boolean;
+  type: SeatSection
 };
-type Seat = boolean;
+
+export type SeatSection = 'front' | 'middle' | 'back';
 
 export function Seat(props: Props) {
-  const [selected, setSelected] = useState<Seat>(false);
+  const [selected, setSelected] = useState(false);
 
   return (
     <button
