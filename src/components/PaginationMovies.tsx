@@ -1,7 +1,4 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { emojieLibrary } from '../Context/EmojieLibrary';
-import { useEmojieLibrary } from '../Context/GenreContext';
+import { Link } from 'react-router-dom';
 import { useEmojieMovies } from '../hook/useEmojieSorting';
 
 interface PaginationMovies {
@@ -38,15 +35,14 @@ export default function PaginationMovies({ state }: PaginationMovies) {
   }
 
   return (
-    <div className="flex flex-row flex-wrap gap-5 justify-between w-full h-[full]">
+    <div className="grid grid-rows-2 grid-cols-2 gap-5">
       {fourMovies?.map((movie, index) => {
         let image = movie.poster_path;
         return (
-          <div className={'h-auto'} key={index}>
-            <img
-              className={' h-64'}
-              src={`https://image.tmdb.org/t/p/original/${image}`}
-            ></img>
+          <div key={index}>
+            <Link to={`/movies/${movie.id} `}>
+              <img src={`https://image.tmdb.org/t/p/original/${image}`} />
+            </Link>
           </div>
         );
       })}
