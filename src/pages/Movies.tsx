@@ -1,4 +1,3 @@
-import React from 'react';
 import NavigationLayout from '../components/NavigationLayout';
 import PaginationButtons from '../components/PaginationButtons';
 import PaginationMovies from '../components/PaginationMovies';
