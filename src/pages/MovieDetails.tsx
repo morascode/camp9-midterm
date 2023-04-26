@@ -2,7 +2,7 @@ import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
 import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';
-import MovieDetailHeader from '../components/HeaderPages';
+import HeaderPage from '../components/HeaderPage';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
@@ -22,7 +22,7 @@ function MovieDetails() {
 
   return (
     <article className="py-7 h-screen">
-      <MovieDetailHeader children="Movie Detail" goBackTo="/" svg={true} />
+      <HeaderPage children="Movie Detail" goBackTo="/" svg={true} />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
