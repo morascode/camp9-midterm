@@ -9,14 +9,7 @@ interface PaginationMovies {
 }
 
 export default function PaginationMovies({ state }: PaginationMovies) {
-  const { filteredEmojieLibrary } = useEmojieLibrary();
-  const genreIds = filteredEmojieLibrary
-    .filter(genreid => {
-      if (genreid.isSelected === true) return genreid.GenreId;
-    })
-    .map(genreid => genreid.GenreId);
-
-  const { isError, isLoading, movies } = useEmojieMovies(genreIds);
+  const { isError, isLoading, movies } = useEmojieMovies();
 
   if (isError) {
     return <h1>"Couldn't find the movies, sorry"</h1>;

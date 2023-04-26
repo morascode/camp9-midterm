@@ -20,7 +20,14 @@ function getNOTemojiesMovies() {
     .then(res => res.data);
 }
 
-export function useEmojieMovies(genreIDs: Number[]) {
+export function useEmojieMovies() {
+  const { filteredEmojieLibrary } = useEmojieLibrary();
+  const genreIDs = filteredEmojieLibrary
+    .filter(genreid => {
+      if (genreid.isSelected === true) return genreid.GenreId;
+    })
+    .map(genreid => genreid.GenreId);
+
   if (genreIDs.length > 0) {
     const query = useQuery(['emojieMovies', genreIDs], () =>
       getEmojieMovies(genreIDs)
