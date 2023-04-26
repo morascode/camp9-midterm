@@ -7,7 +7,9 @@ import { useQuery } from '@tanstack/react-query';
 function getEmojieMovies(genreIDs: Number[]) {
   return axios
     .get<MovieDbResponse>(
-      `https://api.themoviedb.org/3/discover/movie?api_key=b83392e48747a4845ad80c2011eaa33b&with_genres=${genreIDs}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${
+        import.meta.env.VITE_TMDB_KEY
+      }&with_genres=${genreIDs}`
     )
     .then(res => res.data);
 }
@@ -15,7 +17,9 @@ function getEmojieMovies(genreIDs: Number[]) {
 function getNOTemojiesMovies() {
   return axios
     .get<MovieDbResponse>(
-      'https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b'
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${
+        import.meta.env.VITE_TMDB_KEY
+      }`
     )
     .then(res => res.data);
 }
