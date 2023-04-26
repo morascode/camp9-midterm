@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
     element: <BookDateAndTime />, // insert your page here
   },
   {
-    path: '/seats/:id/:date/:time',
+    path: '/seats/:id',
     element: <h1>SELECT SEATS</h1>, // insert your page here
   },
   {

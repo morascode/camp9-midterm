@@ -11,7 +11,6 @@ export default function BookDateAndTime() {
   const [selectedDateAndTime, setSelectedDateAndTime] = useState<Date | null>();
 
   const { id } = useParams();
-  console.log(id);
 
   function handleDataSelected(date: Date) {
     setSelectedDate(prevDate => {
@@ -59,12 +58,12 @@ export default function BookDateAndTime() {
         </div>
       )}{' '}
       <Link
-        to={`/seats/${id}/${selectedDate
+        to={`/seats/${id}?date=${selectedDate
           ?.toISOString()
           .substring(
             0,
             10
-          )}/${selectedTime?.getHours()}:${selectedTime?.getMinutes()}0`}
+          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes()}0`}
         className="mt-auto"
       >
         <Button disabled={!selectedDateAndTime}>Select Seats</Button>
