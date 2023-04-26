@@ -1,18 +1,18 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Props {
-  goBackTo: string;
   children: string;
   svg?: boolean;
 }
 
 function MovieDetailHeader(props: Props) {
   const [isLiked, setIsLiked] = useState(false);
+  const navigation = useNavigate();
   return (
     <div className="relative">
-      <Link to={props.goBackTo}>
+      <button onClick={() => navigation(-1)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -27,7 +27,7 @@ function MovieDetailHeader(props: Props) {
             d="M15.75 19.5L8.25 12l7.5-7.5"
           />
         </svg>
-      </Link>
+      </button>
       <p className="text-white text-[16px] font-bold text-center">
         {props.children}
       </p>

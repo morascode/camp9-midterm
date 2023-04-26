@@ -54,6 +54,12 @@
  * 2.0 - TAILWIND COMPONENTS LAYER 
  * ======================================= */
 @layer components {
+ 
+
+  .debug {
+  background: rgb(0, 100, 0, 0.6) !important;
+   /* outline: 3px solid limegreen !important;*/
+  }
   /* ========================================
  * 2.1 - BODY TAG
  * ======================================= */

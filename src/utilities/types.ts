@@ -12,6 +12,12 @@ export type MovieDbResponse = {
   total_results: number;
 };
 
+export type TicketProps = {
+  movieTitle: string;
+  movieTime: string;
+  movieDate: string;
+};
+
 export type MovieDetailDbResponse = {
   title: string;
   backdrop_path: string;
