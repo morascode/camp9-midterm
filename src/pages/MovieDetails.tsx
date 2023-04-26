@@ -1,23 +1,23 @@
 import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
-import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';
 import MovieDetailHeader from '../components/HeaderPages';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
+import { useGetMovieDetails } from '../hook/useGetMovieDetails';
 
 function MovieDetails() {
   const { id } = useParams();
 
-  const { data, isLoading } = useQuery<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${
-      import.meta.env.VITE_TMDB_KEY
-    }&language=en-US&append_to_response=credits`
-  );
+  const { data, isLoading, isError } = useGetMovieDetails(parseInt(id!));
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return <p>loading...</p>;
+  }
+
+  if (isError === true) {
+    throw new Error('no data found');
   }
 
   return (
@@ -60,7 +60,7 @@ function MovieDetails() {
               {returnNameOfCrewMember('Screenplay', data)}
             </div>
           </div>
-          <Link className="flex-1" to={`/cast/${id}`}>
+          <Link className="flex-1" to={`/credits/${id}`}>
             <Button variant="secondary" className="">
               Cast & Crew
             </Button>
@@ -74,11 +74,12 @@ function MovieDetails() {
         <a
           className="typography-body text-orange-500 underline mt-2"
           href={`https://www.imdb.com/title/${data?.imdb_id}`}
+          target="_blank"
         >
           Read more
         </a>
         <div className="flex-auto"></div>
-        <Link to="/dates">
+        <Link to={`/dates/${id}`}>
           <Button>Get Reservation</Button>
         </Link>
       </div>
