@@ -1,11 +1,11 @@
 import PageHeader from '../components/CreditsPageHeader';
 import GenresSelectionPage from '../components/genre/genres_selection/GenresSelection';
-import MovieDetailHeader from '../components/HeaderPages';
+import HeaderPage from '../components/HeaderPage';
 
 function Genres() {
   return (
     <div className="mx-5 mt-8 mb-6">
-      <MovieDetailHeader goBackTo="/">Genres</MovieDetailHeader>
+      <HeaderPage goBackTo="/">Genres</HeaderPage>
       <GenresSelectionPage />
     </div>
   );
