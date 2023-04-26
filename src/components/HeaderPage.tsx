@@ -12,7 +12,7 @@ function HeaderPage(props: Props) {
   const [isLiked, setIsLiked] = useState(false);
   const navigation = useNavigate();
   return (
-    <div className="flex justify-between items-center px-5 pb-6 pt-8 sticky top-0 bg-dark">
+    <header className="flex justify-between items-center px-5 pb-6 pt-8 sticky top-0 bg-dark">
       <button onClick={() => navigation(-1)}>
         <ChevronLeftIcon className="typography-title w-5"></ChevronLeftIcon>
       </button>
@@ -33,7 +33,7 @@ function HeaderPage(props: Props) {
           </button>
         )}
       </div>
-    </div>
+    </header>
   );
 }
 
