@@ -1,24 +1,28 @@
 import BookingBtn from './BookingBtn';
-import { eachMinuteOfInterval, add, format, setHours } from 'date-fns';
+import { eachMinuteOfInterval, format, setHours, isSameDay } from 'date-fns';
 
 interface Props {
   onSelect: (date: Date) => void;
-  selectedDate: Date | null;
+  selectedTime: Date | null;
 }
 
-export default function BookingDate({ onSelect, selectedDate }: Props) {
-  let day = selectedDate || new Date();
+export default function BookingDate({ onSelect, selectedTime }: Props) {
+  const today = new Date();
 
-  if (day.getDay() === new Date().getDay()) day = new Date();
+  // make sure the minutes are rounded to the next 30
+  today.setMinutes(today.getMinutes() + 59);
 
-  if (day.getDay() === new Date().getDay()) {
-    day = new Date();
-  }
+  const day = selectedTime ? new Date(selectedTime) : today;
+
+  day.setMinutes(0);
+  const startHour = isSameDay(day, today) ? today.getHours() : 11;
 
   const intervals = eachMinuteOfInterval({
-    start: setHours(day, 10),
-    end: setHours(day, 23),
-  }).filter(date => date.getMinutes() === 0 && date.getHours() % 2 === 0);
+    start: setHours(day, startHour),
+    end: setHours(day, 21),
+  }).filter(date => date.getMinutes() === 0 || date.getMinutes() === 30);
+
+  const filteredIntervals = intervals.filter((_, i) => i % 3 == 0);
 
   function onClickHandler(date: Date) {
     onSelect(date);
@@ -26,12 +30,12 @@ export default function BookingDate({ onSelect, selectedDate }: Props) {
 
   return (
     <>
-      {intervals.map(date => (
+      {filteredIntervals.map(date => (
         <BookingBtn
           key={date.toISOString()}
           isSelected={
-            selectedDate
-              ? selectedDate.toISOString() === date.toISOString()
+            selectedTime
+              ? selectedTime.toISOString() === date.toISOString()
               : false
           }
           onClick={() => onClickHandler(date)}

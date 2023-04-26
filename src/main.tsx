@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
 import WelcomeHeader from './components/WelcomeHeader';
 import NavigationLayout from './components/NavigationLayout';
@@ -10,7 +11,6 @@ import BookDateAndTime from './pages/BookDateAndTime';
 import Home from './pages/Home';
 import Genres from './pages/Genres';
 import Credits from './pages/Credits';
-import SearchBar from './components/Searchbar';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
@@ -47,27 +47,31 @@ export const router = createBrowserRouter([
     element: <Credits />,
   },
   {
-    path: '/dates',
+    path: '/dates/:id',
     element: <BookDateAndTime />, // insert your page here
   },
   {
-    path: '/seats',
+    path: '/seats/:id',
     element: <h1>SELECT SEATS</h1>, // insert your page here
   },
   {
     path: '/success',
     element: <h1>BOOKING SUCCESSFULL</h1>, // insert your page here
   },
-  { 
-    path: '/ticket', 
-    element: <Ticket /> 
+  {
+    path: '/ticket',
+    element: <Ticket />,
   },
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <EmojieProvider>
-      <RouterProvider router={router} />
-    </EmojieProvider>
+    <QueryClientProvider client={queryClient}>
+      <EmojieProvider>
+        <RouterProvider router={router} />
+      </EmojieProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
