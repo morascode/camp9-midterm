@@ -25,10 +25,9 @@ export type MovieDetailDbResponse = {
   overview: string;
   imdb_id: string;
   credits: {
-    crew: Array<{
-      name: string;
-      job: 'Screenplay' | 'Director';
-    }>;
+    id: number;
+    cast: TMDBCast[];
+    crew: TMDBCrew[];
   };
 };
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CreditsButton from '../components/credits/CreditsButton';
 import CreditsListItem from '../components/credits/CreditsListItem';
-import MovieDetailHeader from '../components/MovieDetailHeader';
+import MovieDetailHeader from '../components/HeaderPages';
 import { useGetCredits } from '../hook/useGetCredits';
 import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
@@ -23,9 +23,7 @@ function Credits({ movieId }: { movieId?: number }) {
   //
   return (
     <section className="py-9 px-6 mb-2">
-      <MovieDetailHeader goBackTo={`/movies/${id}`}>
-        Cast & Crew
-      </MovieDetailHeader>{' '}
+      <MovieDetailHeader>Cast & Crew</MovieDetailHeader>{' '}
       {isLoading ? (
         // if the credits data is still loading
         <div className="flex gap-2 my-3">
