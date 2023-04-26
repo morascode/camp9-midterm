@@ -121,9 +121,7 @@ function Credits({ movieId }: { movieId?: number }) {
   else
     return (
       <section className="py-9 px-6 mb-2">
-        <MovieDetailHeader goBackTo={`/movies/:${id}`}>
-          Cast & Crew
-        </MovieDetailHeader>
+        <MovieDetailHeader>Cast & Crew</MovieDetailHeader>
         <div className="text-white flex justify-between my-6 select-none">
           <CastCrewButton
             status={crewOrCast === 'cast' ? 'active' : 'passive'}
