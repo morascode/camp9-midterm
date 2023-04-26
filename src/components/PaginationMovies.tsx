@@ -1,5 +1,6 @@
 import useQuery from '../hook/useQuery';
 import type { MovieDbResponse } from '../utilities/types';
+import { Link } from 'react-router-dom';
 
 interface PaginationMovies {
   state: number;
@@ -46,7 +47,9 @@ export default function PaginationMovies({ state }: PaginationMovies) {
         let image = movie.poster_path;
         return (
           <div key={index}>
-            <img src={`https://image.tmdb.org/t/p/original/${image}`} />
+            <Link to={`/movies/${movie.id} `}>
+              <img src={`https://image.tmdb.org/t/p/original/${image}`} />
+            </Link>
           </div>
         );
       })}
