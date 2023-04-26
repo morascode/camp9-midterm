@@ -39,11 +39,14 @@ export default function PaginationMovies({ state }: PaginationMovies) {
       {fourMovies?.map((movie, index) => {
         let image = movie.poster_path;
         return (
-          <div key={index}>
-            <Link to={`/movies/${movie.id} `}>
-              <img src={`https://image.tmdb.org/t/p/original/${image}`} />
-            </Link>
-          </div>
+          <Link to={`/movies/${movie.id}`}>
+            <div className="h-auto" key={index}>
+              <img
+                className="h-64"
+                src={`https://image.tmdb.org/t/p/original/${image}`}
+              ></img>
+            </div>
+          </Link>
         );
       })}
     </div>
