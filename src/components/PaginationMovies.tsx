@@ -1,26 +1,20 @@
-import useQuery from '../hook/useQuery';
-import type { MovieDbResponse } from '../utilities/types';
 import { Link } from 'react-router-dom';
+import { useEmojieMovies } from '../hook/useEmojieSorting';
 
 interface PaginationMovies {
   state: number;
 }
 
 export default function PaginationMovies({ state }: PaginationMovies) {
-  console.log(state);
-  const { isError, isLoading, data } = useQuery<MovieDbResponse>(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${
-      import.meta.env.VITE_TMDB_KEY
-    }`
-  );
+  const { isError, isLoading, movies } = useEmojieMovies();
 
-  const allMovies = data?.results;
   if (isError) {
     return <h1>"Couldn't find the movies, sorry"</h1>;
   }
   if (isLoading) {
     return <h1>'wait a sec...'</h1>;
   }
+  const allMovies = movies;
   let fourMovies = allMovies;
   switch (state) {
     case 1:
@@ -40,7 +34,6 @@ export default function PaginationMovies({ state }: PaginationMovies) {
       break;
   }
 
-  console.log({ fourMovies });
   return (
     <div className="grid grid-rows-2 grid-cols-2 gap-5">
       {fourMovies?.map((movie, index) => {

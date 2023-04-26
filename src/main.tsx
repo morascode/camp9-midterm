@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './index.css';
 import WelcomeHeader from './components/WelcomeHeader';
 import NavigationLayout from './components/NavigationLayout';
@@ -14,6 +15,8 @@ import Credits from './pages/Credits';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
+
+
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +75,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <EmojieProvider>
         <RouterProvider router={router} />
       </EmojieProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
