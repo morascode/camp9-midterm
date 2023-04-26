@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import BookingBtn from './BookingBtn';
 import { eachDayOfInterval, add, format } from 'date-fns';
 
@@ -7,38 +8,45 @@ interface Props {
 }
 
 export default function BookingDate({ onSelect, selectedDate }: Props) {
-  const days = eachDayOfInterval({
-    start: new Date(),
-    end: add(new Date(), { days: 11 }),
-  });
-
   function onClickHandler(date: Date) {
     onSelect(date);
   }
 
-  // array of 4 random dates
-  const generateDisabledDates = (days: Date[]) => {
-    const randomDates: Date[] = [];
-    while (randomDates.length < 4) {
-      const randomIndex = Math.floor(Math.random() * days.length);
-      if (
-        !randomDates.some(
-          date => date.getTime() === days[randomIndex].getTime()
-        )
-      ) {
-        randomDates.push(days[randomIndex]);
-      } //splice returns modified array
-      days.splice(randomIndex, 1);
-    }
-    return randomDates;
-  };
+  const [disabledDates, setDisabledDates] = useState([] as Date[]);
+  const [availableDays, setAvailableDays] = useState([] as Date[]);
 
-  const disabledDates = generateDisabledDates(days);
+  useEffect(() => {
+    const dates = eachDayOfInterval({
+      start: new Date(),
+      end: add(new Date(), { days: 11 }),
+    });
 
-  // subtract 4 random dates from the array of days
-  const availableDays = days.filter(
-    day => !disabledDates.some(date => date.getTime() === day.getTime())
-  );
+    // array of 4 random dates
+    const generateDisabledDates = (days: Date[]) => {
+      const randomDates: Date[] = [];
+      while (randomDates.length < 4) {
+        const randomIndex = Math.floor(Math.random() * days.length);
+        if (
+          !randomDates.some(
+            date => date.getTime() === days[randomIndex].getTime()
+          )
+        ) {
+          randomDates.push(days[randomIndex]);
+        } //splice returns modified array
+        days.splice(randomIndex, 1);
+      }
+      return randomDates;
+    };
+
+    const randomDates = generateDisabledDates([...dates]);
+
+    // subtract 4 random dates from the array of days
+    const remainingDates = dates.filter(
+      day => !randomDates.some(date => date.getTime() === day.getTime())
+    );
+    setDisabledDates(randomDates);
+    setAvailableDays(remainingDates);
+  }, []);
 
   // creating buttons for the random dates
   const randomDatesButtons = disabledDates.map(date => (
