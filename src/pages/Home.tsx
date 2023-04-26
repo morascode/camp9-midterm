@@ -1,6 +1,7 @@
 import SearchBar from '../components/Searchbar';
 import UpcomingMovies from '../components/UpcomingMovies';
 import GenreFavorites from '../components/genre/GenreFavorites';
+import avatar from '../assets/Avatar.png';
 
 function Home() {
   return (
@@ -12,7 +13,7 @@ function Home() {
             Let's relax and watch a movie!
           </p>
         </div>
-        <div className="h-10 aspect-square rounded-full bg-blue-400"></div>
+        <img src={avatar}></img>
       </div>
       <div className="mt-7">
         <SearchBar />

@@ -1,4 +1,3 @@
-import React from 'react';
 import NavigationLayout from '../components/NavigationLayout';
 import PaginationButtons from '../components/PaginationButtons';
 import PaginationMovies from '../components/PaginationMovies';
@@ -9,8 +8,10 @@ function Movies() {
 
   return (
     <>
-      <PaginationMovies state={state} />
-      <PaginationButtons state={state} setState={setState} />
+      <div className="px-5 py-8">
+        <PaginationMovies state={state} />
+        <PaginationButtons state={state} setState={setState} />
+      </div>
       <NavigationLayout></NavigationLayout>
     </>
   );

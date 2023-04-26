@@ -68,7 +68,9 @@ function MovieDetails() {
         </div>
         <hr className="mt-3"></hr>
         <h2 className="typography-title mt-3">Synopsis</h2>
-        <p className="typography-body mt-3">{data?.overview}</p>
+        <p className="typography-body mt-3">
+          {data?.overview.slice(0, 150) + '...'}
+        </p>
         <a
           className="typography-body text-orange-500 underline mt-2"
           href={`https://www.imdb.com/title/${data?.imdb_id}`}
