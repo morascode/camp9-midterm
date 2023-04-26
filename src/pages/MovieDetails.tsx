@@ -1,28 +1,28 @@
 import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
-import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';
 import MovieDetailHeader from '../components/HeaderPages';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
+import { useGetMovieDetails } from '../hook/useGetMovieDetails';
 
 function MovieDetails() {
   const { id } = useParams();
 
-  const { data, isLoading } = useQuery<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${
-      import.meta.env.VITE_TMDB_KEY
-    }&language=en-US&append_to_response=credits`
-  );
+  const { data, isLoading, isError } = useGetMovieDetails(parseInt(id!));
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return <p>loading...</p>;
+  }
+
+  if (isError === true) {
+    throw new Error('no data found');
   }
 
   return (
     <article className="py-7 h-screen">
-      <MovieDetailHeader children="Movie Detail" goBackTo="/" svg={true} />
+      <MovieDetailHeader children="Movie Detail" svg={true} />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
