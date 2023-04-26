@@ -1,8 +1,5 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
 import useQuery from '../hook/useQuery';
 import type { MovieDbResponse } from '../utilities/types';
-import type { Movie } from '../utilities/types';
 import { Link } from 'react-router-dom';
 
 interface PaginationMovies {
@@ -46,13 +43,13 @@ export default function PaginationMovies({ state }: PaginationMovies) {
   console.log({ fourMovies });
   return (
     <div className="flex flex-row flex-wrap gap-5 justify-between w-full h-[full]">
-      {fourMovies?.map((movie: Movie, index) => {
+      {fourMovies?.map((movie, index) => {
         let image = movie.poster_path;
         return (
           <Link to={`/movies/${movie.id} `}>
-            <div className={'h-auto'} key={index}>
+            <div className="h-auto" key={index}>
               <img
-                className={' h-64'}
+                className="h-64"
                 src={`https://image.tmdb.org/t/p/original/${image}`}
               ></img>
             </div>
