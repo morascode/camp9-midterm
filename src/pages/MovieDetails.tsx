@@ -1,11 +1,10 @@
 import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
-import { MovieDetailDbResponse } from '../utilities/types';
-import HeaderPage from '../components/HeaderPage';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
 import { useGetMovieDetails } from '../hook/useGetMovieDetails';
+import MovieDetailHeader from '../components/SideHeader';
 
 function MovieDetails() {
   const { id } = useParams();

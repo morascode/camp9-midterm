@@ -1,5 +1,4 @@
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
-import React, { Children } from 'react';
 
 function PageHeader(props: { children: string }) {
   return (
