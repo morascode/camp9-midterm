@@ -61,7 +61,7 @@ export default function BookDateAndTime() {
           .substring(
             0,
             10
-          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes()}`}
+          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes()}0`}
         className="mt-auto"
       >
         <Button disabled={!selectedDateAndTime}>Select Seats</Button>
