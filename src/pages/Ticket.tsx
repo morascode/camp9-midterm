@@ -1,17 +1,18 @@
-import React from "react";
 // import Barcode from "react-barcode";
-import { useParams } from "react-router-dom";
-import { MovieDbResponse, MovieDetailDbResponse, TicketProps } from "../utilities/types";
-import useQuery from "../hook/useQuery";
-import Button from "../components/Button";
-
-
+import { useParams } from 'react-router-dom';
+import {
+  MovieDbResponse,
+  MovieDetailDbResponse,
+  TicketProps,
+} from '../utilities/types';
+import useQuery from '../hook/useQuery';
+import Button from '../components/Button';
 
 function Ticket() {
   // const { id } = useParams();
-  const id = 502356 //Mock as SuperMario. please change to useParams() when you are ready to test
+  const id = 502356; //Mock as SuperMario. please change to useParams() when you are ready to test
 
-  const { data, isLoading } =useQuery<MovieDetailDbResponse>(
+  const { data, isLoading } = useQuery<MovieDetailDbResponse>(
     `https://api.themoviedb.org/3/movie/${id}?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US&append_to_response=credits`
   );
   
@@ -64,9 +65,10 @@ function Ticket() {
     
             export default Ticket;
 
-            // <div className="barcode-container relative">
-            //           <hr className="barcode-separator absolute top-[50%] left-[-10px] right-[-10px] border-dotted" />
-            //           {/* <Barcode value="1234567890" /> */}
-            //           <span className="barcode-separator__circle absolute top-[-5px] left-[-5px] w-4 h-4 rounded-full bg-black"></span>
-            //           <span className="barcode-separator__circle absolute top-[-5px] right-[-5px] w-4 h-4 rounded-full bg-black"></span>
-            //         </div>
+
+// <div className="barcode-container relative">
+//           <hr className="barcode-separator absolute top-[50%] left-[-10px] right-[-10px] border-dotted" />
+//           {/* <Barcode value="1234567890" /> */}
+//           <span className="barcode-separator__circle absolute top-[-5px] left-[-5px] w-4 h-4 rounded-full bg-black"></span>
+//           <span className="barcode-separator__circle absolute top-[-5px] right-[-5px] w-4 h-4 rounded-full bg-black"></span>
+//         </div>

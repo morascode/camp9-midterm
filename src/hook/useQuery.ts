@@ -10,6 +10,7 @@ export default function useQuery<T>(url: string) {
     (async () => {
       try {
         const { data } = await axios.get<T>(url);
+        console.log(data);
         setData(() => data);
       } catch (err) {
         const error = err as AxiosError;

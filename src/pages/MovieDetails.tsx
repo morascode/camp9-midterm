@@ -1,7 +1,7 @@
+import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
 import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';
-import Button from '../components/Button';
 import MovieDetailHeader from '../components/MovieDetailHeader';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
@@ -15,7 +15,7 @@ function MovieDetails() {
   );
 
   if (isLoading || !data) {
-    return 'loading...';
+    return <p>loading...</p>;
   }
 
   return (
