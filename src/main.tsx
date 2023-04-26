@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider,  } from '@tanstack/react-query'
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
@@ -10,7 +11,7 @@ import Genres from './pages/Genres';
 import Credits from './pages/Credits';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import EmojieProvider from './Context/GenreContext';
 
 export const router = createBrowserRouter([
   {
@@ -29,11 +30,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <LogInPage />, // insert your page here
+    element: <LogInPage />,
   },
   {
     path: '/genres',
-    element: <Genres />, // insert your page here
+    element: <Genres />,
   },
   {
     path: '/movies/:id',
@@ -45,7 +46,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dates',
-    element: <BookDateAndTime />, // insert your page here
+    element: <BookDateAndTime />,
   },
   {
     path: '/seats',
@@ -57,12 +58,14 @@ export const router = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient({});
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <EmojieProvider>
+        <RouterProvider router={router} />
+      </EmojieProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
