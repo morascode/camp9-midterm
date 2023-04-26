@@ -60,7 +60,7 @@ function MovieDetails() {
               {returnNameOfCrewMember('Screenplay', data)}
             </div>
           </div>
-          <Link className="flex-1" to={`/cast/${id}`}>
+          <Link className="flex-1" to={`/credits/${id}`}>
             <Button variant="secondary" className="">
               Cast & Crew
             </Button>
@@ -72,6 +72,7 @@ function MovieDetails() {
         <a
           className="typography-body text-orange-500 underline mt-2"
           href={`https://www.imdb.com/title/${data?.imdb_id}`}
+          target="_blank"
         >
           Read more
         </a>
