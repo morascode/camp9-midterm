@@ -61,7 +61,9 @@ function Ticket() {
             <span className="translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
           </div>
           <div className="flex justify-center pb-3">
-            <QRCodeSVG value={`name:x;date:y;time:z;movieId:a;seats:b;price:c;`} />
+            <QRCodeSVG
+              value={`name:x;date:y;time:z;movieId:a;seats:b;price:c;`}
+            />
           </div>
         </div>
       </div>

@@ -1,8 +1,5 @@
-import clsx from 'clsx';
-import React from 'react';
-
 type Props = {
-  imageUrl: string | undefined;
+  imageUrl?: string;
   actorName: string;
   character: string;
 };
