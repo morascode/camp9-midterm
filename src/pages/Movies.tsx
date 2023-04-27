@@ -8,8 +8,10 @@ function Movies() {
 
   return (
     <>
-      <PaginationMovies state={state} />
-      <PaginationButtons state={state} setState={setState} />
+      <div className="px-5 py-8">
+        <PaginationMovies state={state} />
+        <PaginationButtons state={state} setState={setState} />
+      </div>
       <NavigationLayout></NavigationLayout>
     </>
   );

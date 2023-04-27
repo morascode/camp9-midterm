@@ -9,7 +9,7 @@ interface PaginationButtons {
 function PaginationButtons({ setState, state }: PaginationButtons) {
   const paginationNumbers = [1, 2, 3, 4, 5];
   return (
-    <div className="w-screen flex justify-between mt-5">
+    <div className="w-full flex justify-between mt-5">
       {paginationNumbers.map((value: number, index) => {
         return (
           <button

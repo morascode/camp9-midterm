@@ -1,17 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
+import { MovieDbResponse } from '../utilities/types';
 
-export default function useGetUpcomingMovies<T>() {
-  return useQuery({
-    queryKey: ['movies'],
-    queryFn: async () => {
-      try {
-        const { data } = await axios.get<T>(`https://api.themoviedb.org/3/movie/upcoming?api_key=${import.meta.env.VITE_TMDB_KEY}`);
-        return data;
-      } catch (err) {
-        const error = err as AxiosError;
-        return error.message;
-      }
-    },
+async function getUpcomingMovies(): Promise<MovieDbResponse> {
+  const upcomingMoviesData = await axios.get(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }`
+  )
+  return upcomingMoviesData.data
+}
+
+export default function useGetUpcomingMovies() {
+  const query = useQuery({
+    queryKey: ['upcomingMovies'],
+    queryFn: getUpcomingMovies
   });
+
+  return query;
 }
