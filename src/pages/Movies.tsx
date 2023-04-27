@@ -12,7 +12,6 @@ function Movies() {
         <PaginationMovies state={state} />
         <PaginationButtons state={state} setState={setState} />
       </div>
-      <NavigationLayout></NavigationLayout>
     </>
   );
 }
