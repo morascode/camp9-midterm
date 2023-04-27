@@ -3,14 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import { MovieDetailDbResponse } from '../utilities/types';
 import useQuery from '../hook/useQuery';
 import Button from '../components/Button';
+import { useGetMovieDetails } from '../hook/useGetMovieDetails';
 
 function Ticket() {
   // const { id } = useParams();
   const id = 502356; //Mock as SuperMario. please change to useParams() when you are ready to test
 
-  const { data, isLoading } = useQuery<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US&append_to_response=credits`
-  );
+  const { data, isLoading } = useGetMovieDetails(id);
 
   if (isLoading || !data) {
     return <div>Loading...</div>;
@@ -61,7 +60,9 @@ function Ticket() {
             <span className="translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
           </div>
           <div className="flex justify-center pb-3">
-            <QRCodeSVG value={`name:x;date:y;time:z;movieId:a;seats:b;price:c;`} />
+            <QRCodeSVG
+              value={`name:x;date:y;time:z;movieId:a;seats:b;price:c;`}
+            />
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import React from 'react';
-import MovieDetailHeader from '../HeaderPages';
-import Button from '../Button';
-import SingleInputFieldLogIn from '../SingleInputFieldLogIn';
+import Button from '../components/Button';
+import HeaderPage from '../components/HeaderPage';
+import SingleInputFieldLogIn from '../components/SingleInputFieldLogIn';
 
 function ChangePassword() {
   return (
     <div>
-      <MovieDetailHeader children="Change Password" svg={false} />
+      <HeaderPage children="Change Password" />
       <div className="flex gap-1 p-2 px-4 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

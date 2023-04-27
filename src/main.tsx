@@ -15,10 +15,12 @@ import Credits from './pages/Credits';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
-import Account from './components/accountpage/Account';
-import EditProfil from './components/accountpage/EditProfile';
-import ChangePassword from './components/accountpage/ChangePassword';
-import FavoriteGenres from './components/accountpage/FavoriteGenres';
+import Account from './pages/Account';
+
+import SelectSeats from './pages/SelectSeats';
+import ChangePassword from './pages/ChangePassword';
+import FavoriteGenres from './pages/FavoriteGenres';
+import EditProfile from './pages/EditProfile';
 
 export const router = createBrowserRouter([
   {
@@ -73,7 +75,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/editprofile',
-    element: <EditProfil />,
+    element: <EditProfile />,
   },
   {
     path: '/changepassword',

@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from '../Button';
-import MovieDetailHeader from '../HeaderPages';
+import Button from '../components/Button';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import HeaderPage from '../components/HeaderPage';
 
 function Account() {
   const navigation = useNavigate();
   return (
     <div>
-      <MovieDetailHeader children="Account Settings" svg={false} />
+      <HeaderPage children="Account Settings" />
       <div className="flex gap-1 p-2 px-4 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

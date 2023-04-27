@@ -1,11 +1,10 @@
-import Button from '../Button';
-import MovieDetailHeader from '../HeaderPages';
+import HeaderPage from '../components/HeaderPage';
 import EditProfileInputForm from './EditProfileForm';
 
 function EditProfile() {
   return (
     <div>
-      <MovieDetailHeader>Edit Profile</MovieDetailHeader>
+      <HeaderPage children="Edit Profile" />
       <EditProfileInputForm />
     </div>
   );
