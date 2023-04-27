@@ -15,8 +15,7 @@ import Credits from './pages/Credits';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
-
-
+import SelectSeats from './pages/SelectSeats';
 
 export const router = createBrowserRouter([
   {
