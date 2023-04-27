@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { useState } from 'react';
 
 type Props = {
-  placeholder: 'your@email.com' | 'Enter your Password';
-  svg: 'email' | 'key';
+  placeholder: 'your@email.com' | 'Enter your Password' | 'Enter New Password';
+  svg?: 'email' | 'key' | boolean;
   type: 'email' | 'password';
 };
 
