@@ -34,9 +34,15 @@ function LogInPage() {
           </p>
           <SignUpForm></SignUpForm>
           <div className="my-10"></div>
-          <Link to="/home">
-            <Button size="md">Sign Up</Button>
-          </Link>
+          <Button
+            type="submit"
+            size="md"
+            onClick={() => {
+              SetLogInOrSignUp('LogIn');
+            }}
+          >
+            Sign Up
+          </Button>
         </div>
       )}
 

@@ -34,15 +34,15 @@ function SignUpForm() {
           <div className="flex flex-col">
             <Radio
               name="age"
-              label="I'm 18"
-              value="I'm 18"
+              label="I'm over 18"
+              value="adult"
               checked={false}
               onChange={handleRadioChange}
             ></Radio>
             <Radio
               name="age"
-              label="I'm not 18"
-              value="I'm not 18"
+              label="I'm not over 18"
+              value="child"
               checked={false}
               onChange={handleRadioChange}
             ></Radio>
