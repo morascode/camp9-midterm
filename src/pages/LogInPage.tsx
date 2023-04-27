@@ -6,13 +6,13 @@ import Button from '../components/Button';
 import SignUpForm from '../components/SignUpForm';
 
 function LogInPage() {
-  const [LogInOrSignUp, SetLogInOrSignUp] = useState<'LogIn' | 'SignUp'>(
+  const [isLogInOrSignUp, setLogInOrSignUp] = useState<'LogIn' | 'SignUp'>(
     'LogIn'
   );
 
   return (
     <div className="px-5 py-8 h-screen relative flex justify-between flex-col">
-      {LogInOrSignUp === 'LogIn' ? (
+      {isLogInOrSignUp === 'LogIn' ? (
         <div>
           <h1 className="typography-title">Welcome to Cine-Scape</h1>
           <p className="typography-body pt-3 pb-5">
@@ -38,7 +38,7 @@ function LogInPage() {
             type="submit"
             size="md"
             onClick={() => {
-              SetLogInOrSignUp('LogIn');
+              setLogInOrSignUp('LogIn');
             }}
           >
             Sign Up
@@ -48,9 +48,9 @@ function LogInPage() {
 
       <div className="flex justify-between">
         <ToggleButton
-          status={LogInOrSignUp === 'LogIn' ? 'active' : 'passive'}
+          status={isLogInOrSignUp === 'LogIn' ? 'active' : 'passive'}
           onClick={() => {
-            SetLogInOrSignUp('LogIn');
+            setLogInOrSignUp('LogIn');
           }}
           className="typography-primary"
         >
@@ -58,9 +58,9 @@ function LogInPage() {
         </ToggleButton>
         <ToggleButton
           onClick={() => {
-            SetLogInOrSignUp('SignUp');
+            setLogInOrSignUp('SignUp');
           }}
-          status={LogInOrSignUp === 'SignUp' ? 'active' : 'passive'}
+          status={isLogInOrSignUp === 'SignUp' ? 'active' : 'passive'}
           className="typography-primary"
         >
           Sign Up

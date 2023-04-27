@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from './Checkbox';
-import SingleInputFieldLogIn from './SingleInputFieldLogIn';
+import SingleInputField from './SingleInputField';
 import { useState } from 'react';
 import Radio from './Radio';
 
@@ -19,38 +19,48 @@ function SignUpForm() {
   return (
     <>
       <form action="" onSubmit={() => {}}>
-        <SingleInputFieldLogIn
+        <SingleInputField
+          svg={'name'}
+          placeholder={'your firstname'}
+          type="firstname"
+        ></SingleInputField>
+        <SingleInputField
+          placeholder={'your lastname'}
+          svg={'name'}
+          type="lastname"
+        ></SingleInputField>
+        <SingleInputField
           placeholder={'your@email.com'}
           svg={'email'}
           type="email"
-        ></SingleInputFieldLogIn>
+        ></SingleInputField>
 
-        <SingleInputFieldLogIn
+        <SingleInputField
           placeholder={'Enter your Password'}
           svg={'key'}
           type="password"
-        ></SingleInputFieldLogIn>
+        ></SingleInputField>
         <div className=" flex flex-row justify-around">
           <div className="flex flex-col">
             <Radio
               name="age"
               label="I'm over 18"
               value="adult"
-              checked={false}
+              checked={selectedOption === 'adult' ? true : false}
               onChange={handleRadioChange}
             ></Radio>
             <Radio
               name="age"
-              label="I'm not over 18"
+              label="I'm under 18"
               value="child"
-              checked={false}
+              checked={selectedOption === 'child' ? true : false}
               onChange={handleRadioChange}
             ></Radio>
           </div>
           <Checkbox
             label="student"
             name="student"
-            checked={false}
+            checked={isChecked}
             onChange={handleCheckboxChange}
           ></Checkbox>
         </div>
