@@ -1,6 +1,7 @@
-// import Barcode from "react-barcode";
-import { useParams } from 'react-router-dom';
-
+import { QRCodeSVG } from 'qrcode.react';
+import { Link, useParams } from 'react-router-dom';
+import { MovieDetailDbResponse } from '../utilities/types';
+import useQuery from '../hook/useQuery';
 import Button from '../components/Button';
 import { useGetMovieDetails } from '../hook/useGetMovieDetails';
 
@@ -15,10 +16,9 @@ function Ticket() {
   }
 
   return (
-    <div className=" min-h-screen flex flex-col items-center py-8 px-5">
+    <div className="min-h-screen flex flex-col items-center py-8 px-5">
       {/* This div holds the ticket and the button. the flex makes the ticket responsive to different phones */}
       <div className=" grow grid w-full content-between bg-[#494952] rounded-[12px] items-center">
-        {' '}
         {/* This div holds the ticket information and the "grow" is making the ticket responsive */}
         <div>
           {/* This div holds the movie poster and the movie information. it is needed in order to place the poster and the data together */}
@@ -27,59 +27,52 @@ function Ticket() {
             alt="Movie Poster"
             className="  rounded-t-[12px]  object-cover w-full h-[160px]"
           />
-
-          <div className=" grid">
+          <div className="grid">
             {/* This grid holds the Ticket information */}
             <h2 className="typography-title pt-2 pb-6 px-6">{data.title}</h2>
-
-            <div className=" debug flex justify-between px-6 ">
+            <div className="flex justify-between px-6 ">
               {/* This div holds the Date, Time, Price zusammen. It does not include Seats */}
               <div className="grid">
                 <span className="text-xs font-medium">Date</span>
-                <p className="font-semibold text-white  ">08 jan</p>
+                <p className="font-semibold text-white">08 jan</p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Time</span>
-                <p className="font-semibold text-white  ">12:30</p>
+                <p className="font-semibold text-white">12:30</p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Price</span>
-                <p className="font-semibold text-white  ">56,00</p>
+                <p className="font-semibold text-white">56,00</p>
               </div>
             </div>
             <div className="grid pt-2 px-6">
               <span className="text-xs font-medium">Seats</span>
-              <p className="font-semibold text-white  ">c-3,c-4,c-5</p>
+              <p className="font-semibold text-white">c-3,c-4,c-5</p>
             </div>
           </div>
         </div>
-        <div className=" debug ">
+        <div>
           {/* This div puts the barcode, the line and the circle in the end of the ticket. */}
-          <hr className="translate-y-8  border-dashed" />
-          <div className=" flex justify-between items-center">
+          <hr className="translate-y-8 border-dashed" />
+          <div className="flex justify-between items-center">
             {/* This div holds the circles in the end of the ticket */}
-            <span className=" -translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
-
-            <span className=" translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
+            <span className="-translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
+            <span className="translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
           </div>
-          <div className="flex justify-center 	 ">
-            {/* here goes the barcode */}
-            <img src="src\assets\barcode.png " className="pb-3" alt="barcode" />
+          <div className="flex justify-center pb-3">
+            <QRCodeSVG
+              value={`name:x;date:y;time:z;movieId:a;seats:b;price:c;`}
+            />
           </div>
         </div>
       </div>
-      <div className=" w-full pt-5 ">
-        <Button className=" 	">Back To Home</Button>
+      <div className="w-full pt-5">
+        <Link to="/">
+          <Button>Back To Home</Button>
+        </Link>
       </div>
     </div>
   );
 }
 
 export default Ticket;
-
-// <div className="barcode-container relative">
-//           <hr className="barcode-separator absolute top-[50%] left-[-10px] right-[-10px] border-dotted" />
-//           {/* <Barcode value="1234567890" /> */}
-//           <span className="barcode-separator__circle absolute top-[-5px] left-[-5px] w-4 h-4 rounded-full bg-black"></span>
-//           <span className="barcode-separator__circle absolute top-[-5px] right-[-5px] w-4 h-4 rounded-full bg-black"></span>
-//         </div>

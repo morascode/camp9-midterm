@@ -1,4 +1,4 @@
-import React, { Key } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 
 interface PaginationButtons {
