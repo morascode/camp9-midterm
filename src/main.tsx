@@ -16,8 +16,6 @@ import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
 
-
-
 export const router = createBrowserRouter([
   {
     path: '/',
