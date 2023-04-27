@@ -4,7 +4,7 @@ import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes'
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
 import { useGetMovieDetails } from '../hook/useGetMovieDetails';
-import MovieDetailHeader from '../components/SideHeader';
+import HeaderPage from '../components/HeaderPage';
 
 function MovieDetails() {
   const { id } = useParams();
