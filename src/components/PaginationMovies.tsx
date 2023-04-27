@@ -1,8 +1,5 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
 import useQuery from '../hook/useQuery';
 import type { MovieDbResponse } from '../utilities/types';
-import type { Movie } from '../utilities/types';
 
 interface PaginationMovies {
   state: number;

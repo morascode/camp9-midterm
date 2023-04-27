@@ -1,10 +1,6 @@
 // import Barcode from "react-barcode";
-import { useParams } from 'react-router-dom';
-import {
-  MovieDbResponse,
-  MovieDetailDbResponse,
-  TicketProps,
-} from '../utilities/types';
+
+import { MovieDetailDbResponse } from '../utilities/types';
 import useQuery from '../hook/useQuery';
 import Button from '../components/Button';
 
