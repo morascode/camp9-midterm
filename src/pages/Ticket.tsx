@@ -1,22 +1,16 @@
-// import Barcode from "react-barcode";
-import { useParams } from 'react-router-dom';
-import { AddToCalendarButton } from 'add-to-calendar-button-react';
-
-import {
-  MovieDbResponse,
-  MovieDetailDbResponse,
-  TicketProps,
-} from '../utilities/types';
+import { QRCodeSVG } from 'qrcode.react';
+import { Link, useParams } from 'react-router-dom';
+import { MovieDetailDbResponse } from '../utilities/types';
 import useQuery from '../hook/useQuery';
+import AddToCalendarButton from 'react-add-to-calendar-button';
 import Button from '../components/Button';
+import { useGetMovieDetails } from '../hook/useGetMovieDetails';
 
 function Ticket() {
   // const { id } = useParams();
   const id = 502356; //Mock as SuperMario. please change to useParams() when you are ready to test
 
-  const { data, isLoading } = useQuery<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US&append_to_response=credits`
-  );
+  const { data, isLoading } = useGetMovieDetails(id);
 
   if (isLoading || !data) {
     return <div>Loading...</div>;
@@ -44,15 +38,15 @@ function Ticket() {
               {/* This div holds the Date, Time, Price zusammen. It does not include Seats */}
               <div className="grid">
                 <span className="text-xs font-medium">Date</span>
-                <p className="font-semibold text-white  ">08 jan</p>
+                <p className="font-semibold text-white">08 jan</p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Time</span>
-                <p className="font-semibold text-white  ">12:30</p>
+                <p className="font-semibold text-white">12:30</p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Price</span>
-                <p className="font-semibold text-white  ">56,00</p>
+                <p className="font-semibold text-white">56,00</p>
               </div>
             </div>
             <div className="flex pt-2 px-6 place-content-between ">
@@ -85,31 +79,26 @@ function Ticket() {
         </div>
         <div className="">
           {/* This div puts the barcode, the line and the circle in the end of the ticket. */}
-          <hr className="translate-y-8  border-dashed" />
-          <div className=" flex justify-between items-center">
+          <hr className="translate-y-8 border-dashed" />
+          <div className="flex justify-between items-center">
             {/* This div holds the circles in the end of the ticket */}
             <span className="-translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
-
             <span className="translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
           </div>
-          <div className="flex justify-center 	 ">
-            {/* here goes the barcode */}
-          
+          <div className="flex justify-center pb-3">
+            <QRCodeSVG
+              value={`name:x;date:y;time:z;movieId:a;seats:b;price:c;`}
+            />
           </div>
         </div>
       </div>
-      <div className="w-full pt-5 ">
-        <Button className="">Back To Home</Button>
+      <div className="w-full pt-5">
+        <Link to="/">
+          <Button>Back To Home</Button>
+        </Link>
       </div>
     </div>
   );
 }
 
 export default Ticket;
-
-// <div className="barcode-container relative">
-//           <hr className="barcode-separator absolute top-[50%] left-[-10px] right-[-10px] border-dotted" />
-//           {/* <Barcode value="1234567890" /> */}
-//           <span className="barcode-separator__circle absolute top-[-5px] left-[-5px] w-4 h-4 rounded-full bg-black"></span>
-//           <span className="barcode-separator__circle absolute top-[-5px] right-[-5px] w-4 h-4 rounded-full bg-black"></span>
-//         </div>

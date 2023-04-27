@@ -31,23 +31,13 @@ export type MovieDetailDbResponse = {
   overview: string;
   imdb_id: string;
   credits: {
-    crew: Array<{
-      name: string;
-      job: 'Screenplay' | 'Director';
-    }>;
+    id: number;
+    cast: TMDBCast[];
+    crew: TMDBCrew[];
   };
 };
 
 // types for the credits page
-export type TMBDImageResponse = {
-  profiles: { file_path: string }[];
-};
-
-export type CreditsImage = {
-  id: number;
-  imgUrl: string;
-};
-
 export type TMDBCast = {
   id: number;
   name: string;
@@ -60,4 +50,9 @@ export type MovieDbCreditsResponse = {
   id: number;
   cast: TMDBCast[];
   crew: TMDBCrew[];
+};
+
+export type PersonImagesRequest = {
+  id: number;
+  profiles: { file_path: string }[];
 };
