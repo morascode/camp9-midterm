@@ -1,6 +1,5 @@
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
-import PageHeader from '../components/CreditsPageHeader';
 import {
   MovieDbCreditsResponse,
   TMDBCast,
@@ -96,7 +95,7 @@ function Credits({ movieId }: { movieId?: number }) {
   if (isLoading)
     return (
       <section className="py-9 px-6 mb-2">
-        <PageHeader>Cast & Crew</PageHeader>
+        <HeaderPage>Cast & Crew</HeaderPage>
         <h4 className="typography-title text-white">LOADING.....</h4>
       </section>
     );
@@ -105,7 +104,7 @@ function Credits({ movieId }: { movieId?: number }) {
   else if (isError)
     return (
       <section className="py-9 px-6 mb-2">
-        <PageHeader>Cast & Crew</PageHeader>
+        <HeaderPage>Cast & Crew</HeaderPage>
         <div className="my-4">
           <h4 className="typography-body">
             {`Error with fetching credits info for movie id ${
@@ -121,7 +120,7 @@ function Credits({ movieId }: { movieId?: number }) {
   else
     return (
       <section className="py-9 px-6 mb-2">
-        <MovieDetailHeader>Cast & Crew</MovieDetailHeader>
+        <HeaderPage>Cast & Crew</HeaderPage>
         <div className="text-white flex justify-between my-6 select-none">
           <CastCrewButton
             status={crewOrCast === 'cast' ? 'active' : 'passive'}

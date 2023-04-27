@@ -21,8 +21,8 @@ function MovieDetails() {
   }
 
   return (
-    <article className="py-7 h-screen">
-      <MovieDetailHeader children="Movie Detail" svg={true} />
+    <article className="pb-7 h-screen">
+      <HeaderPage children="Movie Detail" hasHeartButton={true} />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
