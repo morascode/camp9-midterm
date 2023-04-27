@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button';
 import MovieDetailHeader from '../HeaderPages';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 function Account() {
   const navigation = useNavigate();
@@ -27,7 +27,7 @@ function Account() {
       </div>
       <hr className="bg-white-dimmed ml-[5%] mr-[5%]" />
       <div className="text-white-dimmed flex flex-col p-8 gap-11 text-lg">
-        <a className="flex justify-between" href="">
+        <Link to={'/editprofile'} className="flex justify-between">
           Edit Profile
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,8 +43,8 @@ function Account() {
               d="M8.25 4.5l7.5 7.5-7.5 7.5"
             />
           </svg>
-        </a>
-        <a className="flex justify-between" href="">
+        </Link>
+        <Link to={'/changepassword'} className="flex justify-between">
           Change Passwort
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ function Account() {
               d="M8.25 4.5l7.5 7.5-7.5 7.5"
             />
           </svg>
-        </a>
+        </Link>
       </div>
       <div className="flex gap-1 p-2 px-4 items-center">
         <svg
@@ -86,7 +86,7 @@ function Account() {
       </div>
       <hr className="bg-white-dimmed ml-[5%] mr-[5%]" />
       <div className="text-white-dimmed flex flex-col p-8 gap-11 text-lg">
-        <a className="flex justify-between" href="">
+        <Link to={'/favoritegenres'} className="flex justify-between">
           Favorites Genres
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ function Account() {
               d="M8.25 4.5l7.5 7.5-7.5 7.5"
             />
           </svg>
-        </a>
+        </Link>
         <a className="flex justify-between" href="">
           Toggle Dark/Ligth
           <input

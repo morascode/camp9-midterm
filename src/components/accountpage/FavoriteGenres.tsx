@@ -1,7 +1,12 @@
 import React from 'react';
+import MovieDetailHeader from '../HeaderPages';
 
 function FavoriteGenres() {
-  return <div></div>;
+  return (
+    <div>
+      <MovieDetailHeader>Genres</MovieDetailHeader>
+    </div>
+  );
 }
 
 export default FavoriteGenres;

@@ -16,7 +16,7 @@ import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
 import Account from './components/accountpage/Account';
-import EditProfil from './components/accountpage/EditProfil';
+import EditProfil from './components/accountpage/EditProfile';
 import ChangePassword from './components/accountpage/ChangePassword';
 import FavoriteGenres from './components/accountpage/FavoriteGenres';
 
@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
     element: <Account />,
   },
   {
-    path: '/editprofil',
+    path: '/editprofile',
     element: <EditProfil />,
   },
   {

@@ -1,6 +1,6 @@
 import Button from '../Button';
 
-function EditProfilInputForm() {
+function EditProfileInputForm() {
   return (
     <form className="flex flex-col gap-36 p-4 h-full content-between justify-between">
       <div className="flex flex-col gap-5 p-4">
@@ -46,4 +46,4 @@ function EditProfilInputForm() {
   );
 }
 
-export default EditProfilInputForm;
+export default EditProfileInputForm;
