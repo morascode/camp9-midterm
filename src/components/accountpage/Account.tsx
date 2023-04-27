@@ -1,8 +1,10 @@
 import React from 'react';
 import Button from '../Button';
 import MovieDetailHeader from '../HeaderPages';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Account() {
+  const navigation = useNavigate();
   return (
     <div>
       <MovieDetailHeader children="Account Settings" svg={false} />
@@ -120,7 +122,7 @@ function Account() {
         </a>
       </div>
       <div className="my-8 p-8">
-        <Button>Home</Button>
+        <Button onClick={() => navigation(-1)}>Home</Button>
       </div>
     </div>
   );
