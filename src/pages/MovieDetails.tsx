@@ -1,28 +1,27 @@
 import Button from '../components/Button';
 import { Link, useParams } from 'react-router-dom';
-import useQuery from '../hook/useQuery';
-import { MovieDetailDbResponse } from '../utilities/types';
-import MovieDetailHeader from '../components/MovieDetailHeader';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
+import { useGetMovieDetails } from '../hook/useGetMovieDetails';
+import HeaderPage from '../components/HeaderPage';
 
 function MovieDetails() {
   const { id } = useParams();
 
-  const { data, isLoading } = useQuery<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${
-      import.meta.env.VITE_TMDB_KEY
-    }&language=en-US&append_to_response=credits`
-  );
+  const { data, isLoading, isError } = useGetMovieDetails(parseInt(id!));
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return <p>loading...</p>;
   }
 
+  if (isError === true) {
+    throw new Error('no data found');
+  }
+
   return (
-    <article className="py-7 h-screen">
-      <MovieDetailHeader children="Movie Detail" goBackTo="/" svg={true} />
+    <article className="pb-7 h-screen">
+      <HeaderPage children="Movie Detail" hasHeartButton={true} />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
@@ -60,7 +59,7 @@ function MovieDetails() {
               {returnNameOfCrewMember('Screenplay', data)}
             </div>
           </div>
-          <Link className="flex-1" to={`/cast/${id}`}>
+          <Link className="flex-1" to={`/credits/${id}`}>
             <Button variant="secondary" className="">
               Cast & Crew
             </Button>
@@ -68,15 +67,18 @@ function MovieDetails() {
         </div>
         <hr className="mt-3"></hr>
         <h2 className="typography-title mt-3">Synopsis</h2>
-        <p className="typography-body mt-3">{data?.overview}</p>
+        <p className="typography-body mt-3">
+          {data?.overview.slice(0, 150) + '...'}
+        </p>
         <a
           className="typography-body text-orange-500 underline mt-2"
           href={`https://www.imdb.com/title/${data?.imdb_id}`}
+          target="_blank"
         >
           Read more
         </a>
         <div className="flex-auto"></div>
-        <Link to="/dates">
+        <Link to={`/dates/${id}`}>
           <Button>Get Reservation</Button>
         </Link>
       </div>

@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useState } from 'react';
 
 type Props = {
@@ -9,19 +8,6 @@ type Props = {
 
 function SingleInputFieldLogIn({ placeholder, svg, type }: Props) {
   const [inputValue, setInputValue] = useState('');
-  const [isEmail, setIsEmail] = useState(false);
-
-  function validateEmail() {
-    //to check if the input is in email-format
-    const valid = /\S+@\S+\.\S+/;
-    const result = valid.test(inputValue);
-    console.log(result);
-    if (result === true && type === 'email') {
-      setIsEmail(true);
-    } else if (result === false && type === 'email') {
-      setIsEmail(false);
-    }
-  }
 
   return (
     <div className="w-full rounded-lg bg-dark-light h-[48px] flex items-center justify-between p-5 gap-5 mt-5">
@@ -51,47 +37,9 @@ function SingleInputFieldLogIn({ placeholder, svg, type }: Props) {
             placeholder={placeholder}
             className="bg-dark-light typography-body"
             onChange={e => setInputValue(e.target.value)}
-            onInput={validateEmail}
           />
         </label>
       </div>
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className={clsx(
-          'w-6 h-6 text-green',
-          type === 'email' && isEmail === true ? 'block' : 'hidden'
-        )}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className={clsx(
-          'w-6 h-6 text-red',
-          type === 'email' && isEmail === false ? 'block' : 'hidden'
-        )}
-        //if type is email and validate email is false display none, else dsplay block
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
     </div>
   );
 }
