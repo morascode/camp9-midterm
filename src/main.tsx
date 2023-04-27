@@ -15,8 +15,10 @@ import Credits from './pages/Credits';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
 import EmojieProvider from './Context/GenreContext';
-
-
+import Account from './components/accountpage/Account';
+import EditProfil from './components/accountpage/EditProfil';
+import ChangePassword from './components/accountpage/ChangePassword';
+import FavoriteGenres from './components/accountpage/FavoriteGenres';
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +66,22 @@ export const router = createBrowserRouter([
   {
     path: '/ticket',
     element: <Ticket />,
+  },
+  {
+    path: '/accountpage',
+    element: <Account />,
+  },
+  {
+    path: '/editprofil',
+    element: <EditProfil />,
+  },
+  {
+    path: '/changepassword',
+    element: <ChangePassword />,
+  },
+  {
+    path: '/favoriteGenres',
+    element: <FavoriteGenres />,
   },
 ]);
 
