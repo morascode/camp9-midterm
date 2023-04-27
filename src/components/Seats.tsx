@@ -1,7 +1,6 @@
-import React from 'react';
 import { Seat, SeatSection } from './Seat';
 
-function Seats({ type, price }: Props) {
+function Seats() {
   const seatsArray = [
     [null, 'A-1', 'A-2', 'A-3', null, 'A-4', 'A-5', 'A-6', null],
     ['B-1', 'B-2', 'B-3', 'B-4', null, 'B-5', 'B-6', 'B-7', 'B-8'],
@@ -49,10 +48,17 @@ function Seats({ type, price }: Props) {
   return (
     <div className="grid grid-rows-6 grid-cols-9 gap-3 m-5">
       {seatsArray.map(row => {
-        return row.map((item, index) => {
-          if (item) {
-            const seatType = seatTypes[item.substring(0, 1)];
-            if (disabledSeats.includes(item)) {
+        //map through 1st array with null
+
+        return row.map((seat, index) => {
+          //map through each row and take the seat&index
+
+          if (seat) {
+            // if there is a seat and not null...
+            const seatType = seatTypes[seat.substring(0, 1)];
+            //... create a substring to get the first letter and bind it to seatType
+
+            if (disabledSeats.includes(seat)) {
               return <Seat disabled={true} key={index} type={seatType} />;
             } else {
               return <Seat disabled={false} key={index} type={seatType} />;
