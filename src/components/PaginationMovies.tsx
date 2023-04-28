@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEmojieMovies } from '../hook/useEmojieSorting';
+import { useEmojieMovies } from '../hooks/useEmojieSorting';
 
 interface PaginationMovies {
   state: number;
@@ -39,8 +39,8 @@ export default function PaginationMovies({ state }: PaginationMovies) {
       {fourMovies?.map((movie, index) => {
         let image = movie.poster_path;
         return (
-          <Link to={`/movies/${movie.id}`}>
-            <div className="h-auto" key={index}>
+          <Link to={`/movies/${movie.id}`} key={index}>
+            <div className="h-auto">
               <img
                 className="h-64"
                 src={`https://image.tmdb.org/t/p/original/${image}`}
