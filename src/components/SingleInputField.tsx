@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 type Props = {
-  placeholder: string;
-  svg: 'email' | 'key' | 'name';
-  type: string;
+  placeholder: 'your@email.com' | 'Enter your Password' | 'Enter New Password';
+  svg?: 'email' | 'key' | boolean;
+  type: 'email' | 'password';
 };
 
 function SingleInputFieldLogIn({ placeholder, svg, type }: Props) {
