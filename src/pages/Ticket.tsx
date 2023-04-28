@@ -1,9 +1,7 @@
 import { QRCodeSVG } from 'qrcode.react';
 import { Link, useParams } from 'react-router-dom';
-import { MovieDetailDbResponse } from '../utilities/types';
-import useQuery from '../hook/useQuery';
 import Button from '../components/Button';
-import { useGetMovieDetails } from '../hook/useGetMovieDetails';
+import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
 
 function Ticket() {
   // const { id } = useParams();
