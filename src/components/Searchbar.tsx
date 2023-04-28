@@ -2,8 +2,8 @@ import { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { useGetNowPlayingMovies } from '../hook/useGetNowPlayingMovies';
-import { useGetMoviesByQuery } from '../hook/useGetMoviesByQuery';
+import { useGetNowPlayingMovies } from '../hooks/useGetNowPlayingMovies';
+import { useGetMoviesByQuery } from '../hooks/useGetMoviesByQuery';
 import { Movie } from '../utilities/types';
 import { useNavigate } from 'react-router-dom';
 
