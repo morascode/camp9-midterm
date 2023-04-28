@@ -1,9 +1,8 @@
 import { QRCodeSVG } from 'qrcode.react';
-import { Link, useParams } from 'react-router-dom';
-import { MovieDetailDbResponse } from '../utilities/types';
+import { Link } from 'react-router-dom';
 import { AddToCalendarButton } from 'add-to-calendar-button-react';
 import Button from '../components/Button';
-import { useGetMovieDetails } from '../hook/useGetMovieDetails';
+import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
 
 function Ticket() {
   // const { id } = useParams();
@@ -53,16 +52,17 @@ function Ticket() {
                 <span className="text-xs font-medium">Seats</span>
                 <p className="font-semibold text-white">c-3,c-4,c-5</p>
               </div>
-              <div className='grid justify-items-center  ' > <span className="text-xs font-medium  ">Save to Calendar</span>
+              <div className="grid justify-items-center  ">
+                {' '}
+                <span className="text-xs font-medium  ">Save to Calendar</span>
                 <AddToCalendarButton
-                size='1|1|1'
-                  
+                  size="1|1|1"
                   listStyle="modal"
                   availability="busy"
                   hideTextLabelButton
                   buttonStyle="round"
                   name="Super Mario Bros."
-                  description='Movie time at Devhaus Cinema!🍿 https://devhauscinema.com'
+                  description="Movie time at Devhaus Cinema!🍿 https://devhauscinema.com"
                   options={['Apple', 'Google', 'Outlook.com|Outlook']}
                   location="Devhaus, Flossplatz 6, 04107 Leipzig Germany"
                   startDate="2023-04-29"
@@ -70,7 +70,6 @@ function Ticket() {
                   startTime="10:15"
                   endTime="23:30"
                   timeZone="Europe/Berlin"
-                 
                 ></AddToCalendarButton>
               </div>
             </div>

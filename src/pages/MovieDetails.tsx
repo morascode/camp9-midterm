@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
-import { useGetMovieDetails } from '../hook/useGetMovieDetails';
+import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
 import HeaderPage from '../components/HeaderPage';
 
 function MovieDetails() {
