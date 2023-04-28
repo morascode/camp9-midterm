@@ -14,7 +14,7 @@ import Genres from './pages/Genres';
 import Credits from './pages/Credits';
 import LogInPage from './pages/LogInPage';
 import Movies from './pages/Movies';
-import EmojieProvider from './Context/GenreContext';
+import EmojieProvider from './contexts/GenreContext';
 import Account from './pages/Account';
 
 import SelectSeats from './pages/SelectSeats';
