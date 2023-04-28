@@ -41,9 +41,7 @@ export default function PaginationMovies({ state }: PaginationMovies) {
         return (
           <Link to={`/movies/${movie.id}`} key={index}>
             <div className="h-auto">
-              <img
-                src={`https://image.tmdb.org/t/p/original/${image}`}
-              ></img>
+              <img src={`https://image.tmdb.org/t/p/original/${image}`}></img>
             </div>
           </Link>
         );
