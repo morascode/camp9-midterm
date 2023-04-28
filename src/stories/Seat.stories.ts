@@ -16,26 +16,13 @@ type Story = StoryObj<typeof Seat>;
 
 export const Default: Story = {
   args: {
-    children: 'Seat',
+    // children: 'Seat',
   },
 };
 
 export const Primary: Story = {
   args: {
-    children: 'Seat',
-    state: 'Availabe',
-  },
-};
-export const Primary: Story = {
-  args: {
-    children: 'Seat',
-    state: 'Selected',
-  },
-};
-
-export const Primary: Story = {
-  args: {
-    children: 'Seat',
-    disabled: true,
+    // children: 'Seat',
+    // state: 'Availabe',
   },
 };
