@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 interface CheckboxProps {
   label: string;
   name: string;

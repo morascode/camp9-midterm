@@ -17,55 +17,53 @@ function SignUpForm() {
   };
 
   return (
-    <>
-      <form action="" onSubmit={() => {}}>
-        <SingleInputField
-          svg={'name'}
-          placeholder={'your firstname'}
-          type="firstname"
-        ></SingleInputField>
-        <SingleInputField
-          placeholder={'your lastname'}
-          svg={'name'}
-          type="lastname"
-        ></SingleInputField>
-        <SingleInputField
-          placeholder={'your@email.com'}
-          svg={'email'}
-          type="email"
-        ></SingleInputField>
+    <form onSubmit={() => {}}>
+      <SingleInputField
+        svg={'name'}
+        placeholder={'your firstname'}
+        type="firstname"
+      ></SingleInputField>
+      <SingleInputField
+        placeholder={'your lastname'}
+        svg={'name'}
+        type="lastname"
+      ></SingleInputField>
+      <SingleInputField
+        placeholder={'your@email.com'}
+        svg={'email'}
+        type="email"
+      ></SingleInputField>
 
-        <SingleInputField
-          placeholder={'Enter your Password'}
-          svg={'key'}
-          type="password"
-        ></SingleInputField>
-        <div className=" flex flex-row justify-around">
-          <div className="flex flex-col">
-            <Radio
-              name="age"
-              label="I'm over 18"
-              value="adult"
-              checked={selectedOption === 'adult' ? true : false}
-              onChange={handleRadioChange}
-            ></Radio>
-            <Radio
-              name="age"
-              label="I'm under 18"
-              value="child"
-              checked={selectedOption === 'child' ? true : false}
-              onChange={handleRadioChange}
-            ></Radio>
-          </div>
-          <Checkbox
-            label="student"
-            name="student"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          ></Checkbox>
+      <SingleInputField
+        placeholder={'Enter your Password'}
+        svg={'key'}
+        type="password"
+      ></SingleInputField>
+      <div className=" flex flex-row justify-around">
+        <div className="flex flex-col">
+          <Radio
+            name="age"
+            label="I'm over 18"
+            value="adult"
+            checked={selectedOption === 'adult' ? true : false}
+            onChange={handleRadioChange}
+          ></Radio>
+          <Radio
+            name="age"
+            label="I'm under 18"
+            value="child"
+            checked={selectedOption === 'child' ? true : false}
+            onChange={handleRadioChange}
+          ></Radio>
         </div>
-      </form>
-    </>
+        <Checkbox
+          label="student"
+          name="student"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        ></Checkbox>
+      </div>
+    </form>
   );
 }
 
