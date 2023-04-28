@@ -60,9 +60,7 @@ function MovieDetails() {
             </div>
           </div>
           <Link className="flex-1" to={`/credits/${id}`}>
-            <Button variant="secondary" className="">
-              Cast & Crew
-            </Button>
+            <Button variant="secondary">Cast & Crew</Button>
           </Link>
         </div>
         <hr className="mt-3"></hr>
