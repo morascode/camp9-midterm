@@ -13,7 +13,7 @@ async function getMovieDetails(movieId: number) {
 
 export function useGetMovieDetails(movieId: number) {
   const query = useQuery({
-    queryKey: ['MovieDetails', movieId],
+    queryKey: ['movieDetails', movieId],
     queryFn: () => getMovieDetails(movieId),
   });
   return query;
