@@ -7,7 +7,7 @@ import GenresSelectorLayout from './GenresSelectorLayout';
 function GenresSelectionPage() {
   const { counter } = useEmojieLibrary();
   return (
-    <div className="flex flex-col px-5 pt-8 pb-6 gap-10 bg-[#1C1C27] w-full h-full">
+    <div className="flex flex-col px-5 pt-6 pb-6 gap-10 bg-[#1C1C27] w-full h-full">
       <GenresSelectorLayout></GenresSelectorLayout>
       <div className="flex flex-row gap-1">
         <p className="text-white">{counter}</p>

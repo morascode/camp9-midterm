@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import CastCrewListItem from '../components/CastCrewListItem';
+import CreditsListItem from '../components/credits/CreditsListItem';
 
-const meta: Meta<typeof CastCrewListItem> = {
-  title: 'CastCrewListItem',
-  component: CastCrewListItem,
+const meta: Meta<typeof CreditsListItem> = {
+  title: 'CreditsListItem',
+  component: CreditsListItem,
   parameters: {
     viewport: {
       defaultViewport: 'mobile1',
@@ -12,7 +12,7 @@ const meta: Meta<typeof CastCrewListItem> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CastCrewListItem>;
+type Story = StoryObj<typeof CreditsListItem>;
 
 export const Default: Story = {
   args: {
