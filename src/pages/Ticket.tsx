@@ -75,7 +75,7 @@ function Ticket() {
             </div>
           </div>
         </div>
-        <div className="">
+        <div>
           {/* This div puts the barcode, the line and the circle in the end of the ticket. */}
           <hr className="translate-y-8 border-dashed" />
           <div className="flex justify-between items-center">

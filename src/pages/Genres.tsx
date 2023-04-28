@@ -3,7 +3,7 @@ import GenresSelectionPage from '../components/genre/genres_selection/GenresSele
 
 function Genres() {
   return (
-    <div className="">
+    <div>
       <HeaderPage>Genres</HeaderPage>
       <GenresSelectionPage />
     </div>
