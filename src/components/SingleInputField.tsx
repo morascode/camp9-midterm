@@ -1,9 +1,15 @@
 import { useState } from 'react';
 
 type Props = {
+<<<<<<< HEAD:src/components/SingleInputFieldLogIn.tsx
+  placeholder: 'your@email.com' | 'Enter your Password' | 'Enter New Password';
+  svg?: 'email' | 'key' | boolean;
+  type: 'email' | 'password';
+=======
   placeholder: string;
   svg: 'email' | 'key' | 'name';
   type: string;
+>>>>>>> main:src/components/SingleInputField.tsx
 };
 
 function SingleInputFieldLogIn({ placeholder, svg, type }: Props) {

@@ -33,7 +33,7 @@ function NavigationLayout() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/account">
+              <NavLink to="/accountpage">
                 <UserIcon className="w-6" />
               </NavLink>
             </li>
