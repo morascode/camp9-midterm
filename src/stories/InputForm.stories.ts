@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import SingleInputFieldLogIn from '../components/SingleInputFieldLogIn';
+import SingleInputFieldLogIn from '../components/SingleInputField';
 
 const meta: Meta<typeof SingleInputFieldLogIn> = {
   title: 'InputForm',

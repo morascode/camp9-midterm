@@ -1,5 +1,5 @@
 import { ArrowPathIcon, UserCircleIcon } from '@heroicons/react/24/solid';
-import { useGetPersonImages } from '../../hook/useGetPersonImages';
+import { useGetPersonImages } from '../../hooks/useGetPersonImages';
 import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
 
