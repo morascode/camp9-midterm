@@ -23,13 +23,13 @@ function HeaderPage(props: Props) {
   const navigation = useNavigate();
   // the return statement with the jsx component
   return (
-    <header className="flex justify-between items-center px-5 pb-6 pt-8 sticky top-0 bg-dark">
+    <header className="flex justify-between items-center px-5 pb-6 pt-8 sticky top-0 bg-dark dark:bg-white">
       {/* the little back arrow */}
       <button onClick={() => navigation(-1)}>
-        <ChevronLeftIcon className="typography-title w-5"></ChevronLeftIcon>
+        <ChevronLeftIcon className="typography-title w-5 dark:stroke-dark"></ChevronLeftIcon>
       </button>
       {/* the title of the page */}
-      <h1 className="typography-title">{props.children}</h1>
+      <h1 className="typography-title dark:text-dark">{props.children}</h1>
       {/* the heart icon, visible if the hasHeartButton={true} prop is passed, can call the callback function on click if one is passed as the onHeartButtonClick prop */}
       <div className="w-5 h-5">
         {props.hasHeartButton && (

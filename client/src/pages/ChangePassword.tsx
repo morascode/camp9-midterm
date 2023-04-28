@@ -12,9 +12,9 @@ function ChangePassword() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke=""
-          className="w-8 h-8 stroke-white-dimmed"
+          className="w-8 h-8 stroke-white-dimmed dark:stroke-dark"
         >
           <path
             strokeLinecap="round"
@@ -23,17 +23,22 @@ function ChangePassword() {
           />
         </svg>
 
-        <h2 className="text-white text-xl ">Passwort</h2>
+        <h2 className="text-white text-xl dark:text-dark">Passwort</h2>
       </div>
-      <hr className="bg-white-dimmed ml-[5%] mr-[5%]" />
+      <hr className="bg-white-dimmed ml-[5%] mr-[5%] dark:bg-dark" />
       <form className="px-8" action="" onSubmit={() => {}}>
-        <h2 className="text-white text-lg pt-4">Passwort</h2>
+        <h2 className="text-white text-lg pt-4 dark:text-dark-light">
+          Passwort
+        </h2>
         <SingleInputFieldLogIn
           placeholder={'Enter your Password'}
           svg={false}
           type="password"
         ></SingleInputFieldLogIn>
-        <h2 className="text-white text-lg pt-4 "> New Passwort</h2>
+        <h2 className="text-white text-lg pt-4 dark:text-dark-light ">
+          {' '}
+          New Passwort
+        </h2>
         <SingleInputFieldLogIn
           placeholder={'Enter New Password'}
           svg={false}
