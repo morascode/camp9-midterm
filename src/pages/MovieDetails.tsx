@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
-import { useGetMovieDetails } from '../hook/useGetMovieDetails';
+import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
 import HeaderPage from '../components/HeaderPage';
 
 function MovieDetails() {
@@ -60,9 +60,7 @@ function MovieDetails() {
             </div>
           </div>
           <Link className="flex-1" to={`/credits/${id}`}>
-            <Button variant="secondary" className="">
-              Cast & Crew
-            </Button>
+            <Button variant="secondary">Cast & Crew</Button>
           </Link>
         </div>
         <hr className="mt-3"></hr>

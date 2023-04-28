@@ -1,4 +1,3 @@
-import NavigationLayout from '../components/NavigationLayout';
 import PaginationButtons from '../components/PaginationButtons';
 import PaginationMovies from '../components/PaginationMovies';
 import { useState } from 'react';
@@ -12,7 +11,6 @@ function Movies() {
         <PaginationMovies state={state} />
         <PaginationButtons state={state} setState={setState} />
       </div>
-      <NavigationLayout></NavigationLayout>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleInputFieldLogIn from './SingleInputFieldLogIn';
+import SingleInputFieldLogIn from './SingleInputField';
 
 type LogInForm = React.FormHTMLAttributes<HTMLFormElement>;
 

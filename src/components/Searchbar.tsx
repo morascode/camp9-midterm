@@ -1,115 +1,141 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
-import { MagnifyingGlassIcon, CheckIcon } from '@heroicons/react/20/solid';
-import axios from 'axios';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { useGetNowPlayingMovies } from '../hooks/useGetNowPlayingMovies';
+import { useGetMoviesByQuery } from '../hooks/useGetMoviesByQuery';
 import { Movie } from '../utilities/types';
+import { useNavigate } from 'react-router-dom';
 
-function SearchBar() {
+export default function SearchBar() {
+  const navigate = useNavigate();
+  const [selected, setSelected] = useState<Movie | null>(null);
   const [query, setQuery] = useState('');
-  const [movie, setMovie] = useState<Movie[]>([]);
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${
-          import.meta.env.VITE_TMDB_KEY
-        }&language=en-US&query=${query}&include_adult=false`
-      )
-      .then(res => setMovie(res.data.results))
-      .catch();
-  }, [query]);
+  const { data: dataMoviesByQuery } = useGetMoviesByQuery(query);
 
-  const filteredData =
+  const {
+    isLoading: isLoadingNowPlayingMovies,
+    isError: isErrorNowPlayingMovies,
+    data: dataNowPlayingMovies,
+  } = useGetNowPlayingMovies();
+
+  if (isLoadingNowPlayingMovies) {
+    return <span>Loading...</span>;
+  }
+
+  if (isErrorNowPlayingMovies) {
+    return <span>Error!</span>;
+  }
+
+  if (typeof dataNowPlayingMovies == 'string') {
+    return <span>Error!</span>;
+  }
+
+  const nowPlayingMovies = dataNowPlayingMovies.results;
+
+  const moviesByQuery = dataMoviesByQuery?.results || [];
+
+  const moviesByQueryWithoutDuplicates = moviesByQuery.filter(
+    movie =>
+      !nowPlayingMovies.some(nowPlayingMovie => nowPlayingMovie.id === movie.id)
+  );
+
+  const movies = [...nowPlayingMovies, ...moviesByQueryWithoutDuplicates];
+
+  const filteredMovies =
     query === ''
-      ? movie
-      : movie?.filter(movie =>
+      ? movies
+      : movies.filter(movie =>
           movie.title
             .toLowerCase()
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         );
 
-  useEffect(() => {
-    function focusSearchBar() {
-      const sbar = document.querySelector('.sbar') as HTMLDivElement;
-      const sbarInput = document.querySelector(
-        '.sbar__input'
-      ) as HTMLInputElement;
-      sbar.addEventListener('click', () => {
-        sbarInput.focus();
-      });
+  function handleSubmitMovie(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter' && selected) {
+      navigate(`/movies/${selected.id}`);
     }
-    focusSearchBar();
-  }, []);
+  }
 
   return (
-    <Combobox value={query} onChange={setQuery}>
-      <div className="w-[20.938rem] h-[3rem]">
-        <div className="sbar bg-[#363740] w-[20.938rem] h-[3rem] rounded-full flex items-center">
-          <div className="sbar__icon border-solid py-[0.938rem] pl-[1.438rem] pr-[1.188rem]">
-            <MagnifyingGlassIcon
-              className="icon text-[#86878c] "
-              style={{
-                width: '18px',
-              }}
+    <div>
+      <Combobox value={selected} onChange={setSelected}>
+        <div className="relative mt-1">
+          <div className="relative w-full cursor-default overflow-hidden rounded-full bg-dark-light text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-yellow">
+            <div className="pl-6 h-full absolute border-solid flex justify-center items-center">
+              <MagnifyingGlassIcon
+                className="text-white-dimmed "
+                style={{
+                  width: '18px',
+                }}
+              />
+            </div>
+            <Combobox.Input
+              onKeyUp={e => handleSubmitMovie(e)}
+              placeholder="Search"
+              className="h-12 w-full rounded-full bg-transparent border-none py-2 pl-3 pr-10 text-sm leading-5 text-white-dimmed focus:ring-0 indent-10"
+              displayValue={(movie: Movie) => movie && movie.title}
+              onChange={event => setQuery(event.target.value)}
             />
+            <Combobox.Button className="absolute inset-y-0 right-2 flex items-center pr-2">
+              <ChevronUpDownIcon
+                className="h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </Combobox.Button>
           </div>
-          <Combobox.Input
-            className="sbar__input bg-transparent mr-[1.438rem] flex-1 outline-0 text-[#9ca3af]"
-            onChange={event => setQuery(event.target.value)}
-            placeholder="Search"
-          />
-        </div>
-        <Transition
-          as={Fragment}
-          leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-          afterLeave={() => setQuery('')}
-        >
-          <Combobox.Options className="absolute mt-1 max-h-60 w-[20.938rem] overflow-auto rounded-md bg-[#363740] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filteredData?.length === 0 && query !== '' ? (
-              <div className="relative cursor-default select-none py-2 px-4 text-[#9ca3af]">
-                Nothing found.
-              </div>
-            ) : (
-              filteredData?.map(movie => (
-                <Combobox.Option
-                  key={movie.id}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-[#FFB43A] text-[363740]' : 'text-[#9ca3af]'
-                    }`
-                  }
-                  value={movie}
-                >
-                  {({ selected, active }) => (
-                    <>
-                      <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
-                      >
-                        {movie.title}
-                      </span>
-                      {selected ? (
+          <Transition
+            as={Fragment}
+            leave="transition ease-in duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+            afterLeave={() => setQuery('')}
+          >
+            <Combobox.Options className="absolute w-full mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
+              {filteredMovies.length === 0 && query !== '' ? (
+                <div className="relative cursor-default select-none py-2 px-4 text-dark-light">
+                  Nothing found.
+                </div>
+              ) : (
+                filteredMovies.map(movie => (
+                  <Combobox.Option
+                    key={movie.id}
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? 'bg-yellow text-white' : 'text-gray-900'
+                      }`
+                    }
+                    value={movie}
+                  >
+                    {({ selected, active }) => (
+                      <>
                         <span
-                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                            active ? 'text-white' : 'text-[#FFB43A]'
+                          className={`block truncate ${
+                            selected ? 'font-medium' : 'font-normal'
                           }`}
                         >
-                          <CheckIcon className="h-5 w-5 " aria-hidden="true" />
+                          {movie.title}
                         </span>
-                      ) : null}
-                    </>
-                  )}
-                </Combobox.Option>
-              ))
-            )}
-          </Combobox.Options>
-        </Transition>
-      </div>
-    </Combobox>
+                        {selected ? (
+                          <span
+                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                              active ? 'text-white-dimmed' : 'text-yellow'
+                            }`}
+                          >
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Combobox.Option>
+                ))
+              )}
+            </Combobox.Options>
+          </Transition>
+        </div>
+      </Combobox>
+    </div>
   );
 }
-export default SearchBar;
