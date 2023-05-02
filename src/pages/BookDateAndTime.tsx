@@ -58,12 +58,13 @@ export default function BookDateAndTime() {
         </div>
       )}{' '}
       <Link
-        to={`/seats/${id}?date=${selectedDate
+        to={`/seats/${id}?date=${selectedTime
           ?.toISOString()
           .substring(
             0,
             10
-          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes()}0`}
+          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes().toString()
+    .padStart(2, "0")}`}
         className="mt-auto"
       >
         <Button disabled={!selectedDateAndTime}>Select Seats</Button>
