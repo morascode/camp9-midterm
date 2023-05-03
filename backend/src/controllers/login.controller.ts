@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import { SignupUser } from '../validate/uservalidation';
+import { LoginUser } from '../validate/loginvalidation';
 
 export const loginController = (
-  req: Request<{}, {}, SignupUser>,
+  req: Request<{}, {}, LoginUser>,
   res: Response,
   next: NextFunction
 ) => {
-  // hashing password
-  // Save user to database
+  //authenticating user
   console.log(req.body);
-  res.send('signup');
+  res.send('login');
 };
