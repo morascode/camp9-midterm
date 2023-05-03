@@ -5,7 +5,6 @@ import { useGetInfiniteMovies } from '../hooks/useGetInfiniteMovies';
 export default function ListMovies() {
   const { isError, isLoading, data, fetchNextPage, hasNextPage } =
     useGetInfiniteMovies();
-  console.log(data);
   if (isError) {
     return (
       <h1 className="typography-primary text-white">
@@ -34,9 +33,9 @@ export default function ListMovies() {
             </p>
           }
         >
-          {data.pages.map(page => {
+          {data.pages.map((page, index) => {
             return (
-              <div className="grid grid-rows-2 grid-cols-2 gap-5">
+              <div className="grid grid-rows-2 grid-cols-2 gap-5" key={index}>
                 {page.results.map((movie, index) => {
                   let image = movie.poster_path;
                   if (movie.poster_path === null) {

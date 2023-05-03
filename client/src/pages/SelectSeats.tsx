@@ -1,6 +1,6 @@
 import Seats from '../components/Seats';
 import HeaderPage from '../components/HeaderPage';
-//The PageHeader is apparently called now HeaderPage? I have changed this in the code below.
+
 function SelectSeats() {
   return (
     <div>
