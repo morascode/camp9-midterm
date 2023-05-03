@@ -21,9 +21,6 @@ function LogInPage() {
           </p>
           <LogInForm></LogInForm>
           <div className="my-10"></div>
-          <Link to="/home">
-            <Button size="md">Log In</Button>
-          </Link>
         </div>
       ) : (
         <div>

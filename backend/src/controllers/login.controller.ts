@@ -9,5 +9,5 @@ export const loginController = (
 ) => {
   //authenticating user
   console.log(req.body);
-  res.send('login');
+  res.send({ token: 'jwt' });
 };
