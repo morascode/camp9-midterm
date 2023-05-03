@@ -1,16 +1,18 @@
-import PaginationBookmarkedMovies from '../components/PaginationBookmarkedMovies';
-import { useContext, useState } from 'react';
 import PaginationButtons from '../components/PaginationButtons';
+import PaginationMovies from '../components/PaginationMovies';
+import { useState } from 'react';
 
-export default function BookmarkedMovies() {
+function Movies() {
   const [state, setState] = useState(1);
 
   return (
     <>
       <div className="px-5 py-8">
-        <PaginationBookmarkedMovies />
+        <PaginationMovies state={state} />
         <PaginationButtons state={state} setState={setState} />
       </div>
     </>
   );
 }
+
+export default Movies;
