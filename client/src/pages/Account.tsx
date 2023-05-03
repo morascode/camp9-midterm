@@ -122,7 +122,6 @@ function Account() {
             type="checkbox"
             role="switch"
           />
-          <label className="inline-block pl-[0.15rem] hover:cursor-pointer"></label>
         </a>
       </div>
       <div className="my-8 p-8">
