@@ -24,12 +24,14 @@ function Genreonclick(props: Props) {
       <div
         className={clsx(
           'w-[56px] h-[56px] text-[30px] flex justify-center items-center rounded-lg text-center',
-          props.isSelected ? 'bg-white/40' : 'bg-[#363740]'
+          props.isSelected
+            ? 'bg-white/40 dark:bg-dark-light'
+            : 'bg-[#363740] dark:bg-yellow'
         )}
       >
         {props.emojie}
       </div>
-      <p className="text-white/40">{props.genre}</p>
+      <p className="text-white/40 dark:text-dark">{props.genre}</p>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function Ticket() {
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-5">
       {/* This div holds the ticket and the button. the flex makes the ticket responsive to different phones */}
-      <div className="grow grid w-full content-between bg-[#494952] rounded-[12px] items-center">
+      <div className="grow grid w-full content-between bg-[#494952] dark:bg-white rounded-[12px] items-center">
         {' '}
         {/* This div holds the ticket information and the "grow" is making the ticket responsive */}
         <div>
@@ -30,31 +30,39 @@ function Ticket() {
 
           <div className="grid">
             {/* This grid holds the Ticket information */}
-            <h2 className="typography-title pt-2 pb-6 px-6">{data.title}</h2>
+            <h2 className="typography-title dark:text-dark-light pt-2 pb-6 px-6">
+              {data.title}
+            </h2>
 
             <div className="flex justify-between px-6 ">
               {/* This div holds the Date, Time, Price zusammen. It does not include Seats */}
               <div className="grid">
                 <span className="text-xs font-medium">Date</span>
-                <p className="font-semibold text-white">08 jan</p>
+                <p className="font-semibold text-white dark:text-dark">
+                  08 jan
+                </p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Time</span>
-                <p className="font-semibold text-white">12:30</p>
+                <p className="font-semibold text-white dark:text-dark">12:30</p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Price</span>
-                <p className="font-semibold text-white">56,00</p>
+                <p className="font-semibold text-white dark:text-dark">56,00</p>
               </div>
             </div>
             <div className="flex pt-2 px-6 place-content-between ">
               <div className="grid">
                 <span className="text-xs font-medium">Seats</span>
-                <p className="font-semibold text-white">c-3,c-4,c-5</p>
+                <p className="font-semibold text-white dark:text-dark">
+                  c-3,c-4,c-5
+                </p>
               </div>
               <div className="grid justify-items-center  ">
                 {' '}
-                <span className="text-xs font-medium  ">Save to Calendar</span>
+                <span className="text-xs font-medium  dark:text-dark">
+                  Save to Calendar
+                </span>
                 <AddToCalendarButton
                   size="1|1|1"
                   listStyle="modal"
@@ -80,8 +88,8 @@ function Ticket() {
           <hr className="translate-y-8 border-dashed" />
           <div className="flex justify-between items-center">
             {/* This div holds the circles in the end of the ticket */}
-            <span className="-translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
-            <span className="translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark"></span>
+            <span className="-translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark dark:bg-white"></span>
+            <span className="translate-x-6 translate-y-2.5 w-12 h-12 rounded-full bg-dark dark:bg-white"></span>
           </div>
           <div className="flex justify-center pb-3">
             <QRCodeSVG
