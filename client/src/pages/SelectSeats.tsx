@@ -1,5 +1,7 @@
 import Seats from '../components/Seats';
 import HeaderPage from '../components/HeaderPage';
+import SeatPopover from '../components/SeatPopover';
+
 //The PageHeader is apparently called now HeaderPage? I have changed this in the code below.
 function SelectSeats() {
   return (
@@ -22,6 +24,7 @@ function SelectSeats() {
             <p className="typography-description">Reserved</p>
           </div>
         </div>
+        <SeatPopover />
       </div>
     </div>
   );
