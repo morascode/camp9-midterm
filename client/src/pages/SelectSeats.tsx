@@ -1,11 +1,11 @@
 import Seats from '../components/Seats';
-import PageHeader from '../components/CreditsPageHeader';
-
+import HeaderPage from '../components/HeaderPage';
+//The PageHeader is apparently called now HeaderPage? I have changed this in the code below.
 function SelectSeats() {
   return (
     <div>
       <div className="flex flex-col items-center my-8">
-        <PageHeader children={'Select Seats'} />
+        <HeaderPage children={'Select Seats'} />
         <div className="h-[5px] w-[279px] bg-yellow mt-12 mb-[52px] "></div>
         <Seats />
         <div className="flex gap-[25px] mt-1 mb-8">
