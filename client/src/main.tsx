@@ -21,7 +21,6 @@ import SelectSeats from './pages/SelectSeats';
 import ChangePassword from './pages/ChangePassword';
 import FavoriteGenres from './pages/FavoriteGenres';
 import EditProfile from './pages/EditProfile';
-
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -59,7 +58,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/seats/:id',
-    element: <h1>SELECT SEATS</h1>, // insert your page here
+    element: <SelectSeats/>, // insert your page here
   },
   {
     path: '/success',
