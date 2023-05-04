@@ -10,9 +10,11 @@ export type SeatSection = 'front' | 'middle' | 'back';
 
 export function Seat(props: Props) {
   const [selected, setSelected] = useState(false);
+  const { type } = props;
 
   return (
     <button
+      id={type}
       disabled={false}
       className={clsx(
         'rounded-sm h-7 w-7',
@@ -26,6 +28,7 @@ export function Seat(props: Props) {
         switch (selected) {
           case false:
             setSelected(true);
+            console.log(e.target.id);
             break;
           case true:
             setSelected(false);
