@@ -18,7 +18,7 @@ function SingleInputFieldLogIn({
   setInputValue,
 }: Props) {
   return (
-    <div className="w-full rounded-lg bg-dark-light h-[48px] flex items-center justify-between p-5 gap-5 mt-5">
+    <div className="w-full rounded-lg bg-dark-light h-[48px] flex items-center justify-between p-5 gap-5">
       <div className="flex gap-5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
