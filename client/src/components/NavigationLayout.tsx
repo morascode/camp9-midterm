@@ -14,7 +14,7 @@ function NavigationLayout() {
       <main>
         <Outlet />
       </main>
-      <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0">
+      <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0 bg-dark">
         <nav>
           <ul className="flex flex-row justify-between max-w-xs m-auto">
             <li>
