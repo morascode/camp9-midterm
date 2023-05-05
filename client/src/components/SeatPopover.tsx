@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 
@@ -9,26 +8,29 @@ function SeatPopover() {
         <div className="grid">
           <div className="flex  justify-between typography-primary">
             <div>
-              1x &nbsp;&nbsp;&nbsp;<span className="typography-title text-sm "> Seat - Front</span>
+              1x
+              <span className="typography-title text-sm "> Seat - Front</span>
             </div>
             <div>
-              <span className="typography-title text-sm">$12.44</span> / each
-            </div>
-          </div>
-          <div className="flex justify-between typography-primary">
-            <div>
-              2x &nbsp;&nbsp;&nbsp;<span className="typography-title text-sm">Seat - Front</span>
-            </div>
-            <div>
-              <span className="typography-title text-sm">$12.44</span> / each
+              <span className="typography-title text-sm">$12.95</span> / each
             </div>
           </div>
           <div className="flex justify-between typography-primary">
             <div>
-              2x &nbsp;&nbsp;&nbsp;<span className="typography-title text-sm">Seat - Front</span>
+              2x
+              <span className="typography-title text-sm"> Seat - Middle</span>
             </div>
             <div>
-              <span className="typography-title text-sm">$12.44</span> / each
+              <span className="typography-title text-sm">$14.95</span> / each
+            </div>
+          </div>
+          <div className="flex justify-between typography-primary">
+            <div>
+              2x
+              <span className="typography-title text-sm"> Seat - Back</span>
+            </div>
+            <div>
+              <span className="typography-title text-sm">$16.95</span> / each
             </div>
           </div>
         </div>

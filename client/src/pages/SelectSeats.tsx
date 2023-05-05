@@ -1,15 +1,16 @@
+import { useState } from 'react';
 import Seats from '../components/Seats';
 import HeaderPage from '../components/HeaderPage';
 import SeatPopover from '../components/SeatPopover';
 
-//The PageHeader is apparently called now HeaderPage? I have changed this in the code below.
 function SelectSeats() {
+  const [seatObject, setSeatObject] = useState({ front: 0, middle: 0, back: 0 });
   return (
     <div>
       <div className="flex flex-col items-center">
         <HeaderPage children={'Select Seats'} />
         <div className="h-[5px] w-[279px] bg-yellow mb-[52px] "></div>
-        <Seats />
+        <Seats setSeatObject={setSeatObject} seatObject={seatObject} />
         <div className="flex gap-[25px] mt-1 mb-8">
           <div className="flex gap-[6px]">
             <div className="bg-white h-4 w-4 rounded-full"></div>
@@ -24,7 +25,7 @@ function SelectSeats() {
             <p className="typography-description">Reserved</p>
           </div>
         </div>
-        <SeatPopover />
+        <SeatPopover seatObject={seatObject} />
       </div>
     </div>
   );

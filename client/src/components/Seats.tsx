@@ -1,6 +1,15 @@
 import { Seat, SeatSection } from './Seat';
 
-function Seats() {
+interface Props {
+  setSeatObject: React.Dispatch<React.SetStateAction<{
+    front: number;
+    middle: number;
+    back: number;
+  }>>;
+  seatObject: { front: number; middle: number; back: number };
+}
+
+function Seats(props: Props) {
   const seatsArray = [
     [null, 'A-1', 'A-2', 'A-3', null, 'A-4', 'A-5', 'A-6', null],
     ['B-1', 'B-2', 'B-3', 'B-4', null, 'B-5', 'B-6', 'B-7', 'B-8'],
@@ -16,6 +25,7 @@ function Seats() {
     }, []);
     return flattenedArray;
   }
+
   const allSeats = flattenArrays(seatsArray);
 
   const seatsWithoutNull = allSeats.filter(value => {
@@ -30,11 +40,8 @@ function Seats() {
     }
     return random;
   }
+
   const disabledSeats = randomSeats(seatsWithoutNull as string[]);
-  // type: front, middle, back
-  // price x3
-  // give data by on click e.value
-  // after clicking: store an object with price and tupe
 
   const seatTypes: Record<string, SeatSection> = {
     A: 'front',
@@ -44,6 +51,8 @@ function Seats() {
     E: 'middle',
     F: 'back',
   };
+
+  const { seatObject, setSeatObject } = props;
 
   return (
     <div className="grid grid-rows-6 grid-cols-9 gap-3 m-5">
@@ -57,11 +66,28 @@ function Seats() {
             // if there is a seat and not null...
             const seatType = seatTypes[seat.substring(0, 1)];
             //... create a substring to get the first letter and bind it to seatType
-
             if (disabledSeats.includes(seat)) {
-              return <Seat disabled={true} key={index} type={seatType} />;
+              return (
+                <Seat
+                  setSeatObject={setSeatObject}
+                  seatObject={seatObject}
+                  seatId={seat}
+                  disabled={true}
+                  key={index}
+                  type={seatType}
+                />
+              );
             } else {
-              return <Seat disabled={false} key={index} type={seatType} />;
+              return (
+                <Seat
+                  setSeatObject={setSeatObject}
+                  seatObject={seatObject}
+                  seatId={seat}
+                  disabled={false}
+                  key={index}
+                  type={seatType}
+                />
+              );
             }
           } else {
             return <div key={index}></div>;
@@ -73,19 +99,3 @@ function Seats() {
 }
 
 export default Seats;
-
-// interface Props {
-//   seat: {
-//     price?: string;
-//     type?: string;
-//   };
-// }
-
-// seat: {
-// price?: string;
-// type?: string;
-// };
-// const = seat: {
-// price?: string;
-// type?: string;
-// };
