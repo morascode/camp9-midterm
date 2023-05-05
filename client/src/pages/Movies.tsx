@@ -1,15 +1,10 @@
-import PaginationButtons from '../components/PaginationButtons';
-import PaginationMovies from '../components/PaginationMovies';
-import { useState } from 'react';
+import ListMovies from '../components/ListMovies';
 
 function Movies() {
-  const [state, setState] = useState(1);
-
   return (
     <>
       <div className="px-5 py-8">
-        <PaginationMovies state={state} />
-        <PaginationButtons state={state} setState={setState} />
+        <ListMovies />
       </div>
     </>
   );
