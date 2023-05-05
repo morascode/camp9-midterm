@@ -42,7 +42,13 @@ function SeatPopover(props: Props) {
         <hr className="white-dimmed-heavy mt-4 " />
         <div className="flex justify-between items-end mt-7 ">
           <div className="grid typography-title text-2xl">
-            <span className="typography-description ">Total Price</span>$ {seatObject.front * 12.95 + seatObject.middle * 14.95 + seatObject.back * 16.95}
+            <span className="typography-description ">Total Price</span>${' '}
+            {Math.round(
+              (seatObject.front * 12.95 +
+                seatObject.middle * 14.95 +
+                seatObject.back * 16.95) *
+                100
+            ) / 100}
           </div>
           <Link className="w-[215px]" to={'/success'}>
             <Button className="">Book Ticket</Button>
@@ -52,7 +58,5 @@ function SeatPopover(props: Props) {
     </>
   );
 }
-//justify-content: space-between;
-//align-items: flex-end;
 
 export default SeatPopover;

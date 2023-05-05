@@ -19,7 +19,7 @@ export type SeatSection = 'front' | 'middle' | 'back';
 
 export function Seat(props: Props) {
   const [selected, setSelected] = useState(false);
-  const { type, setSeatObject, seatId, seatObject } = props;
+  const { type, setSeatObject, seatObject } = props;
 
   function handleSeatObject(type: string, n: number) {
     if (type === "front") {
