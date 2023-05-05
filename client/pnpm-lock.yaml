@@ -28,6 +28,9 @@ dependencies:
   date-fns:
     specifier: ^2.29.3
     version: 2.30.0
+  dotenv:
+    specifier: ^16.0.3
+    version: 16.0.3
   heroicons-react:
     specifier: ^1.4.1
     version: 1.4.1(react@18.2.0)
@@ -4350,7 +4353,6 @@ packages:
   /dotenv@16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
-    dev: true
 
   /draht@1.0.1:
     resolution: {integrity: sha512-yNNHL864dniNmIE9ZKD++mKypiAUAvVZtyV0QrbXH/ak3ebzFqo5xsmRBRqV8pZVhImOSBiyq500Wcmrf44zAg==}
