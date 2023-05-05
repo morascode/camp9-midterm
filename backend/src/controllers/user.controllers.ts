@@ -25,6 +25,9 @@ export const signupController = async (
       firstName: req.body.firstName,
       lastName: req.body.lastName,
     },
+    include: {
+      bookings: true,
+    },
   });
   console.log(req.body);
   res.send(newUser.email);

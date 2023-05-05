@@ -78,6 +78,6 @@ export type Booking = {
   userId: string;
   movieId: string;
   dateAndTime: string;
-  seats: string;
+  seats: string[];
   price: string;
 };

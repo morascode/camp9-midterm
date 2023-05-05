@@ -13,7 +13,6 @@ export const bookingController = async (
   const booking = await prisma.booking.create({
     data: {
       bookingId: req.body.bookingId,
-      user: req.body.user,
       userId: req.body.userId,
       movieId: req.body.movieId,
       dateAndTime: req.body.dateAndTime,
