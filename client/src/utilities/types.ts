@@ -73,10 +73,11 @@ export type LoginUser = {
 export type BookingResponse = { token: string };
 
 export type Booking = {
-  movieTitle: string;
-  date: number;
-  time: number;
-  seats: number[];
-  price: number;
+  bookingId: string;
   user: string;
+  userId: string;
+  movieId: string;
+  dateAndTime: string;
+  seats: string;
+  price: string;
 };

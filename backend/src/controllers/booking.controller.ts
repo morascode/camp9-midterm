@@ -1,23 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
-import { SignupUser } from '../validate/uservalidation';
 import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
+import { Booking } from '../validate/bookingvalidation';
 
 const prisma = new PrismaClient();
 
 export const bookingController = async (
-  req: Request<{}, {}, SignupUser>,
+  req: Request<{}, {}, Booking>,
   res: Response,
   next: NextFunction
 ) => {
   const booking = await prisma.booking.create({
     data: {
-      // movieTitle: req.body.movieTitle,
-      // data: req.body.data,
-      // time: req.body.time,
-      // seats: req.body.seats,
-      // price: req.body.price,
-      // user: req.body.user,
+      bookingId: req.body.bookingId,
+      user: req.body.user,
+      userId: req.body.userId,
+      movieId: req.body.movieId,
+      dateAndTime: req.body.dateAndTime,
+      seats: req.body.seats,
+      price: req.body.price,
     },
   });
+  res.send(booking);
 };
