@@ -26,12 +26,14 @@ function GenreIconButton(props: Emoji) {
       <div
         className={clsx(
           'rounded-xl w-14 h-14 text-3xl flex flex-col justify-center items-center cursor-pointer',
-          props.isSelected ? 'bg-white/40' : 'bg-[#363740]'
+          props.isSelected
+            ? 'bg-white/40 dark:bg-dark-light'
+            : 'bg-[#363740] dark:bg-white/40'
         )}
       >
         <span>{props.emoji}</span>
       </div>
-      <h3 className="text-xs font-bold text-white/40 font-inter">
+      <h3 className="text-xs font-bold text-white/40 font-inter dark:text-dark-light">
         {props.genre}
       </h3>
     </div>

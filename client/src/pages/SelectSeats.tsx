@@ -1,6 +1,6 @@
 import Seats from '../components/Seats';
 import HeaderPage from '../components/HeaderPage';
-//The PageHeader is apparently called now HeaderPage? I have changed this in the code below.
+
 function SelectSeats() {
   return (
     <div>
@@ -10,16 +10,16 @@ function SelectSeats() {
         <Seats />
         <div className="flex gap-[25px] mt-1 mb-8">
           <div className="flex gap-[6px]">
-            <div className="bg-white h-4 w-4 rounded-full"></div>
-            <p className="typography-description">Available</p>
+            <div className="bg-white dark:bg-dark h-4 w-4 rounded-full"></div>
+            <p className="typography-description dark:text-dark">Available</p>
           </div>
           <div className="flex gap-[6px]">
             <div className="bg-yellow h-4 w-4 rounded-full"></div>
-            <p className="typography-description">Selected</p>
+            <p className="typography-description dark:text-dark">Selected</p>
           </div>
           <div className="flex gap-[6px]">
-            <div className="bg-dark-light h-4 w-4 rounded-full"></div>
-            <p className="typography-description">Reserved</p>
+            <div className="bg-dark-light dark:bg-white h-4 w-4 rounded-full"></div>
+            <p className="typography-description dark:text-dark">Reserved</p>
           </div>
         </div>
       </div>
