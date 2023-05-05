@@ -1,15 +1,6 @@
 import { Seat, SeatSection } from './Seat';
 
-interface Props {
-  setSeatObject: React.Dispatch<React.SetStateAction<{
-    front: number;
-    middle: number;
-    back: number;
-  }>>;
-  seatObject: { front: number; middle: number; back: number };
-}
-
-function Seats(props: Props) {
+function Seats() {
   const seatsArray = [
     [null, 'A-1', 'A-2', 'A-3', null, 'A-4', 'A-5', 'A-6', null],
     ['B-1', 'B-2', 'B-3', 'B-4', null, 'B-5', 'B-6', 'B-7', 'B-8'],
@@ -52,8 +43,6 @@ function Seats(props: Props) {
     F: 'back',
   };
 
-  const { seatObject, setSeatObject } = props;
-
   return (
     <div className="grid grid-rows-6 grid-cols-9 gap-3 m-5">
       {seatsArray.map(row => {
@@ -69,8 +58,6 @@ function Seats(props: Props) {
             if (disabledSeats.includes(seat)) {
               return (
                 <Seat
-                  setSeatObject={setSeatObject}
-                  seatObject={seatObject}
                   seatId={seat}
                   disabled={true}
                   key={index}
@@ -80,8 +67,6 @@ function Seats(props: Props) {
             } else {
               return (
                 <Seat
-                  setSeatObject={setSeatObject}
-                  seatObject={seatObject}
                   seatId={seat}
                   disabled={false}
                   key={index}

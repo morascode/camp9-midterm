@@ -4,6 +4,19 @@ import HeaderPage from '../components/HeaderPage';
 import SeatPopover from '../components/SeatPopover';
 import { SeatsContext } from '../contexts/SeatsContext';
 
+interface seatSuperContextValues {
+  seatObject: {
+    front: number;
+    middle: number;
+    back: number;
+  },
+  setSeatObject: React.Dispatch<React.SetStateAction<{
+    front: number;
+    middle: number;
+    back: number;
+}>> 
+}
+
 function SelectSeats() {
   const [seatObject, setSeatObject] = useState({
     front: 0,
@@ -11,7 +24,7 @@ function SelectSeats() {
     back: 0,
   });
   return (
-    <SeatsContext.Provider value={setSeatObject}>
+    <SeatsContext.Provider value={ {seatObject, setSeatObject}}>
       <div>
         <div className="flex flex-col items-center">
           <HeaderPage children={'Select Seats'} />

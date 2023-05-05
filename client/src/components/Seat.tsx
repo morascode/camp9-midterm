@@ -1,17 +1,11 @@
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useContext } from 'react';
+import { SeatsContext } from '../contexts/SeatsContext';
 
 type Props = {
   disabled: Boolean;
   type: SeatSection;
-  setSeatObject: React.Dispatch<
-    React.SetStateAction<{
-      front: number;
-      middle: number;
-      back: number;
-    }>
-  >;
-  seatObject: { front: number; middle: number; back: number };
   seatId: string
 };
 
@@ -19,7 +13,8 @@ export type SeatSection = 'front' | 'middle' | 'back';
 
 export function Seat(props: Props) {
   const [selected, setSelected] = useState(false);
-  const { type, setSeatObject, seatObject } = props;
+  const seatObject = useContext(SeatsContext)
+  console.log(seatObject)
 
   function handleSeatObject(type: string, n: number) {
     if (type === "front") {
