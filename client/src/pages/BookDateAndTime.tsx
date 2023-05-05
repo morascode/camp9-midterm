@@ -35,8 +35,10 @@ export default function BookDateAndTime() {
   return (
     <div className="px-5 py-6 h-screen flex flex-col">
       <HeaderPage children={'Select Date & Time'} />
-      <div className="py-6 border-b border-white-dimmed">
-        <h2 className="text-sm text-white-dimmed font-bold ml-1">Date</h2>
+      <div className="py-6 border-b border-white-dimmed dark:border-dark-light">
+        <h2 className="text-sm text-white-dimmed dark:text-dark font-bold ml-1">
+          Date
+        </h2>
         <div className="pt-5 grid grid-cols-4 gap-[18px]">
           <BookingDate
             onSelect={handleDataSelected}
@@ -46,7 +48,9 @@ export default function BookDateAndTime() {
       </div>
       {selectedDate && (
         <div className="py-6 border-opacity-20">
-          <h2 className="text-sm text-white-dimmed font-bold ml-1">Time</h2>
+          <h2 className="text-sm text-white-dimmed dark:text-dark font-bold ml-1">
+            Time
+          </h2>
           <div className="pt-5 grid grid-cols-4 gap-[18px]">
             {
               <BookingTime

@@ -6,10 +6,13 @@ import { useEmojieLibrary } from '../../contexts/GenreContext';
 function GenreFavorites() {
   const { filteredEmojieLibrary } = useEmojieLibrary();
   return (
-    <div className="bg-[#1C1C27]">
+    <div className="bg-[#1C1C27] dark:bg-white">
       <div className="flex justify-between px-5">
-        <h2 className="text-white/40 text-[19px] ">Genre</h2>
-        <Link to={'/genres'} className="text-[#FFB43A] stroke-[#FFB43A] flex">
+        <h2 className="text-white/40 text-[19px] dark:text-dark">Genre</h2>
+        <Link
+          to={'/genres'}
+          className="text-[#FFB43A] dark:text-dark stroke-[#FFB43A] flex"
+        >
           See All
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +30,7 @@ function GenreFavorites() {
           </svg>
         </Link>
       </div>
-      <div className="w-full px-5 py-4 flex gap-7 justify-center text-center items-baseline bg-[#1C1C27]">
+      <div className="w-full px-5 py-4 flex gap-7 justify-center text-center items-baseline bg-[#1C1C27] dark:bg-white">
         {filteredEmojieLibrary.slice(0, 4).map(emojie => (
           <Genreonclick
             emojie={emojie.Emoji}

@@ -14,27 +14,27 @@ function NavigationLayout() {
       <main>
         <Outlet />
       </main>
-      <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0 bg-dark">
+      <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0 dark:text-dark">
         <nav>
-          <ul className="flex flex-row justify-between max-w-xs m-auto">
+          <ul className="flex flex-row justify-between max-w-xs m-auto ">
             <li>
               <NavLink to="/">
-                <HomeIcon className="w-6" />
+                <HomeIcon className="w-6 dark:fill-dark-light" />
               </NavLink>
             </li>
             <li>
               <NavLink to="/movies">
-                <FilmIcon className="w-6" />
+                <FilmIcon className="w-6 dark:fill-dark-light" />
               </NavLink>
             </li>
             <li>
               <NavLink to="/bookmarks">
-                <QueueListIcon className="w-6" />
+                <QueueListIcon className="w-6 dark:fill-dark-light" />
               </NavLink>
             </li>
             <li>
               <NavLink to="/accountpage">
-                <UserIcon className="w-6" />
+                <UserIcon className="w-6 dark:fill-dark-light" />
               </NavLink>
             </li>
           </ul>
