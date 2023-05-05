@@ -13,44 +13,45 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  firstName      String
-  lastName       String
+  firstName String
+  lastName  String
   password  String
   bookings  Booking[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-// Create a type for a Movie encompassing: title, movieId, and an array of Screenings
-model Movie {
-  id        String   @id @default(uuid())
-  title     String
+// Create a type Screening encompassing id, date, time, movieId, bookings
+model Screening {
+  id        String    @id @default(uuid())
+  date      DateTime
+  time      String
   movieId   String
-  screenings Screening[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
-//Create a type Screening encompassing screeningId, movie, movieId, time (please include date and time), and an array of Bookings
-model Screening {
-  id          String    @id @default(uuid())
-  screeningId String
-  movie       Movie     @relation(fields: [movieId], references: [id])
-  movieId     String
-  time        DateTime
-  bookings    Booking[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
-// Create a type for a Booking including userId, user, screeningId, screening, and a seat number, bookingId
+// Create a type for a Booking including id, screening, screeningId, seats, user, userId, createdAt, updatedAt
 model Booking {
-  id          String    @id @default(uuid())
-  bookingId   String
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String
-  screening   Screening @relation(fields: [screeningId], references: [id])
+  id          String     @id @default(uuid())
+  screening   Screening  @relation(fields: [screeningId], references: [id])
   screeningId String
-  seat        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  seats       Seat[]   
+  user        User       @relation(fields: [userId], references: [id])
+  userId      String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+// create a model for a Seat id, row, number, price, booking, bookingId
+model Seat {
+  id        String   @id @default(uuid())
+  row       String
+  number    Int
+  price     Int
+  booking   Booking? @relation(fields: [bookingId], references: [id])
+  bookingId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
