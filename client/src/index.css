@@ -54,11 +54,16 @@
  * 2.0 - TAILWIND COMPONENTS LAYER 
  * ======================================= */
 @layer components {
- 
-
+  .screen {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 180, 58, 0.2) 0%,
+      rgba(255, 180, 58, 0) 100%
+    );
+  }
   .debug {
-  background: rgb(0, 100, 0, 0.6) !important;
-   /* outline: 3px solid limegreen !important;*/
+    background: rgb(0, 100, 0, 0.6) !important;
+    /* outline: 3px solid limegreen !important;*/
   }
   /* ========================================
  * 2.1 - BODY TAG
