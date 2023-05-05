@@ -9,7 +9,7 @@ function SelectSeats() {
     <div>
       <div className="flex flex-col items-center">
         <HeaderPage children={'Select Seats'} />
-        <div className="h-[5px] w-[279px] bg-yellow mb-[52px] "></div>
+        <div className="h-[5px] w-[279px] bg-yellow"></div>
         <Seats setSeatObject={setSeatObject} seatObject={seatObject} />
         <div className="flex gap-[25px] mt-1 mb-8">
           <div className="flex gap-[6px]">
