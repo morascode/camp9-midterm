@@ -34,7 +34,7 @@ export default function BookDateAndTime() {
 
   return (
     <div className="px-5 py-6 h-screen flex flex-col">
-      <HeaderPage children={'Select Date & Time'} />
+      <HeaderPage>Select Date & Time</HeaderPage>
       <div className="py-6 border-b border-white-dimmed dark:border-dark-light">
         <h2 className="text-sm text-white-dimmed dark:text-dark font-bold ml-1">
           Date
@@ -64,11 +64,10 @@ export default function BookDateAndTime() {
       <Link
         to={`/seats/${id}?date=${selectedTime
           ?.toISOString()
-          .substring(
-            0,
-            10
-          )}&time=${selectedTime?.getHours()}:${selectedTime?.getMinutes().toString()
-    .padStart(2, "0")}`}
+          .substring(0, 10)}&time=${selectedTime?.getHours()}:${selectedTime
+          ?.getMinutes()
+          .toString()
+          .padStart(2, '0')}`}
         className="mt-auto"
       >
         <Button disabled={!selectedDateAndTime}>Select Seats</Button>
