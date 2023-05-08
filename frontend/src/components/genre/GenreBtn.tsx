@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
 import { useEmojieLibrary } from '../../contexts/GenreContext';
 
 export interface Props {
@@ -9,7 +8,7 @@ export interface Props {
   isSelected: boolean;
 }
 
-function Genreonclick(props: Props) {
+function GenreBtn(props: Props) {
   const { toggleEmojie, countingEmojies } = useEmojieLibrary();
 
   return (
@@ -36,4 +35,4 @@ function Genreonclick(props: Props) {
   );
 }
 
-export default Genreonclick;
+export default GenreBtn;
