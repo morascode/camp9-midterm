@@ -1,9 +1,11 @@
-import { userValidation } from '../validate/userValidation';
 import { Router } from 'express';
-import { signupController } from '../controllers/user.controllers';
+import {
+  loginController,
+  signupController,
+} from '../controllers/user.controllers';
 import { validate } from '../middleware/validateResource';
+import { userValidation } from '../validate/userValidation';
 import { loginValidation } from '../validate/loginValidation';
-import { loginController } from '../controllers/login.controller';
 
 const router = Router();
 

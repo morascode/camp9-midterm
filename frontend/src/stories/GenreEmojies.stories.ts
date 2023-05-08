@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Genreonclick from '../components/genre/Genreonclick';
+import GenreBtn from '../components/genre/GenreBtn';
 
-const meta: Meta<typeof Genreonclick> = {
+const meta: Meta<typeof GenreBtn> = {
   title: 'Emojies Button',
-  component: Genreonclick,
+  component: GenreBtn,
   parameters: {
     viewport: {
       defaultViewport: 'mobile1',
@@ -12,7 +12,7 @@ const meta: Meta<typeof Genreonclick> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Genreonclick>;
+type Story = StoryObj<typeof GenreBtn>;
 
 export const Emojie: Story = {
   args: {

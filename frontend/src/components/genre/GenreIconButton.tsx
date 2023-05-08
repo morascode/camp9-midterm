@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
-import { useEmojieLibrary } from '../../../contexts/GenreContext';
+import { useEmojieLibrary } from '../../contexts/GenreContext';
 
 export interface Emoji {
   emoji: string;
