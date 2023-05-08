@@ -5,7 +5,7 @@ import {
   MovieDetailDbResponse,
   PersonImagesRequest,
 } from '../utilities/types';
-import { EmojieLibraryEntry, useEmojieLibrary } from '../contexts/GenreContext';
+import { useGenreContext } from '../contexts/GenreContext';
 // =====================================================================
 // UTILITY FUNCTIONS
 // =====================================================================
@@ -17,15 +17,6 @@ function parseQueryString(URLParameters: object) {
       .map(parameter => parameter.join('='))
       .join('&');
   return queryString;
-}
-// getSelectedGenres just returns an array of IDs of currently selected genres from the GenreContext
-function getSelectedGenres(filteredEmojieLibrary: EmojieLibraryEntry[]) {
-  const selectedGenresIDs = filteredEmojieLibrary
-    .filter(genreid => {
-      if (genreid.isSelected === true) return genreid.GenreId;
-    })
-    .map(genreid => genreid.GenreId);
-  return selectedGenresIDs;
 }
 // =====================================================================
 // useGetMovies query function and hook (used in UpcomingMovies.tsx, Searchbar.tsx, Movies.tsx)
@@ -56,11 +47,10 @@ async function getMovies(pageNumber: number, selectedGenreIDs: Array<number>) {
 // - note: do not pass any arguments to the fetchNextPage function!
 // hasNextPage - boolean determining if the next page can be fetched
 export function useGetMovies() {
-  const { filteredEmojieLibrary } = useEmojieLibrary();
-  const selectedGenres = getSelectedGenres(filteredEmojieLibrary);
+  const { genreIDs } = useGenreContext();
   const infiniteQuery = useInfiniteQuery({
-    queryKey: ['movies', selectedGenres],
-    queryFn: ({ pageParam = 1 }) => getMovies(pageParam, selectedGenres),
+    queryKey: ['movies', genreIDs],
+    queryFn: ({ pageParam = 1 }) => getMovies(pageParam, genreIDs),
     getNextPageParam: lastPage =>
       lastPage.page >= lastPage.total_pages || lastPage.page >= 500
         ? undefined

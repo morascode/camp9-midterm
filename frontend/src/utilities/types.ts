@@ -69,3 +69,11 @@ export type LoginUser = {
   email: string;
   password: string;
 };
+
+export interface GenreLibraryEntry {
+  Genre: string;
+  Emoji: string;
+  id: number;
+  GenreId: number;
+  isSelected: boolean;
+}
