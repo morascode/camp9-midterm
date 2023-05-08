@@ -6,7 +6,7 @@ import { userValidation } from '../validate/uservalidation';
 import { loginValidation } from '../validate/loginvalidation';
 import { loginController } from '../controllers/login.controller';
 import { bookingController } from '../controllers/booking.controller';
-import { bookingValidation } from '../validate/bookingvalidation';
+import { bookingValidation } from '../validate/bookingValidation';
 const router = Router();
 
 //@route POST /api/1.0/user/signup
