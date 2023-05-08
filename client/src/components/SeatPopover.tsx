@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom';
 import Button from './Button';
+import { SeatsContext } from '../contexts/SeatsContext';
+import { useContext } from 'react';
 
-interface Props {
-  seatObject: { front: number; middle: number; back: number };
-}
-
-function SeatPopover(props: Props) {
-  const { seatObject } = props;
+function SeatPopover() {
+  const {seatObject} = useContext(SeatsContext)
   return (
     <>
       <div className="bg-[#494952] rounded-[12px] w-full pt-7 pb-5 px-5 fixed bottom-0">

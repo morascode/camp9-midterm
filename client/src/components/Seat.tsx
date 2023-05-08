@@ -6,26 +6,25 @@ import { SeatsContext } from '../contexts/SeatsContext';
 type Props = {
   disabled: Boolean;
   type: SeatSection;
-  seatId: string
+  seatId: string;
 };
 
 export type SeatSection = 'front' | 'middle' | 'back';
 
 export function Seat(props: Props) {
   const [selected, setSelected] = useState(false);
-  const seatObject = useContext(SeatsContext)
-  console.log(seatObject)
+  const { seatObject, setSeatObject } = useContext(SeatsContext);
 
   function handleSeatObject(type: string, n: number) {
-    if (type === "front") {
-      const newFront = seatObject.front + n
-      return {...seatObject, front: newFront}
-    } else if (type === "middle") {
-      const newMiddle = seatObject.middle + n
-      return {...seatObject, middle: newMiddle}
-    } else if (type === "back") {
-      const newBack = seatObject.back + n
-      return {...seatObject, back: newBack}
+    if (type === 'front') {
+      const newFront = seatObject.front + n;
+      return { ...seatObject, front: newFront };
+    } else if (type === 'middle') {
+      const newMiddle = seatObject.middle + n;
+      return { ...seatObject, middle: newMiddle };
+    } else if (type === 'back') {
+      const newBack = seatObject.back + n;
+      return { ...seatObject, back: newBack };
     }
   }
 
@@ -40,17 +39,15 @@ export function Seat(props: Props) {
           ? 'bg-[#FFB43A]'
           : 'bg-white'
       )}
-      onClick={e => {
+      onClick={() => {
         switch (selected) {
           case false:
             setSelected(true);
-            setSeatObject(handleSeatObject(type, +1))
-            console.log(seatObject)
-            break; 
+            setSeatObject(handleSeatObject(props.type, +1));
+            break;
           case true:
             setSelected(false);
-            setSeatObject(handleSeatObject(type, -1))
-            console.log(seatObject)
+            setSeatObject(handleSeatObject(props.type, -1));
             break;
         }
       }}
