@@ -1,14 +1,44 @@
 import { Request, Response, NextFunction } from 'express';
-import { SignupUser } from '../validate/uservalidation';
-import { z } from 'zod';
+import { SignupUser } from '../validate/userValidation';
+import { PrismaClient } from '@prisma/client';
+import { LoginUser } from '../validate/loginValidation';
 
-export const signupController = (
+const prisma = new PrismaClient();
+
+export const signupController = async (
   req: Request<{}, {}, SignupUser>,
   res: Response,
   next: NextFunction
 ) => {
-  // hashing password
-  // Save user to database
+  const checkEmail = await prisma.user.findUnique({
+    where: { email: req.body.email },
+  });
+
+  if (checkEmail) {
+    return res.status(422).send('Email already exists');
+  }
+
+  const newUser = await prisma.user.create({
+    data: {
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+    },
+    include: {
+      bookings: true,
+    },
+  });
   console.log(req.body);
-  res.send('signup');
+  res.send(newUser.email);
+};
+
+export const loginController = (
+  req: Request<{}, {}, LoginUser>,
+  res: Response,
+  next: NextFunction
+) => {
+  //authenticating user
+  console.log(req.body);
+  res.send({ token: 'jwt' });
 };
