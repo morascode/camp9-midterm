@@ -28,10 +28,6 @@ export default function SearchBar() {
     return <span>Error!</span>;
   }
 
-  if (typeof dataNowPlayingMovies == 'string') {
-    return <span>Error!</span>;
-  }
-
   const nowPlayingMovies = dataNowPlayingMovies.results;
 
   const moviesByQuery = dataMoviesByQuery?.results || [];
@@ -101,6 +97,7 @@ export default function SearchBar() {
               ) : (
                 filteredMovies.map(movie => (
                   <Combobox.Option
+                    onClick={() => navigate(`/movies/${movie.id}`)}
                     key={movie.id}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
