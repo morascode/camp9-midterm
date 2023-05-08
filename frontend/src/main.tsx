@@ -21,6 +21,7 @@ import FavoriteGenres from './pages/FavoriteGenres';
 import EditProfile from './pages/EditProfile';
 import BookmarkedMovies from './pages/BookmarkedMovies';
 import BookmarkedMoviesProvider from './contexts/BookmarkedMoviesContext';
+import SelectSeats from './pages/SelectSeats';
 
 export const router = createBrowserRouter([
   {

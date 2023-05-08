@@ -1,28 +1,46 @@
 import { Link } from 'react-router-dom';
-import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
-
+import { useGetNowPlayingMovies } from '../hooks/useGetNowPlayingMovies';
+import { useBookmarks } from '../contexts/BookmarkedMoviesContext';
+import useGetUpcomingMovies from '../hooks/useGetUpcomingMovies';
+import { Movie } from '../utilities/types';
 export default function PaginationBookmarkedMovies() {
-  const id = 340;
+  const { bookmarkedMovieIds } = useBookmarks();
 
-  const { data, isLoading, isError } = useGetMovieDetails(id);
+  const upcomingMovies = useGetUpcomingMovies();
+  const nowPlayingMovies = useGetNowPlayingMovies();
 
-  if (isLoading) {
+  if (upcomingMovies.isLoading || nowPlayingMovies.isLoading) {
     return <p>loading...</p>;
   }
-
-  if (isError === true) {
+  if (upcomingMovies.isError || nowPlayingMovies.isError) {
     throw new Error('no data found');
   }
 
-  console.log(data);
+  const allMovies = upcomingMovies.data.results.filter(
+    (movie: Movie) =>
+      !nowPlayingMovies.data.results.some(
+        (nowPlayingMovie: Movie) => nowPlayingMovie.id === movie.id
+      )
+  );
+
+  const bookmarkedMovies = allMovies.filter((movie: Movie) =>
+    bookmarkedMovieIds.includes(movie.id)
+  );
+
+  console.log(bookmarkedMovies);
 
   return (
     <div className="grid grid-rows-2 grid-cols-2 gap-5">
-      <Link to={`/movies/${movie}`} key={index}>
-        <div className="h-auto">
-          <img src={`https://image.tmdb.org/t/p/original/${image}`}></img>
-        </div>
-      </Link>
+      {bookmarkedMovies?.map((movie: Movie, index: number) => {
+        let image = movie.poster_path;
+        return (
+          <Link to={`/movies/${movie.id}`} key={index}>
+            <div className="h-auto">
+              <img src={`https://image.tmdb.org/t/p/original/${image}`}></img>
+            </div>
+          </Link>
+        );
+      })}
     </div>
   );
 }
