@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useEmojieLibrary } from '../../../contexts/GenreContext';
-import Button from '../../Button';
-import HeaderPage from '../../HeaderPage';
+import { useEmojieLibrary } from '../../contexts/GenreContext';
 import GenresSelectorLayout from './GenresSelectorLayout';
 
 function GenresSelectionPage() {

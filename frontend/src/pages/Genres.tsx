@@ -1,5 +1,5 @@
 import HeaderPage from '../components/HeaderPage';
-import GenresSelectionPage from '../components/genre/genres_selection/GenresSelection';
+import GenresSelectionPage from '../components/genre/GenresSelection';
 
 function Genres() {
   return (

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Genreonclick from '../components/genre/Genreonclick';
+import Genreonclick from '../components/genre/GenreBtn.tsx ';
 
 const meta: Meta<typeof Genreonclick> = {
   title: 'Emojies Button',
