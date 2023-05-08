@@ -29,6 +29,7 @@ function SelectSeats() {
         <div className="flex flex-col items-center">
           <HeaderPage children={'Select Seats'} />
           <div className="h-[5px] w-[279px] bg-yellow"></div>
+          <div className='screen h-[20px] w-[279px]' ></div>
           <Seats />
           <div className="flex gap-[25px] mt-1 mb-8">
             <div className="flex gap-[6px]">
