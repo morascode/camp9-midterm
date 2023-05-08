@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { signupController } from '../controllers/user.controllers';
-import { z } from 'zod';
+import {
+  loginController,
+  signupController,
+} from '../controllers/user.controllers';
 import { validate } from '../middleware/validateResource';
-import { userValidation } from '../validate/uservalidation';
-import { loginValidation } from '../validate/loginvalidation';
-import { loginController } from '../controllers/login.controller';
+import { userValidation } from '../validate/userValidation';
+import { loginValidation } from '../validate/loginValidation';
 
 const router = Router();
 
