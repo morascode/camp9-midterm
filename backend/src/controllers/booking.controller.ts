@@ -9,6 +9,9 @@ export const bookingController = async (
   res: Response,
   next: NextFunction
 ) => {
+  /// hola
+  prisma.screening.findUnique({}).then(data => {});
+
   const booking = await prisma.booking.create({
     data: {
       screening: req.body.screening,
