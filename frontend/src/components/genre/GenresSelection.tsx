@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEmojieLibrary } from '../../contexts/GenreContext';
 import GenresSelectorLayout from './GenresSelectorLayout';
 
-function GenresSelectionPage() {
+function GenresSelection() {
   const { counter } = useEmojieLibrary();
   return (
     <div className="flex flex-col px-5 pt-6 pb-6 gap-10 bg-[#1C1C27] w-full h-full dark:bg-white">
@@ -18,4 +18,4 @@ function GenresSelectionPage() {
   );
 }
 
-export default GenresSelectionPage;
+export default GenresSelection;

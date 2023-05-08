@@ -1,4 +1,4 @@
-import Genreonclick from './GenreBtn.tsx ';
+import GenreBtn from './GenreBtn';
 import { Link } from 'react-router-dom';
 import { useEmojieLibrary } from '../../contexts/GenreContext';
 
@@ -31,7 +31,7 @@ function GenreFavorites() {
       </div>
       <div className="w-full px-5 py-4 flex gap-7 justify-center text-center items-baseline bg-[#1C1C27] dark:bg-white">
         {filteredEmojieLibrary.slice(0, 4).map(emojie => (
-          <Genreonclick
+          <GenreBtn
             emojie={emojie.Emoji}
             genre={emojie.Genre}
             id={emojie.id}
