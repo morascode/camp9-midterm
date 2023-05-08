@@ -59,5 +59,5 @@ export const bookingController = async (
       }, 0),
     },
   });
-  res.send(booking);
+  res.status(201).send(booking);
 };
