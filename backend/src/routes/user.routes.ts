@@ -21,9 +21,9 @@ router.post('/signup', validate(userValidation), signupController);
 
 router.post('/login', validate(loginValidation), loginController);
 
-//@route POST /api/1.0/user/login
-//@desc Login user
-//@access Public
+//@route POST /api/1.0/user/booking
+//@desc booking movie by user
+//@access Public // private ?
 
 router.post('/booking', validate(bookingValidation), bookingController);
 

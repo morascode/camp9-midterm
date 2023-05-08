@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
 import { Booking } from '../validate/bookingvalidation';
 
@@ -12,12 +11,10 @@ export const bookingController = async (
 ) => {
   const booking = await prisma.booking.create({
     data: {
-      bookingId: req.body.bookingId,
-      userId: req.body.userId,
-      movieId: req.body.movieId,
-      dateAndTime: req.body.dateAndTime,
+      screening: req.body.screening,
       seats: req.body.seats,
-      price: req.body.price,
+      userId: req.body.userId,
+      totalPrice: req.body.totalPrice,
     },
   });
   res.send(booking);

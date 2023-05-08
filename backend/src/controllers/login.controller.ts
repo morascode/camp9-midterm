@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { SignupUser } from '../validate/uservalidation';
 import { LoginUser } from '../validate/loginvalidation';
 
 export const loginController = (
