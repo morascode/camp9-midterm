@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { MovieDbResponse } from '../utilities/types';
-import { EmojieLibraryEntry, useEmojieLibrary } from '../contexts/GenreContext';
+import { EmojieLibraryEntry, useGenreContext } from '../contexts/GenreContext';
 
 // this function just returns an array of IDs of currently selected genres from the GenreContext
-function getSelectedGenres(filteredEmojieLibrary: EmojieLibraryEntry[]) {
-  const selectedGenresIDs = filteredEmojieLibrary
+function getSelectedGenres(filteredGenreLibrary: EmojieLibraryEntry[]) {
+  const selectedGenresIDs = filteredGenreLibrary
     .filter(genreid => {
       if (genreid.isSelected === true) return genreid.GenreId;
     })
@@ -31,10 +31,10 @@ async function getInfiniteMovies(
 // returns the query object including:
 // data.pages - an array of all pages fetched, 20 movies per page (up to 500 pages)
 // fetchNextPage - function that fetches the next 20 movies, saves them in data.pages (note: do not pass any arguments to this function!)
-// hasNextPage - boolean determining if the next page can be fetched
+// hasNextPage - boolean determining if the next page can be feched
 export function useGetInfiniteMovies() {
-  const { filteredEmojieLibrary } = useEmojieLibrary();
-  const selectedGenres = getSelectedGenres(filteredEmojieLibrary);
+  const { filteredGenreLibrary } = useGenreContext();
+  const selectedGenres = getSelectedGenres(filteredGenreLibrary);
   const infiniteQuery = useInfiniteQuery({
     queryKey: ['infiniteMovies', { genres: selectedGenres }],
     queryFn: ({ pageParam = 1 }) =>

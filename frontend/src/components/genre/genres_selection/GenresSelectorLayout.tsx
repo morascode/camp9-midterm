@@ -1,14 +1,15 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import { useEmojieLibrary } from '../../../contexts/GenreContext';
+
 import GenreIconButton from './GenreIconButton';
+import { useGenreContext } from '../../../contexts/GenreContext';
 
 function GenresSelectorLayout() {
-  const { emojieLibrary } = useEmojieLibrary();
+  const { genreLibrary } = useGenreContext();
 
   return (
     <div className="grid text-center grid-cols-4 gap-8">
-      {emojieLibrary.map(param => (
+      {genreLibrary.map(param => (
         <GenreIconButton
           emoji={param.Emoji}
           genre={param.Genre}

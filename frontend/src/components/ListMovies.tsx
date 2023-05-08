@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useGetInfiniteMovies } from '../hooks/useGetInfiniteMovies';
+import { useGenreContext } from '../contexts/GenreContext';
 
 export default function ListMovies() {
+  const { genreIDs } = useGenreContext();
+  console.log(genreIDs);
   const { isError, isLoading, data, fetchNextPage, hasNextPage } =
     useGetInfiniteMovies();
   if (isError) {

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import { useEmojieLibrary } from '../../../contexts/GenreContext';
+import { useGenreContext } from '../../../contexts/GenreContext';
 
 export interface Emoji {
   emoji: string;
@@ -10,16 +10,15 @@ export interface Emoji {
 }
 
 function GenreIconButton(props: Emoji) {
-  const { toggleEmojie, countingEmojies /*filteredLibrary*/ } =
-    useEmojieLibrary();
+  const { toggleGenre, countingGenre } = useGenreContext();
 
   return (
     <div
       className="flex flex-col items-center gap-1"
       key={props.id}
       onClick={() => {
-        toggleEmojie(props.id);
-        countingEmojies(props.isSelected);
+        toggleGenre(props.id);
+        countingGenre(props.isSelected);
         /*filteredLibrary(props.isSelected);*/
       }}
     >
