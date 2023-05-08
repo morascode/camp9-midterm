@@ -69,3 +69,15 @@ export type LoginUser = {
   email: string;
   password: string;
 };
+
+export type BookingResponse = { token: string };
+
+export type Booking = {
+  bookingId: string;
+  user: string;
+  userId: string;
+  movieId: string;
+  dateAndTime: string;
+  seats: string[];
+  price: string;
+};
