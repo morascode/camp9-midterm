@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useGenreContext } from '../../contexts/GenreContext';
+import { useGenreContext } from '../contexts/GenreContext';
 
 export interface Props {
   emojie: string;

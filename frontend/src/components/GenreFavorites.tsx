@@ -1,6 +1,6 @@
 import GenreBtn from './GenreBtn';
 import { Link } from 'react-router-dom';
-import { useGenreContext } from '../../contexts/GenreContext';
+import { useGenreContext } from '../contexts/GenreContext';
 
 function GenreFavorites() {
   const { filteredGenreLibrary } = useGenreContext();

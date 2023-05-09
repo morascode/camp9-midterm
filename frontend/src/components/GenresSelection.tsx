@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useGenreContext } from '../../contexts/GenreContext';
+import { useGenreContext } from '../contexts/GenreContext';
 import GenreBtn from './GenreBtn';
 
 function GenresSelection() {

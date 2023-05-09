@@ -27,8 +27,6 @@ function GenreProvider({ children }: { children: any }) {
   const [filteredGenres, setFilteredGenres] = useState(genreLibrary);
   const [genreIDs, setGenreIDs] = useState<number[]>([]);
 
-  console.log(genreState);
-
   function toggleGenre(id: number) {
     //this function toggles the isSelected boolean in the genreLibrary to true or false
     const newGenreLibrary = genreLibrary.map(genre => {
