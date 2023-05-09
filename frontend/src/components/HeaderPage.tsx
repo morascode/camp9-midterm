@@ -1,21 +1,12 @@
 import { ChevronLeftIcon, HeartIcon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// type alias for the props
 type Props = {
   children: string;
   hasHeartButton?: boolean;
   isLiked?: boolean;
   onHeartButtonClick?: () => void;
 };
-
-// This is the header component to be used for all pages
-// it has three elements:
-// 1. the left arrow that navigates to the previous page (always present)
-// 2. the title of the page ('children' props)
-// 3. the little red heart (invisible by default, if you want it visible, pass the hasHeartButton={true} prop. If you want some function to be called when the heart is clicked, eg. one that adds the movie to favorites, pass it as onHeartButtonClick prop)
-// it has its own padding, so take care it does not get additional vertical and horizontal padding from your component
 
 function HeaderPage(props: Props) {
   // function used to navigate back to the last page when the arrow back is clicked
