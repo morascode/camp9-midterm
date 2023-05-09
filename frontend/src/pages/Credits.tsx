@@ -7,9 +7,6 @@ import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
 import { useGetMovieDetails } from '../hooks/useMovies';
 
-//
-// Component
-//
 function Credits({ movieId }: { movieId?: number }) {
   const { id } = useParams();
   const { data, isLoading, error, isError } = useGetMovieDetails(
@@ -18,9 +15,6 @@ function Credits({ movieId }: { movieId?: number }) {
 
   const [crewOrCast, setCrewOrCast] = useState<'cast' | 'crew'>('cast');
 
-  //
-  // JSX returns
-  //
   return (
     <>
       {/* the header and the cast/crew buttons */}

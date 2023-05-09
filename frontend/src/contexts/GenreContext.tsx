@@ -60,15 +60,7 @@ function GenreProvider({ children }: { children: any }) {
         ...notSelectedGenres.slice(0, 4 - filteredGenreLibrary.length),
       ]);
     }
-    setFilteredEmojie(filteredEmojieLibrary);
-  }
-
-  function countingEmojies(isSelected: boolean) {
-    if (isSelected) {
-      setCounter(counter - 1);
-    } else {
-      setCounter(counter + 1);
-    }
+    setFilteredGenres(filteredGenreLibrary);
   }
 
   return (
