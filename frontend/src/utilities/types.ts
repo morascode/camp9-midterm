@@ -84,3 +84,11 @@ export type Booking = {
   seats: string[];
   price: string;
 };
+
+export interface GenreLibraryEntry {
+  Genre: string;
+  Emojie: string;
+  id: number;
+  GenreId: number;
+  isSelected: boolean;
+}

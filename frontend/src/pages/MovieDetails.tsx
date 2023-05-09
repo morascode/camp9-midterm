@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { minutesToHoursAndMinutes } from '../utilities/minutesToHoursAndMinutes';
 import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
-import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
+import { useGetMovieDetails } from '../hooks/useMovies';
 import HeaderPage from '../components/HeaderPage';
 import { useContext } from 'react';
 import BookmarkedMovies from './BookmarkedMovies';
