@@ -54,16 +54,6 @@
  * 2.0 - TAILWIND COMPONENTS LAYER 
  * ======================================= */
 @layer components {
-<<<<<<< HEAD:client/src/index.css
-  .screen {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 180, 58, 0.2) 0%,
-      rgba(255, 180, 58, 0) 100%
-    );
-  }
-=======
->>>>>>> main:frontend/src/index.css
   .debug {
     background: rgb(0, 100, 0, 0.6) !important;
     /* outline: 3px solid limegreen !important;*/
