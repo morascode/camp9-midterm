@@ -9,7 +9,7 @@ export interface Emoji {
 }
 
 function GenreIconButton(props: Emoji) {
-  const { toggleGenre, countingGenre } = useGenreContext();
+  const { toggleGenre } = useGenreContext();
 
   return (
     <div
@@ -17,7 +17,6 @@ function GenreIconButton(props: Emoji) {
       key={props.id}
       onClick={() => {
         toggleGenre(props.id);
-        countingGenre(props.isSelected);
         /*filteredLibrary(props.isSelected);*/
       }}
     >

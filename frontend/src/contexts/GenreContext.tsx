@@ -8,7 +8,6 @@ interface GenreContext {
   filteredGenreLibrary: GenreLibraryEntry[];
   genreIDs: number[];
   genreCounter: number;
-  countingGenre: (isSelected: boolean) => void;
 }
 
 export const GenreContext = createContext<GenreContext>({
@@ -17,7 +16,6 @@ export const GenreContext = createContext<GenreContext>({
   filteredGenreLibrary: genreLibrary,
   genreIDs: [],
   genreCounter: 0,
-  countingGenre: (isSelected: boolean) => {},
 });
 
 //this is the hook that is used in the components to access the context!
@@ -29,7 +27,6 @@ function GenreProvider({ children }: { children: any }) {
   const [genreState, setGenreState] = useState(genreLibrary);
   const [filteredGenres, setFilteredGenres] = useState(genreState);
   const [genreIDs, setGenreIDs] = useState<number[]>([]);
-  const [genreCounter, setGenreCounter] = useState(0);
 
   function toggleGenre(id: number) {
     //this function toggles the isSelected boolean in the genreLibrary to true or false
@@ -67,16 +64,6 @@ function GenreProvider({ children }: { children: any }) {
     setFilteredGenres(filteredGenreLibrary);
   }
 
-  // counter function to display how many emojies are selected.
-  // it takes the the isSelected boolean and adds or subtracts 1 depending on the boolean
-  function countingGenre(isSelected: boolean) {
-    if (isSelected) {
-      setGenreCounter(genreCounter - 1);
-    } else {
-      setGenreCounter(genreCounter + 1);
-    }
-  }
-
   return (
     <GenreContext.Provider
       value={{
@@ -84,8 +71,7 @@ function GenreProvider({ children }: { children: any }) {
         toggleGenre: toggleGenre,
         filteredGenreLibrary: filteredGenres,
         genreIDs: genreIDs,
-        genreCounter: genreCounter,
-        countingGenre,
+        genreCounter: genreIDs.length,
       }}
     >
       {children}
