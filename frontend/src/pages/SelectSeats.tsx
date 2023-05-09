@@ -6,9 +6,10 @@ import { SeatsContext } from '../contexts/SeatsContext';
 
 function SelectSeats() {
   const [seatObject, setSeatObject] = useState({
-    front: 0,
-    middle: 0,
-    back: 0
+    frontSeatsCount: 0,
+    middleSeatsCount: 0,
+    backSeatsCount: 0,
+    seatIds: []
   });
   return (
     <SeatsContext.Provider value={{seatObject, setSeatObject}}>

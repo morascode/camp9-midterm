@@ -11,7 +11,7 @@ function SeatPopover() {
         <div className="grid">
           <div className="flex  justify-between typography-primary">
             <div>
-              {seatObject.front} X
+              {seatObject.frontSeatsCount} X
               <span className="typography-title text-sm "> Seat - Front</span>
             </div>
             <div>
@@ -20,7 +20,7 @@ function SeatPopover() {
           </div>
           <div className="flex justify-between typography-primary">
             <div>
-              {seatObject.middle} X
+              {seatObject.middleSeatsCount} X
               <span className="typography-title text-sm"> Seat - Middle</span>
             </div>
             <div>
@@ -29,7 +29,7 @@ function SeatPopover() {
           </div>
           <div className="flex justify-between typography-primary">
             <div>
-              {seatObject.back} X
+              {seatObject.backSeatsCount} X
               <span className="typography-title text-sm"> Seat - Back</span>
             </div>
             <div>
@@ -42,9 +42,9 @@ function SeatPopover() {
           <div className="grid typography-title text-2xl">
             <span className="typography-description ">Total Price</span>${' '}
             {Math.round(
-              (seatObject.front * 12.95 +
-                seatObject.middle * 14.95 +
-                seatObject.back * 16.95) *
+              (seatObject.frontSeatsCount * 12.95 +
+                seatObject.middleSeatsCount * 14.95 +
+                seatObject.backSeatsCount * 16.95) *
                 100
             ) / 100}
           </div>

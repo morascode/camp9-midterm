@@ -3,9 +3,10 @@ import { createContext } from 'react';
 
 export const SeatsContext = createContext({
   seatObject: {
-    front: 0,
-    middle: 0,
-    back: 0,
+    frontSeatsCount: 0,
+    middleSeatsCount: 0,
+    backSeatsCount: 0,
+    seatIds: []
   },
   setSeatObject: React.Dispatch<React.SetStateAction<{
     front: number;
