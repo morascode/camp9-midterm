@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@headlessui/react': ^1.7.14
   '@heroicons/react': ^2.0.17
+  '@prisma/client': ^4.13.0
   '@react-icons/all-files': ^4.1.0
   '@storybook/addon-essentials': ^7.0.5
   '@storybook/addon-interactions': ^7.0.5
@@ -51,6 +52,7 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.7.14_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.17_react@18.2.0
+  '@prisma/client': 4.13.0
   '@react-icons/all-files': 4.1.0_react@18.2.0
   '@tanstack/react-query': 4.29.5_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query-devtools': 4.29.6_6ufraba7zs65ngvban5jjen7be
@@ -62,7 +64,7 @@ dependencies:
   dotenv: 16.0.3
   heroicons-react: 1.4.1_react@18.2.0
   qrcode.react: 3.1.0_react@18.2.0
-  query: github.com/tanstack/react-query/53813e45e126dcd8f846addf69c5b78322f868b8
+  query: github.com/tanstack/react-query/235f3c6794a772ce76bcfa2da4eb5ac8303ff4b1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-infinite-scroll-component: 6.1.0_react@18.2.0
@@ -1831,6 +1833,23 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
     dev: true
+
+  /@prisma/client/4.13.0:
+    resolution: {integrity: sha512-YaiiICcRB2hatxsbnfB66uWXjcRw3jsZdlAVxmx0cFcTc/Ad/sKdHCcWSnqyDX47vAewkjRFwiLwrOUjswVvmA==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a
+    dev: false
+
+  /@prisma/engines-version/4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a:
+    resolution: {integrity: sha512-fsQlbkhPJf08JOzKoyoD9atdUijuGBekwoOPZC3YOygXEml1MTtgXVpnUNchQlRSY82OQ6pSGQ9PxUe4arcSLQ==}
+    dev: false
 
   /@react-icons/all-files/4.1.0_react@18.2.0:
     resolution: {integrity: sha512-hxBI2UOuVaI3O/BhQfhtb4kcGn9ft12RWAFVMUeNjqqhLsHvFtzIkFaptBJpFDANTKoDfdVoHTKZDlwKCACbMQ==}
@@ -8516,8 +8535,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/tanstack/react-query/53813e45e126dcd8f846addf69c5b78322f868b8:
-    resolution: {commit: 53813e45e126dcd8f846addf69c5b78322f868b8, repo: git+ssh://git@github.com/tanstack/react-query.git, type: git}
+  github.com/tanstack/react-query/235f3c6794a772ce76bcfa2da4eb5ac8303ff4b1:
+    resolution: {commit: 235f3c6794a772ce76bcfa2da4eb5ac8303ff4b1, repo: git+ssh://git@github.com/tanstack/react-query.git, type: git}
     name: query
     version: 0.0.0
     requiresBuild: true

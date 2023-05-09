@@ -24,8 +24,7 @@ export const GenreContext = createContext<GenreContext>({
 export const useGenreContext = () => useContext(GenreContext);
 
 function GenreProvider({ children }: { children: any }) {
-  const [genreState, setGenreState] = useState(genreLibrary);
-  const [filteredGenres, setFilteredGenres] = useState(genreState);
+  const [filteredGenres, setFilteredGenres] = useState(genreLibrary);
   const [genreIDs, setGenreIDs] = useState<number[]>([]);
 
   function toggleGenre(id: number) {
@@ -36,10 +35,10 @@ function GenreProvider({ children }: { children: any }) {
       }
       return genre;
     });
-    setGenreState(newGenreLibrary);
+    setFilteredGenres(newGenreLibrary);
 
     // this function filters the genreLibrary to only show the selected genres.
-    const filteredGenreLibrary = genreState.filter(genre => {
+    const filteredGenreLibrary = genreLibrary.filter(genre => {
       if (genre.isSelected === true) {
         return genre;
       }
@@ -67,7 +66,7 @@ function GenreProvider({ children }: { children: any }) {
   return (
     <GenreContext.Provider
       value={{
-        genreLibrary: genreState,
+        genreLibrary: genreLibrary,
         toggleGenre: toggleGenre,
         filteredGenreLibrary: filteredGenres,
         genreIDs: genreIDs,
