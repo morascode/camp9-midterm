@@ -1,36 +1,60 @@
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+  useEffect,
+} from 'react';
+import { Movie } from '../utilities/types';
 
-interface BookmarkedMoviesContextValues {
-  bookmarkedMovieIds: number[];
-  toggleBookmark: (id: number) => void;
-}
+type BookmarkedMoviesContextValues = {
+  bookmarkedMovies: Movie[];
+  toggleBookmark: (movie: Movie) => void;
+};
 
 const BookmarkedMoviesContext = createContext<BookmarkedMoviesContextValues>({
-  bookmarkedMovieIds: [],
+  bookmarkedMovies: [],
   toggleBookmark: () => {},
 });
 
 const BookmarkedMoviesProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [bookmarkedMovieIds, setBookmarkedMovies] = useState<number[]>([]);
+  const [bookmarkedMovies, setBookmarkedMovies] = useState<Movie[]>(() => {
+    // Get bookmarked movies from Local Storage
+    try {
+      const savedBookmarkedMovies = localStorage.getItem('bookmarkedMovies');
+      return savedBookmarkedMovies ? JSON.parse(savedBookmarkedMovies) : [];
+    } catch (error) {
+      console.error(
+        'Error retrieving bookmarked movies from Local Storage ',
+        error
+      );
+      return [];
+    }
+  });
 
-  const toggleBookmark = (id: number) => {
-    setBookmarkedMovies(prev => {
-      if (id) {
-        if (prev.includes(id)) {
-          return prev.filter(movieId => movieId !== id);
-        } else {
-          return [...prev, id];
-        }
-      } else {
-        return prev;
-      }
-    });
+  // Save bookmarked movies to Local Storage
+  useEffect(() => {
+    localStorage.setItem('bookmarkedMovies', JSON.stringify(bookmarkedMovies));
+  }, [bookmarkedMovies]);
+
+  const toggleBookmark = (movie: Movie) => {
+    if (
+      bookmarkedMovies.some(bookmarkedMovie => bookmarkedMovie.id === movie.id)
+    ) {
+      setBookmarkedMovies(
+        bookmarkedMovies.filter(
+          bookmarkedMovie => bookmarkedMovie.id !== movie.id
+        )
+      );
+    } else {
+      setBookmarkedMovies([...bookmarkedMovies, movie]);
+    }
   };
 
   const contextValue: BookmarkedMoviesContextValues = {
-    bookmarkedMovieIds,
+    bookmarkedMovies,
     toggleBookmark,
   };
 

@@ -5,12 +5,11 @@ import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
 import { useGetMovieDetails } from '../hooks/useGetMovieDetails';
 import HeaderPage from '../components/HeaderPage';
-import { useContext } from 'react';
-import BookmarkedMovies from './BookmarkedMovies';
 import { useBookmarks } from '../contexts/BookmarkedMoviesContext';
+import { Movie } from '../utilities/types';
 
 function MovieDetails() {
-  const { bookmarkedMovieIds, toggleBookmark } = useBookmarks();
+  const { bookmarkedMovies, toggleBookmark } = useBookmarks();
   const { id } = useParams();
 
   const { data, isLoading, isError } = useGetMovieDetails(parseInt(id!));
@@ -23,14 +22,18 @@ function MovieDetails() {
     throw new Error('no data found');
   }
 
+  const movie = data as unknown as Movie;
+
   function onHeartButtonClick() {
-    data && data.id && toggleBookmark(data.id);
+    data && toggleBookmark(movie);
   }
 
   return (
     <article className="pb-7 h-screen">
       <HeaderPage
-        isLiked={bookmarkedMovieIds.includes(data.id)}
+        isLiked={bookmarkedMovies.some(
+          bookmarkedMovie => bookmarkedMovie.id === data.id
+        )}
         children="Movie Detail"
         hasHeartButton={true}
         onHeartButtonClick={onHeartButtonClick}
