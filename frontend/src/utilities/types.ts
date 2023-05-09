@@ -84,7 +84,7 @@ export type Booking = {
 
 export interface GenreLibraryEntry {
   Genre: string;
-  Emoji: string;
+  Emojie: string;
   id: number;
   GenreId: number;
   isSelected: boolean;
