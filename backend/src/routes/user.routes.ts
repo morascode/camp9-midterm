@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   checkAuthController,
   loginController,
+  logoutController,
   signupController,
 } from '../controllers/user.controllers';
 import { validate } from '../middleware/validateResource';
@@ -27,5 +28,7 @@ router.post('/login', validate(loginValidation), loginController);
 //@access Public
 
 router.get('/checkauth', checkAuthController);
+
+router.delete('/logout', logoutController);
 
 export default router;

@@ -9,7 +9,7 @@ export function isAuth(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const { userId } = jwt.verify(token, process.env.JWT_SECRET!) as {
+    const { userId } = jwt.verify(token, 'secret') as {
       userId: string;
     };
     res.locals.userId = userId;

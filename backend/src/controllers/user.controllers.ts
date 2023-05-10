@@ -56,7 +56,7 @@ export const loginController = async (
     return res.status(422).send('Invalid password');
   }
 
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
+  const token = jwt.sign({ userId: user.id }, 'secret', {
     expiresIn: '1h',
   });
 
@@ -76,9 +76,18 @@ export const checkAuthController = async (
 ) => {
   try {
     const token = req.cookies.token;
-    const decode = jwt.verify(token, process.env.JWT_SECRET!);
+    const decode = jwt.verify(token, 'secret');
     res.status(200).send(decode);
   } catch (err) {
     res.status(401).send('Not authenticated');
   }
+};
+
+export const logoutController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  res.clearCookie('token');
+  res.status(200).send('Logged out');
 };

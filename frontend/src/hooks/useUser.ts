@@ -34,7 +34,6 @@ async function loginUser(user: LoginUser) {
     user,
     { withCredentials: true }
   );
-  console.log(data);
   return data;
 }
 
@@ -61,4 +60,20 @@ export function useCheckAuthQuery() {
     retry: false,
   });
   return query;
+}
+
+async function logoutUser() {
+  const { data } = await axios.delete(
+    `http://localhost:8000/api/1.0/user/logout`,
+    { withCredentials: true }
+  );
+  console.log(data);
+  return data;
+}
+
+export function useLogoutMutation() {
+  const mutation = useMutation({
+    mutationFn: logoutUser,
+  });
+  return mutation;
 }
