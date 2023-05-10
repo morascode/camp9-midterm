@@ -7,6 +7,9 @@ import {
 import { validate } from '../middleware/validateResource';
 import { userValidation } from '../validate/userValidation';
 import { loginValidation } from '../validate/loginValidation';
+import { bookmarkValidation } from '../validate/bookmarkValidation';
+import { isAuth } from '../middleware/isAuth';
+import { getBookmarksController } from '../controllers/bookmark.controllers';
 
 const router = Router();
 
@@ -27,5 +30,11 @@ router.post('/login', validate(loginValidation), loginController);
 //@access Public
 
 router.get('/checkauth', checkAuthController);
+
+//@route GET /api/1.0/user/bookmarks
+//@desc fetches all the bookmarks for the currently logged in userß
+//@access Public
+
+router.get('/bookmarks', isAuth, getBookmarksController);
 
 export default router;
