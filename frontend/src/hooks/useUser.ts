@@ -45,22 +45,10 @@ export function useLoginMutation() {
   return mutiation;
 }
 
-async function checkAuth() {
-  const { data } = await axios.get(
-    `http://localhost:8000/api/1.0/user/checkauth`,
-    { withCredentials: true }
-  );
-  return data;
-}
-
-export function useCheckAuthQuery() {
-  const query = useQuery({
-    queryKey: ['checkAuth'],
-    queryFn: checkAuth,
-    retry: false,
-  });
-  return query;
-}
+// =====================================================================
+// useLogoutMutation query function and hook
+// it sends a delete request to the server to delete the cookie
+// =====================================================================
 
 async function logoutUser() {
   const { data } = await axios.delete(
@@ -76,4 +64,21 @@ export function useLogoutMutation() {
     mutationFn: logoutUser,
   });
   return mutation;
+}
+
+async function checkAuth() {
+  const { data } = await axios.get(
+    `http://localhost:8000/api/1.0/user/checkauth`,
+    { withCredentials: true }
+  );
+  return data;
+}
+
+export function useCheckAuthQuery() {
+  const query = useQuery({
+    queryKey: ['checkAuth'],
+    queryFn: checkAuth,
+    retry: false,
+  });
+  return query;
 }

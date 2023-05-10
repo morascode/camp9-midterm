@@ -23,12 +23,16 @@ router.post('/signup', validate(userValidation), signupController);
 
 router.post('/login', validate(loginValidation), loginController);
 
+//@route POST /api/1.0/user/logout
+//@desc Logout user
+//@access Public
+
+router.delete('/logout', logoutController);
+
 //@route GET /api/1.0/user/checkauth
 //@desc check if user is authenticated
 //@access Public
 
 router.get('/checkauth', checkAuthController);
-
-router.delete('/logout', logoutController);
 
 export default router;

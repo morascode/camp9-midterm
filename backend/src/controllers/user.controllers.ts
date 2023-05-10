@@ -69,6 +69,21 @@ export const loginController = async (
   res.send({ token });
 };
 
+//=======================================================
+// logoutController
+//=======================================================
+
+export const logoutController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  //delete the cookie
+  //send a response"Logged out"
+  res.clearCookie('token');
+  res.status(200).send('Logged out');
+};
+
 export const checkAuthController = async (
   req: Request,
   res: Response,
@@ -81,13 +96,4 @@ export const checkAuthController = async (
   } catch (err) {
     res.status(401).send('Not authenticated');
   }
-};
-
-export const logoutController = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  res.clearCookie('token');
-  res.status(200).send('Logged out');
 };
