@@ -20,7 +20,6 @@ function NavigationLayout() {
   if (isError) {
     navigate('/login');
   }
-  console.log(data, isError, isLoading);
   return (
     <>
       <main>
