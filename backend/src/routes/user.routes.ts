@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  checkAuthController,
   loginController,
   signupController,
 } from '../controllers/user.controllers';
@@ -20,5 +21,11 @@ router.post('/signup', validate(userValidation), signupController);
 //@access Public
 
 router.post('/login', validate(loginValidation), loginController);
+
+//@route GET /api/1.0/user/checkauth
+//@desc check if user is authenticated
+//@access Public
+
+router.get('/checkauth', checkAuthController);
 
 export default router;

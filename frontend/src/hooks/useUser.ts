@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { LoginUser, SignupUser } from '../utilities/types';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 // =====================================================================
 // useSignupMutation type, query function and hook
 // =====================================================================
@@ -30,8 +30,9 @@ type LoginResponse = { token: string };
 
 async function loginUser(user: LoginUser) {
   const { data } = await axios.post<LoginResponse>(
-    `${import.meta.env.VITE_SERVER_URL}/api/1.0/user/login`,
-    user
+    `http://localhost:8000/api/1.0/user/login`,
+    user,
+    { withCredentials: true }
   );
   console.log(data);
   return data;
@@ -43,4 +44,21 @@ export function useLoginMutation() {
   });
 
   return mutiation;
+}
+
+async function checkAuth() {
+  const { data } = await axios.get(
+    `http://localhost:8000/api/1.0/user/checkauth`,
+    { withCredentials: true }
+  );
+  return data;
+}
+
+export function useCheckAuthQuery() {
+  const query = useQuery({
+    queryKey: ['checkAuth'],
+    queryFn: checkAuth,
+    retry: false,
+  });
+  return query;
 }
