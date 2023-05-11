@@ -1,0 +1,21 @@
+GET http://localhost:8000/api/1.0/user/checkauth HTTP/1.1
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM3OTQxMTMsImV4cCI6MTY4Mzc5NzcxM30.WXmNwwdXT1nzAnU414dQBxm9k-kJeJmGs1tN8vrIyzQ;
+
+### 
+
+POST http://localhost:8000/api/1.0/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "echo@goo.com",
+    "password": "echogoo"
+}
+
+###
+POST http://localhost:8000/api/1.0/user/bookmarks/3 HTTP/1.1
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM3OTc4NDIsImV4cCI6MTY4MzgwMTQ0Mn0.fJW2skD_YnHkpGX4Bq-zs2jH0DjSuh0UIJR6MQz3gXw;
+
+###
+
+DELETE http://localhost:8000/api/1.0/user/bookmarks/3 HTTP/1.1
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM3OTc4NDIsImV4cCI6MTY4MzgwMTQ0Mn0.fJW2skD_YnHkpGX4Bq-zs2jH0DjSuh0UIJR6MQz3gXw;
