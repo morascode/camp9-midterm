@@ -125,8 +125,18 @@ export function useGetPersonImages(personId: number) {
   return { ...query, personImage: query.data };
 }
 
+type Movie = {
+  id: number;
+  tmdbId: number;
+  title: string;
+  releaseDate: Date;
+  backdropPath: string;
+  runtime: number;
+  voteAverage: number;
+  overview: string;
+};
 async function getNowPlayingMovies() {
-  const response = await axios.get<MovieDbResponse>(
+  const response = await axios.get<Movie[]>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies`
   );
   return response.data;
