@@ -48,7 +48,53 @@ export const getNowPlayingMoviesController = async (
   res: Response,
   next: NextFunction
 ) => {
-  const movies = await prisma.movie.findMany({});
-  console.log(movies);
-  res.send(movies);
+  // const genreIds = req.query.genres.split('-').map(id => Number(id));
+  // const movies = await prisma.movie.findMany({
+  //   //skip
+  //   take: 20,
+  //   where: {
+  //     genres: {
+  //       some: {
+  //         id: {
+  //           in: genreIds,
+  //         },
+  //       },
+  //     },
+  //   },
+  //   include: {
+  //     genres: true, // Include Genres in response
+  //   },
+  // });
+
+  const genreIds = req.query.genres as string;
+  const genreArray = genreIds.split('-').map(id => Number(id));
+
+  if (genreArray[0] === 0) {
+    const movies = await prisma.movie.findMany({
+      take: 20,
+      include: {
+        genres: true,
+      },
+    });
+    res.send(movies);
+  } else {
+    const movies = await prisma.movie.findMany({
+      take: 20,
+      include: {
+        genres: true,
+      },
+      where: {
+        genres: {
+          some: {
+            id: {
+              in: genreArray,
+            },
+          },
+        },
+      },
+    });
+    //pageparam that sends back 20 movies
+
+    res.send(movies);
+  }
 };

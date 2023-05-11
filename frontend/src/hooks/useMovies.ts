@@ -1,4 +1,3 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import {
   MovieDbResponse,
@@ -6,6 +5,7 @@ import {
   PersonImagesRequest,
 } from '../utilities/types';
 import { useGenreContext } from '../contexts/GenreContext';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 // =====================================================================
 // UTILITY FUNCTIONS
 // =====================================================================
@@ -151,17 +151,18 @@ type Movie = {
   voteAverage: number;
   overview: string;
 };
-async function getNowPlayingMovies() {
+async function getNowPlayingMovies(genreIds: string) {
   const response = await axios.get<Movie[]>(
-    `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies`
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies?genres=${genreIds}`
   );
+  console.log(response.data);
   return response.data;
 }
 
-export function useGetNowPlayingMovies() {
+export function useGetNowPlayingMovies(genreIds: string) {
   const query = useQuery({
-    queryKey: ['moviesNowPlaying'],
-    queryFn: () => getNowPlayingMovies(),
+    queryKey: ['moviesNowPlaying', genreIds],
+    queryFn: async () => await getNowPlayingMovies(genreIds),
   });
   return query;
 }
