@@ -140,3 +140,18 @@ export function useGetPersonImages(personId: number) {
   });
   return { ...query, personImage: query.data };
 }
+
+async function getNowPlayingMovies() {
+  const response = await axios.get<MovieDbResponse>(
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies`
+  );
+  return response.data;
+}
+
+export function useGetNowPlayingMovies() {
+  const query = useQuery({
+    queryKey: ['moviesNowPlaying'],
+    queryFn: () => getNowPlayingMovies(),
+  });
+  return query;
+}

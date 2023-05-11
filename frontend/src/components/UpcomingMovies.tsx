@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useGetMovies } from '../hooks/useMovies';
+import { useGetMovies, useGetNowPlayingMovies } from '../hooks/useMovies';
 
 function UpcomingMovies() {
+  const { data: movies } = useGetNowPlayingMovies();
+  console.log(movies);
   const { isError, isLoading, data } = useGetMovies();
   console.log(data);
   if (isLoading) {
