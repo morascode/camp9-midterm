@@ -79,55 +79,39 @@ export default function SearchBar() {
                   Nothing found.
                 </div>
               ) : (
-                filteredMovies.map(
-                  (movie: {
-                    id: Key | null | undefined;
-                    title:
-                      | string
-                      | number
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | ReactFragment
-                      | ReactPortal
-                      | null
-                      | undefined;
-                  }) => (
-                    <Combobox.Option
-                      onClick={() => navigate(`/movies/${movie.id}`)}
-                      key={movie.id}
-                      className={({ active }) =>
-                        `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                          active ? 'bg-yellow text-white' : 'text-gray-900'
-                        }`
-                      }
-                      value={movie}
-                    >
-                      {({ selected, active }) => (
-                        <>
+                filteredMovies.map((movie: Movie) => (
+                  <Combobox.Option
+                    onClick={() => navigate(`/movies/${movie.tmdbId}`)}
+                    key={movie.tmdbId}
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? 'bg-yellow text-white' : 'text-gray-900'
+                      }`
+                    }
+                    value={movie}
+                  >
+                    {({ selected, active }) => (
+                      <>
+                        <span
+                          className={`block truncate ${
+                            selected ? 'font-medium' : 'font-normal'
+                          }`}
+                        >
+                          {movie.title}
+                        </span>
+                        {selected ? (
                           <span
-                            className={`block truncate ${
-                              selected ? 'font-medium' : 'font-normal'
+                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                              active ? 'text-white-dimmed' : 'text-yellow'
                             }`}
                           >
-                            {movie.title}
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
-                          {selected ? (
-                            <span
-                              className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                active ? 'text-white-dimmed' : 'text-yellow'
-                              }`}
-                            >
-                              <CheckIcon
-                                className="h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          ) : null}
-                        </>
-                      )}
-                    </Combobox.Option>
-                  )
-                )
+                        ) : null}
+                      </>
+                    )}
+                  </Combobox.Option>
+                ))
               )}
             </Combobox.Options>
           </Transition>

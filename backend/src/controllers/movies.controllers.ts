@@ -59,6 +59,5 @@ export const getNowPlayingMoviesController = async (
   next: NextFunction
 ) => {
   const movies = await prisma.movie.findMany({});
-  console.log(movies);
   res.send(movies);
 };
