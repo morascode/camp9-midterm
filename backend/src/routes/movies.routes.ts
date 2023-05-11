@@ -11,9 +11,7 @@ const router = Router();
 //@desc Get movie details
 //@access Public
 
-//router.get('/:movieId', getMovieDetailsController);
-
-//  write a route and controller to get movie by search Query (search input)
+// router.get('/:movieId', getMovieDetailsController);
 
 //@route GET /api/1.0/movies/?searchQuery
 //@desc Get movie by search query

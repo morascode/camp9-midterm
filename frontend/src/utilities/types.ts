@@ -1,7 +1,7 @@
 export type Movie = {
-  id: number;
+  tmdbId: number;
   title: string;
-  poster_path: string;
+  posterPath: string;
   overview: string;
 };
 
@@ -9,8 +9,8 @@ export type MovieDbResponse = {
   [x: string]: any;
   page: number;
   results: Movie[];
-  total_pages: number;
-  total_results: number;
+  totalPages: number;
+  totalResults: number;
 };
 
 export type TicketProps = {
@@ -22,17 +22,17 @@ export type TicketProps = {
 export type MovieDetailDbResponse = {
   map(arg0: (movie: any, index: any) => void): import('react').ReactNode;
   title: string;
-  backdrop_path: string;
-  release_date: string;
+  backdropPath: string;
+  releaseDate: string;
   genres: Array<{
     id: number;
     name: string;
   }>;
   runtime: number;
-  vote_average: number;
+  voteAverage: number;
   overview: string;
   id: number;
-  imdb_id: string;
+  imdbId: string;
   credits: {
     id: number;
     cast: TMDBCast[];

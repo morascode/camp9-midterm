@@ -41,14 +41,14 @@ function MovieDetails() {
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
-          src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w500${data.backdropPath}`}
           alt={data.title}
         />
         <h2 className="typography-title mt-5">{data.title}</h2>
         <div className="mt-3 flex justify-between">
           <div className="flex gap-3">
             <p className="typography-description text-white">
-              {data.release_date.split('-')[0]}
+              {data.releaseDate.split('-')[0]}
             </p>
             <p className="typography-description">
               {firstOneOrTwoGenres(data)}
@@ -59,7 +59,7 @@ function MovieDetails() {
           </div>
           <div className="flex gap-1">
             <span className="typography-description text-green">
-              {data && Math.round(data?.vote_average * 10) + '%'}
+              {data && Math.round(data?.voteAverage * 10) + '%'}
             </span>
             <span className="typography-description">Score</span>
           </div>
@@ -86,7 +86,7 @@ function MovieDetails() {
         </p>
         <a
           className="typography-body text-orange-500 underline mt-2"
-          href={`https://www.imdb.com/title/${data?.imdb_id}`}
+          href={`https://www.imdb.com/title/${data?.imdbId}`}
           target="_blank"
         >
           Read more

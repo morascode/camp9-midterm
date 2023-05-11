@@ -10,9 +10,19 @@ export const getMovieDetailsController = async (
 ) => {
   const movieId = req.params.movieId;
   const movie = await prisma.movie.findUnique({
-    where: { id: Number(movieId) },
+    where: { tmdbId: Number(movieId) },
+    include: {
+      genres: true,
+      credits: true,
+    },
   });
-  res.send(movie);
+  res.send({
+    ...movie,
+    credits: {
+      cast: movie?.credits[0].cast,
+      crew: movie?.credits[0].crew,
+    },
+  });
 };
 
 export const getMovieBySearchQueryController = async (
@@ -20,7 +30,7 @@ export const getMovieBySearchQueryController = async (
   res: Response,
   next: NextFunction
 ) => {
-  const searchQuery = req.query.searchQuery;
+  const searchQuery = req.query.query;
   const movies = await prisma.movie.findMany({
     where: {
       title: {
@@ -44,6 +54,5 @@ export const getNowPlayingMoviesController = async (
       },
     },
   });
-  console.log(movies);
   res.send(movies);
 };
