@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.routes';
 import cookieParser from 'cookie-parser';
+import movieRouter from './routes/movies.routes';
 
 import cors from 'cors';
 dotenv.config();
@@ -17,9 +18,11 @@ app.use(
   })
 );
 
-app.use(cookieParser()); 
+app.use(cookieParser());
 
-app.use('/api/1.0/user', userRouter); 
+app.use('/api/1.0/user', userRouter);
+
+app.use('/api/1.0/movies', movieRouter);
 
 app.listen(PORT, () => {
   console.log(`running on port ${PORT}`);

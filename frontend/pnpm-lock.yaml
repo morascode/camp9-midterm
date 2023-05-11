@@ -45,7 +45,7 @@ dependencies:
     version: 3.1.0(react@18.2.0)
   query:
     specifier: github:tanstack/react-query
-    version: github.com/tanstack/react-query/53813e45e126dcd8f846addf69c5b78322f868b8
+    version: github.com/tanstack/react-query/8d13ad850004017c06a404f74af1baeec975a7d8
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -105,6 +105,9 @@ devDependencies:
   '@storybook/theming':
     specifier: ^6.4.0
     version: 6.5.16(react-dom@18.2.0)(react@18.2.0)
+  '@tanstack/eslint-plugin-query':
+    specifier: ^4.29.4
+    version: 4.29.4
   '@types/react':
     specifier: ^18.0.28
     version: 18.2.0
@@ -2909,6 +2912,10 @@ packages:
       '@types/babel__core': 7.20.0
       '@types/express': 4.17.17
       file-system-cache: 2.1.1
+    dev: true
+
+  /@tanstack/eslint-plugin-query@4.29.4:
+    resolution: {integrity: sha512-dKWigue+8KV9BaKLq5yUu4wUYCendpvEve8lc3YyD634MQJ/joK7nJXiMfAEHY5Bwnh00Y3ZTBJ6YNtAz4CbVQ==}
     dev: true
 
   /@tanstack/match-sorter-utils@8.8.4:
@@ -8580,8 +8587,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/tanstack/react-query/53813e45e126dcd8f846addf69c5b78322f868b8:
-    resolution: {commit: 53813e45e126dcd8f846addf69c5b78322f868b8, repo: git+ssh://git@github.com/tanstack/react-query.git, type: git}
+  github.com/tanstack/react-query/8d13ad850004017c06a404f74af1baeec975a7d8:
+    resolution: {commit: 8d13ad850004017c06a404f74af1baeec975a7d8, repo: git+ssh://git@github.com/tanstack/react-query.git, type: git}
     name: query
     version: 0.0.0
     requiresBuild: true

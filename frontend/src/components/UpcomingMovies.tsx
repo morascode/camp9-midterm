@@ -3,6 +3,7 @@ import { useGetMovies } from '../hooks/useMovies';
 
 function UpcomingMovies() {
   const { isError, isLoading, data } = useGetMovies();
+  console.log(data);
   if (isLoading) {
     return <span>Loading...</span>;
   } else if (isError) {

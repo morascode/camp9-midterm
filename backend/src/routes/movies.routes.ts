@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   getMovieBySearchQueryController,
   getMovieDetailsController,
+  getNowPlayingMoviesController,
 } from '../controllers/movies.controllers';
 
 const router = Router();
@@ -18,4 +19,12 @@ router.get('/:movieId', getMovieDetailsController);
 //@desc Get movie by search query
 //@access Public
 
-router.get('/', getMovieBySearchQueryController);
+router.get('/search', getMovieBySearchQueryController);
+
+//@route GET /api/1.0/movies/now-playing
+//@desc Get movie in general
+//@access Public
+
+router.get('/', getNowPlayingMoviesController);
+
+export default router;

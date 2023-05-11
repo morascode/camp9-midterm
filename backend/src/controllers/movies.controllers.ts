@@ -31,3 +31,19 @@ export const getMovieBySearchQueryController = async (
   });
   res.send(movies);
 };
+
+export const getNowPlayingMoviesController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const movies = await prisma.movie.findMany({
+    where: {
+      releaseDate: {
+        gte: new Date(),
+      },
+    },
+  });
+  console.log(movies);
+  res.send(movies);
+};
