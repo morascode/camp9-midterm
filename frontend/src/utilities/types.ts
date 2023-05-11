@@ -1,7 +1,9 @@
 export type Movie = {
   id: number;
+  tmdbId: number;
   title: string;
   poster_path: string;
+  backdropPath: string;
   overview: string;
 };
 

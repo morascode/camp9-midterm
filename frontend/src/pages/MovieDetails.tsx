@@ -5,38 +5,26 @@ import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
 import { useGetMovieDetails } from '../hooks/useMovies';
 import HeaderPage from '../components/HeaderPage';
-import { useBookmarks } from '../contexts/BookmarkedMoviesContext';
-import { Movie } from '../utilities/types';
+import { useBookmarks } from '../hooks/useBookmarks';
 
 function MovieDetails() {
-  const { bookmarkedMovies, toggleBookmark } = useBookmarks();
-  const { id } = useParams();
-
-  const { data, isLoading, isError } = useGetMovieDetails(parseInt(id!));
-
+  const movieId = parseInt(useParams().id!);
+  const { isBookmarked, toggleBookmark } = useBookmarks(movieId);
+  const { data, isLoading, isError } = useGetMovieDetails(movieId);
   if (isLoading) {
     return <p>loading...</p>;
   }
-
   if (isError === true) {
     throw new Error('no data found');
-  }
-
-  const movie = data as unknown as Movie;
-
-  function onHeartButtonClick() {
-    data && toggleBookmark(movie);
   }
 
   return (
     <article className="pb-7 h-screen">
       <HeaderPage
-        isLiked={bookmarkedMovies.some(
-          bookmarkedMovie => bookmarkedMovie.id === data.id
-        )}
+        isLiked={isBookmarked}
         children="Movie Detail"
         hasHeartButton={true}
-        onHeartButtonClick={onHeartButtonClick}
+        onHeartButtonClick={() => toggleBookmark(movieId)}
       />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
@@ -75,7 +63,7 @@ function MovieDetails() {
               {returnNameOfCrewMember('Screenplay', data)}
             </div>
           </div>
-          <Link className="flex-1" to={`/credits/${id}`}>
+          <Link className="flex-1" to={`/credits/${movieId}`}>
             <Button variant="secondary">Cast & Crew</Button>
           </Link>
         </div>
@@ -92,7 +80,7 @@ function MovieDetails() {
           Read more
         </a>
         <div className="flex-auto"></div>
-        <Link to={`/dates/${id}`}>
+        <Link to={`/dates/${movieId}`}>
           <Button>Get Reservation</Button>
         </Link>
       </div>

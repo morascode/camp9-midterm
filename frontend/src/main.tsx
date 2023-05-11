@@ -20,7 +20,6 @@ import ChangePassword from './pages/ChangePassword';
 import FavoriteGenres from './pages/FavoriteGenres';
 import EditProfile from './pages/EditProfile';
 import BookmarkedMovies from './pages/BookmarkedMovies';
-import BookmarkedMoviesProvider from './contexts/BookmarkedMoviesContext';
 
 export const router = createBrowserRouter([
   {
@@ -99,12 +98,10 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BookmarkedMoviesProvider>
-        <EmojieProvider>
-          <RouterProvider router={router} />
-        </EmojieProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </BookmarkedMoviesProvider>
+      <EmojieProvider>
+        <RouterProvider router={router} />
+      </EmojieProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );

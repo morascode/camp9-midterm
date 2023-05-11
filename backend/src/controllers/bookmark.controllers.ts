@@ -28,7 +28,7 @@ export const createBookmarkController = async (
   try {
     await prisma.movie.update({
       where: {
-        id: parseInt(req.params.id),
+        tmdbId: parseInt(req.params.id),
       },
       data: {
         bookmarkedBy: {
@@ -58,7 +58,7 @@ export const deleteBookmarkController = async (
   try {
     await prisma.movie.update({
       where: {
-        id: parseInt(req.params.id),
+        tmdbId: parseInt(req.params.id),
       },
       data: {
         bookmarkedBy: {
