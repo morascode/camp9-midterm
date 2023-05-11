@@ -17,9 +17,9 @@ app.use(
   })
 );
 
-app.use(cookieParser());
+app.use(cookieParser()); 
 
-app.use('/api/1.0/user', userRouter);
+app.use('/api/1.0/user', userRouter); 
 
 app.listen(PORT, () => {
   console.log(`running on port ${PORT}`);
