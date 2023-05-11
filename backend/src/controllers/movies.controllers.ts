@@ -32,18 +32,23 @@ export const getMovieBySearchQueryController = async (
   res.send(movies);
 };
 
+type Movie = {
+  id: number;
+  tmdbId: number;
+  title: string;
+  releaseDate: Date;
+  backdropPath: string;
+  runtime: number;
+  voteAverage: number;
+  overview: string;
+};
+
 export const getNowPlayingMoviesController = async (
-  req: Request,
+  req: Request<{}, {}, Movie>,
   res: Response,
   next: NextFunction
 ) => {
-  const movies = await prisma.movie.findMany({
-    where: {
-      releaseDate: {
-        gte: new Date(),
-      },
-    },
-  });
+  const movies = await prisma.movie.findMany({});
   console.log(movies);
   res.send(movies);
 };
