@@ -21,7 +21,7 @@ function UpcomingMovies() {
     <>
       <h2 className="typography-title dark:text-dark">Upcoming Movies</h2>
       <section className="flex gap-5 overflow-y-hidden snap-mandatory snap-x -mx-5 py-3">
-        {movies.map(movie => (
+        {movies.slice(0, 20).map(movie => (
           <div className="w-32 shrink-0 snap-center" key={movie.id}>
             <Link to={`/movies/${movie.id}`}>
               <img
