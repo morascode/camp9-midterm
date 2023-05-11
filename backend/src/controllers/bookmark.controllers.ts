@@ -43,7 +43,7 @@ export const createBookmarkController = async (
       .send(`Movie with the id ${req.params.id} added to bookmarks.`);
   } catch (err) {
     res
-      .status(400)
+      .status(404)
       .send(
         `Cannot create the bookmark. Movie with the id ${req.params.id} not found.`
       );
@@ -73,7 +73,7 @@ export const deleteBookmarkController = async (
       .send(`Movie with the id ${req.params.id} removed from bookmarks.`);
   } catch (err) {
     res
-      .status(400)
+      .status(404)
       .send(
         `Cannot delete the bookmark. Movie with the id ${req.params.id} not found.`
       );
