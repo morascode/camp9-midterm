@@ -21,7 +21,6 @@ export const signupController = async (
   }
 
   const hashedPassword = await bcrypt.hash(req.body.password, 12);
-  console.log(hashedPassword);
   const newUser = await prisma.user.create({
     data: {
       email: req.body.email,
