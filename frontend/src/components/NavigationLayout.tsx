@@ -1,4 +1,3 @@
-import './NavigationLayout.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
   FilmIcon,
@@ -13,14 +12,13 @@ function NavigationLayout() {
   const navigate = useNavigate();
   // is user loggedIn ?
   // redirect to /login
-  const { data, isError, isLoading } = useCheckAuthQuery();
+  const { isError, isLoading } = useCheckAuthQuery();
   if (isLoading) {
     return <span>Loading...</span>;
   }
   if (isError) {
     navigate('/login');
   }
-  console.log(data, isError, isLoading);
   return (
     <>
       <main>

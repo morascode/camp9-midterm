@@ -75,7 +75,7 @@ export async function fetchNowPlayingMovies(): Promise<void> {
             tmdbId: movie.id,
             title: movie.title,
             backdropPath: details.backdrop_path,
-            posterPath: movie.poster_path,
+            posterPath: details.poster_path,
             releaseDate: new Date(movie.release_date),
             runtime: details.runtime,
             voteAverage: details.vote_average,
