@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   checkAuthController,
   loginController,
+  logoutController,
   signupController,
 } from '../controllers/user.controllers';
 import { validateBody, validateParams } from '../middleware/validateResource';
@@ -30,6 +31,12 @@ router.post('/signup', validateBody(userValidation), signupController);
 //@access Public
 
 router.post('/login', validateBody(loginValidation), loginController);
+
+//@route POST /api/1.0/user/logout
+//@desc Logout user
+//@access Public
+
+router.delete('/logout', logoutController);
 
 //@route GET /api/1.0/user/checkauth
 //@desc check if user is authenticated

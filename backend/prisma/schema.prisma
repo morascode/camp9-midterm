@@ -63,6 +63,7 @@ model Movie {
   tmdbId        Int      @unique
   title         String
   backdropPath  String?
+  posterPath    String?
   releaseDate   DateTime
   runtime       Int?
   voteAverage   Float?
