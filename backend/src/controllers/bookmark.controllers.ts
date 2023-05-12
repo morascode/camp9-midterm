@@ -17,7 +17,8 @@ export const getBookmarksController = async (
       bookmarks: true,
     },
   });
-  res.status(200).send(user?.bookmarks);
+  const bookmarks = user?.bookmarks ?? [];
+  res.status(200).send(bookmarks);
 };
 
 //controller to add or remove a bookmark

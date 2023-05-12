@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import type { Movie } from '../utilities/types';
+import type { MovieLocalDB } from '../utilities/types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 async function getBookmarkedMovies() {
-  const response = await axios.get<Movie[]>(
+  const response = await axios.get<MovieLocalDB[]>(
     `${import.meta.env.VITE_BACKEND_URL}/user/bookmarks/`,
     { withCredentials: true }
   );
@@ -27,7 +27,7 @@ export function useBookmarks(id?: number) {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    if (id) {
+    if (id && query.data) {
       if (checkIsBookmarked()) {
         !isBookmarked && setIsBookmarked(true);
       } else {

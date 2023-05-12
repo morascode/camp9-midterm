@@ -3,10 +3,17 @@ export type Movie = {
   tmdbId: number;
   title: string;
   poster_path: string;
+  backdrop_path: string;
+  overview: string;
+};
+export type MovieLocalDB = {
+  id: number;
+  tmdbId: number;
+  title: string;
+  posterPath: string;
   backdropPath: string;
   overview: string;
 };
-
 export type MovieDbResponse = {
   [x: string]: any;
   page: number;
