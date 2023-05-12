@@ -8,15 +8,19 @@ import {
 } from '../hooks/useMovies';
 import { Movie } from '../utilities/types';
 import { useNavigate } from 'react-router-dom';
+import { useGenreContext } from '../contexts/GenreContext';
 
 export default function SearchBar() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<Movie | null>(null);
   const [query, setQuery] = useState('');
 
+  const { genreIDs } = useGenreContext();
+  const genreIDsString = genreIDs.join('-');
+
   const { data: moviesByQuery } = useGetMoviesBySearchQuery(query);
 
-  const { data: playingNowMovies } = useGetNowPlayingMovies();
+  const { data: playingNowMovies } = useGetNowPlayingMovies(genreIDsString);
 
   const movies = query === '' ? playingNowMovies : moviesByQuery;
 
