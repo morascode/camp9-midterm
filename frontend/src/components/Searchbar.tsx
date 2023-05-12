@@ -1,16 +1,11 @@
-import {
-  Fragment,
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useState,
-} from 'react';
+import { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { useGetMoviesBySearchQuery } from '../hooks/useMovies';
+import {
+  useGetMoviesBySearchQuery,
+  useGetNowPlayingMovies,
+} from '../hooks/useMovies';
 import { Movie } from '../utilities/types';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,21 +14,18 @@ export default function SearchBar() {
   const [selected, setSelected] = useState<Movie | null>(null);
   const [query, setQuery] = useState('');
 
-  const { data } = useGetMoviesBySearchQuery(query);
+  const { data: moviesByQuery } = useGetMoviesBySearchQuery(query);
 
-  const movies = data || [];
+  const { data: playingNowMovies } = useGetNowPlayingMovies();
 
-  const filteredMovies =
-    query === ''
-      ? movies
-      : movies.filter((movie: Movie) =>
-          movie.title
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, ''))
-        );
+
+  const firstTwentyPlayingNowMovies = playingNowMovies?.slice(0, 20);
+
+  // if query is empty, show first 20 playing now movies
+  const movies = query === '' ? firstTwentyPlayingNowMovies : moviesByQuery;
 
   function handleSubmitMovie(e: React.KeyboardEvent<HTMLInputElement>) {
+    e.preventDefault();
     if (e.key === 'Enter' && selected) {
       navigate(`/movies/${selected.tmdbId}`);
     }
@@ -74,12 +66,8 @@ export default function SearchBar() {
             afterLeave={() => setQuery('')}
           >
             <Combobox.Options className="absolute w-full mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
-              {filteredMovies.length === 0 && query !== '' ? (
-                <div className="relative cursor-default select-none py-2 px-4 text-dark-light">
-                  Nothing found.
-                </div>
-              ) : (
-                filteredMovies.map((movie: Movie) => (
+              {movies &&
+                movies.map((movie: Movie) => (
                   <Combobox.Option
                     onClick={() => navigate(`/movies/${movie.tmdbId}`)}
                     key={movie.tmdbId}
@@ -111,8 +99,7 @@ export default function SearchBar() {
                       </>
                     )}
                   </Combobox.Option>
-                ))
-              )}
+                ))}
             </Combobox.Options>
           </Transition>
         </div>

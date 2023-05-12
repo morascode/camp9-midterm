@@ -9,6 +9,7 @@ export const getMovieDetailsController = async (
   next: NextFunction
 ) => {
   const movieId = req.params.movieId;
+
   const movie = await prisma.movie.findUnique({
     where: { tmdbId: Number(movieId) },
     include: {

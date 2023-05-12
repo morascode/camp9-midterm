@@ -65,7 +65,9 @@ export function useGetMovies() {
 async function getMoviesBySearchQuery(searchQuery: string) {
   // the axios GET request
   const response = await axios.get<MovieDbResponse>(
-    `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies/search?query=${searchQuery}`
+    `${
+      import.meta.env.VITE_SERVER_URL
+    }/api/1.0/movies/search?query=${searchQuery}`
   );
   return response.data;
 }
@@ -93,7 +95,7 @@ async function getMovieDetails(movieId: number) {
 // useGetMovieDetails hook fetches details for a single movie based on a given movie ID
 export function useGetMovieDetails(movieId: number) {
   const query = useQuery({
-    queryKey: ['movies', movieId],
+    queryKey: ['movieDetail', movieId],
     queryFn: () => getMovieDetails(movieId),
   });
   return query;
@@ -136,7 +138,7 @@ type Movie = {
   overview: string;
 };
 async function getNowPlayingMovies() {
-  const response = await axios.get<Movie[]>(
+  const response = await axios.get<MovieDbResponse>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies`
   );
   return response.data;
