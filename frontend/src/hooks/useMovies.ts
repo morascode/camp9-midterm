@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   MovieDbResponse,
   MovieDetailDbResponse,
+  Movie_DB,
   PersonImagesRequest,
 } from '../utilities/types';
 import { useGenreContext } from '../contexts/GenreContext';
@@ -141,25 +142,19 @@ export function useGetPersonImages(personId: number) {
   return { ...query, personImage: query.data };
 }
 
-type Movie = {
-  id: number;
-  tmdbId: number;
-  title: string;
-  releaseDate: Date;
-  backdropPath: string;
-  posterPath: string;
-  runtime: number;
-  voteAverage: number;
-  overview: string;
-};
+// =====================================================================
+// Functions for fetching movies from the database
+// =====================================================================
+
+// this function fetches movies with or without given genres from the database
 async function getNowPlayingMovies(genreIds: string) {
-  const response = await axios.get<Movie[]>(
+  const response = await axios.get<Movie_DB[]>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies?genres=${genreIds}`
   );
-  console.log(response.data);
   return response.data;
 }
 
+// this is the hook for fetching movies from the database
 export function useGetNowPlayingMovies(genreIds: string) {
   const query = useQuery({
     queryKey: ['moviesNowPlaying', genreIds],
