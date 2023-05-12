@@ -4,8 +4,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 async function getBookmarkedMovies() {
-  console.log(import.meta.env.VITE_TMDB_KEY);
-  console.log(import.meta.env.BACKEND_URL);
   const response = await axios.get<Movie[]>(
     `http://localhost:8000/api/1.0/user/bookmarks/`,
     { withCredentials: true }
