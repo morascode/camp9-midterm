@@ -4,15 +4,17 @@ import {
   loginController,
   signupController,
 } from '../controllers/user.controllers';
-import { validate, validateParams } from '../middleware/validateResource';
+import { validateBody, validateParams } from '../middleware/validateResource';
 import { userValidation } from '../validate/userValidation';
 import { loginValidation } from '../validate/loginValidation';
-import { bookmarkValidation } from '../validate/bookmarkValidation';
+import {
+  bookmarkParamsValidation,
+  bookmarkToggleValidation,
+} from '../validate/bookmarkValidation';
 import { isAuth } from '../middleware/isAuth';
 import {
-  createBookmarkController,
-  deleteBookmarkController,
   getBookmarksController,
+  toggleBookmarkController,
 } from '../controllers/bookmark.controllers';
 
 const router = Router();
@@ -21,13 +23,13 @@ const router = Router();
 //@desc Register user
 //@access Public
 
-router.post('/signup', validate(userValidation), signupController);
+router.post('/signup', validateBody(userValidation), signupController);
 
 //@route POST /api/1.0/user/login
 //@desc Login user
 //@access Public
 
-router.post('/login', validate(loginValidation), loginController);
+router.post('/login', validateBody(loginValidation), loginController);
 
 //@route GET /api/1.0/user/checkauth
 //@desc check if user is authenticated
@@ -41,22 +43,16 @@ router.get('/checkauth', checkAuthController);
 
 router.get('/bookmarks', isAuth, getBookmarksController);
 
-//@route POST /api/1.0/user/bookmarks/:id
-//@desc creates a new movie bookmark on the currently login user
+//@route PATCH /api/1.0/user/bookmarks/:id
+//@desc creates/removes a new movie bookmark for the currently login user
 //@access Public
 
-router.post(
+router.patch(
   '/bookmarks/:id',
   isAuth,
-  validateParams(bookmarkValidation),
-  createBookmarkController
-);
-
-router.delete(
-  '/bookmarks/:id',
-  isAuth,
-  validateParams(bookmarkValidation),
-  deleteBookmarkController
+  validateParams(bookmarkParamsValidation),
+  validateBody(bookmarkToggleValidation),
+  toggleBookmarkController
 );
 
 export default router;

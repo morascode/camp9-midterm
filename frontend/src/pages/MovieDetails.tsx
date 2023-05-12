@@ -24,7 +24,7 @@ function MovieDetails() {
         isLiked={isBookmarked}
         children="Movie Detail"
         hasHeartButton={true}
-        onHeartButtonClick={() => toggleBookmark(movieId)}
+        onHeartButtonClick={toggleBookmark}
       />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img

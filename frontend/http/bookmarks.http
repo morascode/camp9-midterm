@@ -15,10 +15,20 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:8000/api/1.0/user/bookmarks/3 HTTP/1.1
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM3OTc4NDIsImV4cCI6MTY4MzgwMTQ0Mn0.fJW2skD_YnHkpGX4Bq-zs2jH0DjSuh0UIJR6MQz3gXw;
+POST http://localhost:8000/api/1.0/user/bookmarks/447365 HTTP/1.1
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM4NzYxMTQsImV4cCI6MTY4Mzg3OTcxNH0.C4IomMtFNQTZkk7hwj63FCzfdn2yguQdye0kE-wY4Vk;
 
 ###
 
-DELETE http://localhost:8000/api/1.0/user/bookmarks/3 HTTP/1.1
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM3OTc4NDIsImV4cCI6MTY4MzgwMTQ0Mn0.fJW2skD_YnHkpGX4Bq-zs2jH0DjSuh0UIJR6MQz3gXw;
+DELETE http://localhost:8000/api/1.0/user/bookmarks/447365 HTTP/1.1
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM4NzYxMTQsImV4cCI6MTY4Mzg3OTcxNH0.C4IomMtFNQTZkk7hwj63FCzfdn2yguQdye0kE-wY4Vk;
+
+###
+
+PATCH http://localhost:8000/api/1.0/user/bookmarks/447365 HTTP/1.1
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzQwY2Y0NC1lNjY0LTQ0OGItOWYyYy1kMDIxY2I1ZDMwOTIiLCJpYXQiOjE2ODM4ODA0MjcsImV4cCI6MTY4Mzg4NDAyN30.QjGz5U9vJdMq6LCMS1icjgOLQjkEcvpr6DexFknNblw;
+content-type: application/json
+
+{
+    "createBookmark": false
+}
