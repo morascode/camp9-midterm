@@ -1,3 +1,15 @@
+export type Movie_DB = {
+  id: number;
+  tmdbId: number;
+  title: string;
+  releaseDate: Date;
+  backdropPath: string;
+  posterPath: string;
+  runtime: number;
+  voteAverage: number;
+  overview: string;
+};
+
 export type Movie = {
   tmdbId: number;
   title: string;

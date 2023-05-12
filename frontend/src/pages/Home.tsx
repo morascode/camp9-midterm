@@ -17,9 +17,7 @@ function Home() {
         </div>
         <img alt='avatar' src={avatar}></img>
       </div>
-      <div className="mt-7">
-        <SearchBar />
-      </div>
+      <div className="mt-7"></div>
       <div className="mt-7 -mx-5">
         <GenreFavorites />
       </div>
