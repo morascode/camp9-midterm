@@ -1,7 +1,34 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express';
+import { number } from 'zod';
 
 const prisma = new PrismaClient();
+
+export const getAllmovies = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const pages = (parseInt(req.query.page as string) - 1) * 20;
+  console.log(pages);
+  const movies = await prisma.movie.findMany({});
+  console.log(movies);
+  const allmovies = await prisma.movie.findMany({
+    skip: pages,
+    take: 20,
+    include: {
+      genres: true,
+    },
+  });
+  console.log(allmovies);
+  console.log(req.query);
+  res.send({
+    page: pages / 20 + 1,
+    total_pages: Math.ceil(movies.length / 20),
+    results: allmovies,
+    genres: allmovies[0].genres,
+  });
+};
 
 export const getMovieDetailsController = async (
   req: Request,

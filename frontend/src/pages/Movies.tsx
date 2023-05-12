@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 function Movies() {
   const { isError, isLoading, data, fetchNextPage, hasNextPage } =
     useGetMovies();
+  console.log(data);
   if (isError) {
     return (
       <h1 className="typography-primary text-white">
@@ -37,8 +38,8 @@ function Movies() {
             return (
               <div className="grid grid-rows-2 grid-cols-2 gap-5" key={index}>
                 {page.results.map((movie, index) => {
-                  let image = movie.poster_path;
-                  if (movie.poster_path === null) {
+                  let image = movie.posterPath;
+                  if (movie.posterPath === null) {
                     return null;
                   } else {
                     return (
