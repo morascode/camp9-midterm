@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Checkbox from './Checkbox';
 import SingleInputField from './SingleInputField';
 import { useState } from 'react';
 import Radio from './Radio';
 import Button from './Button';
-import { useSignupMutation } from '../hooks/useUser';
+import { useLoginMutation, useSignupMutation } from '../hooks/useUser';
 import { SignupUser } from '../utilities/types';
+import { useNavigate } from 'react-router-dom';
 
 type SignUpForm = React.FormHTMLAttributes<HTMLFormElement>;
 
 function SignUpForm() {
   const [selectedOption, setSelectedOption] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
   const [inputValues, setInputValues] = useState<SignupUser>({
     firstName: '',
     lastName: '',
@@ -19,9 +21,19 @@ function SignUpForm() {
     password: '',
     confirmPassword: '',
   });
-
-  const { isLoading, isError, data, error, mutate } = useSignupMutation();
-  console.log(data, isLoading, isError, error);
+  const { isLoading, isError, isSuccess, data, error, mutate } =
+    useSignupMutation();
+  const { mutate: mutateLogin, isSuccess: isSuccessLogin } = useLoginMutation();
+  useEffect(() => {
+    if (isSuccessLogin) {
+      navigate('/');
+    }
+  }, [isSuccessLogin]);
+  useEffect(() => {
+    if (isSuccess) {
+      mutateLogin({ email: inputValues.email, password: inputValues.password });
+    }
+  }, [isSuccess]);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
