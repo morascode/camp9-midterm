@@ -52,8 +52,7 @@ export const getNowPlayingMoviesController = async (
   const genreIds = req.query.genres as string;
   const genreArray = genreIds.split('-').map(id => Number(id));
   console.log(genreArray);
-
-  if (genreArray[0] === 0) {
+  if (genreArray[0] === 0 && genreArray.length === 1) {
     const movies = await prisma.movie.findMany({
       take: 20,
       include: {
@@ -77,8 +76,6 @@ export const getNowPlayingMoviesController = async (
         },
       },
     });
-    //pageparam that sends back 20 movies
-
     res.send(movies);
   }
 };
