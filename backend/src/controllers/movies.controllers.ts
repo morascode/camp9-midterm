@@ -38,6 +38,7 @@ type Movie = {
   title: string;
   releaseDate: Date;
   backdropPath: string;
+  posterPath: string;
   runtime: number;
   voteAverage: number;
   overview: string;
@@ -48,24 +49,6 @@ export const getNowPlayingMoviesController = async (
   res: Response,
   next: NextFunction
 ) => {
-  // const genreIds = req.query.genres.split('-').map(id => Number(id));
-  // const movies = await prisma.movie.findMany({
-  //   //skip
-  //   take: 20,
-  //   where: {
-  //     genres: {
-  //       some: {
-  //         id: {
-  //           in: genreIds,
-  //         },
-  //       },
-  //     },
-  //   },
-  //   include: {
-  //     genres: true, // Include Genres in response
-  //   },
-  // });
-
   const genreIds = req.query.genres as string;
   const genreArray = genreIds.split('-').map(id => Number(id));
   console.log(genreArray);

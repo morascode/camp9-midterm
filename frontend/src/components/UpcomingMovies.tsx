@@ -32,7 +32,7 @@ function UpcomingMovies() {
             <Link to={`/movies/${movie.id}`}>
               <img
                 className="rounded-md"
-                src={`https://image.tmdb.org/t/p/w500${movie.backdropPath}`}
+                src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
                 alt={movie.title}
               />
             </Link>
