@@ -17,7 +17,6 @@ function MovieDetails() {
   if (isError === true) {
     throw new Error('no data found');
   }
-
   return (
     <article className="pb-7 h-screen">
       <HeaderPage
