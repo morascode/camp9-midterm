@@ -17,6 +17,7 @@ model User {
   lastName  String
   password  String
   bookings  Booking[]
+  bookmarks Movie[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -26,7 +27,7 @@ model Screening {
   id        String    @id @default(uuid())
   date      DateTime
   movieId   String
-  bookings  Booking[]
+  bookings  Booking[] 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -69,6 +70,7 @@ model Movie {
   overview      String?
   credits       Credit[]
   genres        Genre[]  @relation("MovieGenres")
+  bookmarkedBy User[]
 }
 
 model Genre {

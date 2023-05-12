@@ -16,7 +16,6 @@ export type Movie = {
   posterPath: string;
   overview: string;
 };
-
 export type MovieDbResponse = {
   [x: string]: any;
   page: number;
