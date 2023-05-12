@@ -16,11 +16,11 @@ async function signupUser(user: SignupUser) {
 }
 
 export function useSignupMutation() {
-  const mutiation = useMutation<SignupResponse, AxiosError, SignupUser>({
+  const mutation = useMutation<SignupResponse, AxiosError, SignupUser>({
     mutationFn: user => signupUser(user),
   });
 
-  return mutiation;
+  return mutation;
 }
 // =====================================================================
 // useLoginMutation type, query function and hook
@@ -38,11 +38,11 @@ async function loginUser(user: LoginUser) {
 }
 
 export function useLoginMutation() {
-  const mutiation = useMutation<LoginResponse, AxiosError, LoginUser>({
+  const mutation = useMutation<LoginResponse, AxiosError, LoginUser>({
     mutationFn: user => loginUser(user),
   });
 
-  return mutiation;
+  return mutation;
 }
 
 // =====================================================================
@@ -71,6 +71,7 @@ async function checkAuth() {
     `http://localhost:8000/api/1.0/user/checkauth`,
     { withCredentials: true }
   );
+
   return data;
 }
 
