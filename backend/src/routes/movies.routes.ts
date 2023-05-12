@@ -4,7 +4,6 @@ import {
   getMovieDetailsController,
   getNowPlayingMoviesController,
 } from '../controllers/movies.controllers';
-import { validate } from '../middleware/validateResource';
 
 const router = Router();
 

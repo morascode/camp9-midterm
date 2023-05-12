@@ -18,14 +18,9 @@ export default function SearchBar() {
 
   const { data: playingNowMovies } = useGetNowPlayingMovies();
 
-
-  const firstTwentyPlayingNowMovies = playingNowMovies?.slice(0, 20);
-
-  // if query is empty, show first 20 playing now movies
-  const movies = query === '' ? firstTwentyPlayingNowMovies : moviesByQuery;
+  const movies = query === '' ? playingNowMovies : moviesByQuery;
 
   function handleSubmitMovie(e: React.KeyboardEvent<HTMLInputElement>) {
-    e.preventDefault();
     if (e.key === 'Enter' && selected) {
       navigate(`/movies/${selected.tmdbId}`);
     }
