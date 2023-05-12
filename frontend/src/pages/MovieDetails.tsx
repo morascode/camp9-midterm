@@ -5,50 +5,37 @@ import { firstOneOrTwoGenres } from '../utilities/firstOneOrTwoGenres';
 import { returnNameOfCrewMember } from '../utilities/returnNameOfCrewMember';
 import { useGetMovieDetails } from '../hooks/useMovies';
 import HeaderPage from '../components/HeaderPage';
-import { useBookmarks } from '../contexts/BookmarkedMoviesContext';
-import { Movie } from '../utilities/types';
+import { useBookmarks } from '../hooks/useBookmarks';
 
 function MovieDetails() {
-  const { bookmarkedMovies, toggleBookmark } = useBookmarks();
-  const { id } = useParams();
-
-  const { data, isLoading, isError } = useGetMovieDetails(parseInt(id!));
-
+  const movieId = parseInt(useParams().id!);
+  const { isBookmarked, toggleBookmark } = useBookmarks(movieId);
+  const { data, isLoading, isError } = useGetMovieDetails(movieId);
   if (isLoading) {
     return <p>loading...</p>;
   }
-
   if (isError === true) {
     throw new Error('no data found');
   }
-
-  const movie = data as unknown as Movie;
-
-  function onHeartButtonClick() {
-    data && toggleBookmark(movie);
-  }
-
   return (
     <article className="pb-7 h-screen">
       <HeaderPage
-        isLiked={bookmarkedMovies.some(
-          bookmarkedMovie => bookmarkedMovie.id === data.id
-        )}
+        isLiked={isBookmarked}
         children="Movie Detail"
         hasHeartButton={true}
-        onHeartButtonClick={onHeartButtonClick}
+        onHeartButtonClick={toggleBookmark}
       />
       <div className="px-5 pb-7 h-full flex flex-col">
         <img
           className="rounded-md mt-5"
-          src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+          src={`https://image.tmdb.org/t/p/w500${data.backdropPath}`}
           alt={data.title}
         />
         <h2 className="typography-title mt-5">{data.title}</h2>
         <div className="mt-3 flex justify-between">
           <div className="flex gap-3">
             <p className="typography-description text-white">
-              {data.release_date.split('-')[0]}
+              {data.releaseDate.split('-')[0]}
             </p>
             <p className="typography-description">
               {firstOneOrTwoGenres(data)}
@@ -59,7 +46,7 @@ function MovieDetails() {
           </div>
           <div className="flex gap-1">
             <span className="typography-description text-green">
-              {data && Math.round(data?.vote_average * 10) + '%'}
+              {data && Math.round(data?.voteAverage * 10) + '%'}
             </span>
             <span className="typography-description">Score</span>
           </div>
@@ -75,7 +62,7 @@ function MovieDetails() {
               {returnNameOfCrewMember('Screenplay', data)}
             </div>
           </div>
-          <Link className="flex-1" to={`/credits/${id}`}>
+          <Link className="flex-1" to={`/credits/${movieId}`}>
             <Button variant="secondary">Cast & Crew</Button>
           </Link>
         </div>
@@ -86,13 +73,13 @@ function MovieDetails() {
         </p>
         <a
           className="typography-body text-orange-500 underline mt-2"
-          href={`https://www.imdb.com/title/${data?.imdb_id}`}
+          href={`https://www.imdb.com/title/${data?.imdbId}`}
           target="_blank"
         >
           Read more
         </a>
         <div className="flex-auto"></div>
-        <Link to={`/dates/${id}`}>
+        <Link to={`/dates/${movieId}`}>
           <Button>Get Reservation</Button>
         </Link>
       </div>

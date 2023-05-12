@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   MovieDbResponse,
   MovieDetailDbResponse,
+  Movie_DB,
   PersonImagesRequest,
 } from '../utilities/types';
 import { useGenreContext } from '../contexts/GenreContext';
@@ -64,27 +65,21 @@ export function useGetMovies() {
 // useGetMoviesBySearchQuery query function and hook (used in the Searchbar component)
 // =====================================================================
 // getMoviesBySearchQuery is the query function for useGetMoviesBySearchQuery hook
-async function getMoviesBySearchQuery(query: string) {
-  // object containing all the URL query parameter keys and values
-  const URLParameters = {
-    api_key: import.meta.env.VITE_TMDB_KEY,
-    language: 'en-US',
-    query: query,
-  };
-  // query string created from the URL parameters object
-  const queryString = parseQueryString(URLParameters);
+async function getMoviesBySearchQuery(searchQuery: string) {
   // the axios GET request
   const response = await axios.get<MovieDbResponse>(
-    `https://api.themoviedb.org/3/search/movie${queryString}`
+    `${
+      import.meta.env.VITE_SERVER_URL
+    }/api/1.0/movies/search?query=${searchQuery}`
   );
   return response.data;
 }
 // useGetMoviesBySearchQuery hook fetches movies based on a search query
-export function useGetMoviesBySearchQuery(query: string) {
+export function useGetMoviesBySearchQuery(searchQuery: string) {
   const userQuery = useQuery({
-    queryKey: ['movies', query],
-    queryFn: () => getMoviesBySearchQuery(query),
-    enabled: query.length !== 0,
+    queryKey: ['movies', searchQuery],
+    queryFn: () => getMoviesBySearchQuery(searchQuery),
+    enabled: searchQuery.length !== 0,
   });
   return userQuery;
 }
@@ -94,24 +89,16 @@ export function useGetMoviesBySearchQuery(query: string) {
 // getMovieDetails is the query function for useGetMovieDetails hook
 // fetches details for a single movie based on a given movie ID
 async function getMovieDetails(movieId: number) {
-  // object containing all the URL query parameter keys and values
-  const URLParameters = {
-    api_key: import.meta.env.VITE_TMDB_KEY,
-    language: 'en-US',
-    append_to_response: 'credits',
-  };
-  // query string created from the URL parameters object
-  const queryString = parseQueryString(URLParameters);
   // the axios GET request
   const response = await axios.get<MovieDetailDbResponse>(
-    `https://api.themoviedb.org/3/movie/${movieId}${queryString}`
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies/${movieId}`
   );
   return response.data;
 }
 // useGetMovieDetails hook fetches details for a single movie based on a given movie ID
 export function useGetMovieDetails(movieId: number) {
   const query = useQuery({
-    queryKey: ['movies', movieId],
+    queryKey: ['movieDetail', movieId],
     queryFn: () => getMovieDetails(movieId),
   });
   return query;
@@ -143,25 +130,19 @@ export function useGetPersonImages(personId: number) {
   return { ...query, personImage: query.data };
 }
 
-type Movie = {
-  id: number;
-  tmdbId: number;
-  title: string;
-  releaseDate: Date;
-  backdropPath: string;
-  posterPath: string;
-  runtime: number;
-  voteAverage: number;
-  overview: string;
-};
+// =====================================================================
+// Functions for fetching movies from the database
+// =====================================================================
+
+// this function fetches movies with or without given genres from the database
 async function getNowPlayingMovies(genreIds: string) {
-  const response = await axios.get<Movie[]>(
+  const response = await axios.get<Movie_DB[]>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies?genres=${genreIds}`
   );
-  console.log(response.data);
   return response.data;
 }
 
+// this is the hook for fetching movies from the database
 export function useGetNowPlayingMovies(genreIds: string) {
   const query = useQuery({
     queryKey: ['moviesNowPlaying', genreIds],

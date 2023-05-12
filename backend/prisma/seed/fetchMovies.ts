@@ -54,7 +54,6 @@ export async function fetchNowPlayingMovies(): Promise<void> {
   try {
     const totalPages = await getNumberOfPages();
     for (let page = 1; page <= totalPages; page++) {
-      console.log(`Fetching page ${page} of ${totalPages}`);
       const movies = await getMoviesFromPage(page);
 
       const moviePromises = movies.map(async movie => {
@@ -106,8 +105,8 @@ export async function fetchNowPlayingMovies(): Promise<void> {
           update: { cast: { set: credits.cast }, crew: { set: credits.crew } },
           create: {
             tmdbId: credits.id,
-            cast: { set: credits.cast },
-            crew: { set: credits.crew },
+            cast: credits.cast,
+            crew: credits.crew,
             movie: { connect: { id: movieRecord.id } },
           },
         });
@@ -117,7 +116,6 @@ export async function fetchNowPlayingMovies(): Promise<void> {
       await Promise.all(moviePromises);
     }
 
-    console.log('Movies saved to the database.');
   } catch (error) {
     console.error('Error fetching now playing movies:');
     console.error(error);

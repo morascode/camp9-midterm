@@ -21,7 +21,6 @@ export const signupController = async (
   }
 
   const hashedPassword = await bcrypt.hash(req.body.password, 12);
-  console.log(hashedPassword);
   const newUser = await prisma.user.create({
     data: {
       email: req.body.email,
@@ -67,6 +66,21 @@ export const loginController = async (
   });
   //authenticating user
   res.send({ token });
+};
+
+//=======================================================
+// logoutController
+//=======================================================
+
+export const logoutController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  //delete the cookie
+  //send a response"Logged out"
+  res.clearCookie('token');
+  res.status(200).send('Logged out');
 };
 
 export const checkAuthController = async (
