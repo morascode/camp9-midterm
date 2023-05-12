@@ -38,7 +38,7 @@ function LogInForm() {
       >
         <SingleInputFieldLogIn
           svg="email"
-          placeholder="email"
+          placeholder="E-mail"
           type="text"
           id="email"
           inputValue={inputValues.email}
@@ -48,7 +48,7 @@ function LogInForm() {
         ></SingleInputFieldLogIn>
         <SingleInputFieldLogIn
           svg="key"
-          placeholder="password"
+          placeholder="Password"
           type="password"
           id="password"
           inputValue={inputValues.password}
