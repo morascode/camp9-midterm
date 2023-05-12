@@ -35,11 +35,13 @@ async function getMovies(pageNumber: number, selectedGenreIDs: Array<number>) {
   const queryString = parseQueryString(URLParameters);
   // the axios GET request
   const response = await axios.get<MovieDbResponse>(
-    `https://api.themoviedb.org/3/discover/movie${queryString}`
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies/allmovies${queryString}`
   );
+  console.log(response.data);
   return response.data;
 }
 // useGetMovies hook gets 20 movies per fetch
+//${import.meta.env.VITE_SERVER_URL}/api/1.0/movies/allmovies
 // returns the query object including:
 // data.pages - an array of all pages fetched, 20 movies per page (up to 500 pages)
 // - note: if you only want to use the first 20 movies, use data.pages[0].results and ignore the fetchNextPage function

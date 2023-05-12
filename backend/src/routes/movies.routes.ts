@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  getAllmovies,
   getMovieBySearchQueryController,
   getMovieDetailsController,
   getNowPlayingMoviesController,
@@ -26,5 +27,11 @@ router.get('/search', getMovieBySearchQueryController);
 //@access Public
 
 router.get('/', getNowPlayingMoviesController);
+
+//@route GET /api/1.0/movies/allmovies
+//@desc Get all movies
+//@access Public
+
+router.get('/allmovies', getAllmovies);
 
 export default router;

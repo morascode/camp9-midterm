@@ -19,7 +19,7 @@ function UpcomingMovies() {
   const genreIDsString = genreIDs.join('-');
   console.log(genreIDsString);
   const { data, refetch } = useGetNowPlayingMovies(genreIDsString);
-
+  console.log(data);
   if (!data) return <span>Loading...</span>;
   console.log(data);
   console.log(genreIDs);
