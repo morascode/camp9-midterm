@@ -1,15 +1,15 @@
 import axios, { AxiosError } from 'axios';
 import { LoginUser, SignupUser, User } from '../utilities/types';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { QueryCache } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
 // =====================================================================
 // useSignupMutation type, query function and hook
 // =====================================================================
 type SignupResponse = {
   token: string;
 };
+
 async function signupUser(user: SignupUser) {
   const { data } = await axios.post(
     `http://localhost:8000/api/1.0/user/signup`,
@@ -40,8 +40,10 @@ async function loginUser(user: LoginUser) {
 }
 
 export function useLoginMutation() {
+  const queryClient = useQueryClient();
   const mutation = useMutation<LoginResponse, AxiosError, LoginUser>({
     mutationFn: user => loginUser(user),
+    onSuccess: data => queryClient.invalidateQueries('checkAuth'),
   });
 
   return mutation;
@@ -53,19 +55,6 @@ export function useLoginMutation() {
 // =====================================================================
 
 async function logoutUser(navigate: any) {
-  const queryCache = new QueryCache({
-    onError: error => {
-      console.log(error);
-    },
-    onSuccess: data => {
-      console.log(data);
-    },
-    onSettled: (data, error) => {
-      console.log(data, error);
-    },
-  });
-
-  queryCache.clear();
   // Make a request to logout endpoint
   try {
     const { data } = await axios.delete(
@@ -73,8 +62,8 @@ async function logoutUser(navigate: any) {
       { withCredentials: true }
     );
     // Navigate to the login page after successful logout
-    navigate('/login');
-    window.location.reload();
+    // window.history.replaceState(null, '', '/login');
+    //navigate('/login');
     return data;
   } catch (error) {
     // Handle error if needed
@@ -83,17 +72,13 @@ async function logoutUser(navigate: any) {
 }
 
 export function useLogoutMutation() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: () => logoutUser(navigate),
+    onSuccess: data => queryClient.invalidateQueries('checkAuth'),
   });
 
-  // Listen for changes in the authentication status
-  // Redirect to the login page if the user is logged out
-  useEffect(() => {
-    if (mutation.isSuccess) {
-    }
-  }, [mutation.isSuccess, navigate]);
   return mutation;
 }
 

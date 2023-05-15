@@ -92,10 +92,10 @@ export const checkAuthController = async (
     const token = req.cookies.token;
 
     const decode = await jwt.verify(token, process.env.JWT_SECRET!);
-
-    res.status(200).send(decode);
+    res.status(200).json({ auth: true });
   } catch (err) {
-    res.status(401).send('Not authenticated');
+    console.log('dont call this');
+    res.status(200).json({ auth: false });
   }
 };
 

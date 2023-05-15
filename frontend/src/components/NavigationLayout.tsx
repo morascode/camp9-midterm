@@ -7,18 +7,22 @@ import {
 } from '@heroicons/react/24/solid';
 import { useCheckAuthQuery } from '../hooks/useUser';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function NavigationLayout() {
   const navigate = useNavigate();
   // is user loggedIn ?
   // redirect to /login
-  const { isError, isLoading } = useCheckAuthQuery();
+  const { data, isLoading } = useCheckAuthQuery();
+
+  useEffect(() => {
+    if (!data?.auth) {
+      navigate('/login');
+    }
+  }, [data?.auth, navigate]);
+
   if (isLoading) {
     return <span>Loading...</span>;
-  }
-  if (isError) {
-    console.log(isError);
-    navigate('/login');
   }
 
   return (

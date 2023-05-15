@@ -1,11 +1,10 @@
 import Button from '../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import HeaderPage from '../components/HeaderPage';
 import darkMode from '../hooks/DarkMode';
 import { useLogoutMutation } from '../hooks/useUser';
 
 function Account() {
-  const navigation = useNavigate();
   const { mutate } = useLogoutMutation();
 
   return (
