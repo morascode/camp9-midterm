@@ -43,7 +43,7 @@ export function useLoginMutation() {
   const queryClient = useQueryClient();
   const mutation = useMutation<LoginResponse, AxiosError, LoginUser>({
     mutationFn: user => loginUser(user),
-    onSuccess: data => queryClient.invalidateQueries('checkAuth'),
+    onSuccess: data => queryClient.invalidateQueries(['checkAuth']),
   });
 
   return mutation;
