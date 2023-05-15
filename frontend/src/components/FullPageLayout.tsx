@@ -6,13 +6,13 @@ export default function FullPageLayout() {
   // is user loggedIn ?
   // redirect to /login
   const navigate = useNavigate();
-  const { isError, isLoading } = useCheckAuthQuery();
+  const { data, isLoading } = useCheckAuthQuery();
 
   useEffect(() => {
-    if (isError) {
+    if (!data?.auth) {
       navigate('/login');
     }
-  }, [isError]);
+  }, [data?.auth, navigate]);
 
   if (isLoading) {
     return <span>Loading...</span>;

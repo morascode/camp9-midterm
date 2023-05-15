@@ -1,4 +1,6 @@
-export type Movie_DB = {
+import { z } from 'zod';
+
+export type Movie = {
   id: number;
   tmdbId: number;
   title: string;
@@ -10,12 +12,6 @@ export type Movie_DB = {
   overview: string;
 };
 
-export type Movie = {
-  tmdbId: number;
-  title: string;
-  posterPath: string;
-  overview: string;
-};
 export type MovieDbResponse = {
   [x: string]: any;
   page: number;
@@ -23,7 +19,6 @@ export type MovieDbResponse = {
   totalPages: number;
   totalResults: number;
 };
-
 export type TicketProps = {
   movieTitle: string;
   movieTime: string;
@@ -76,19 +71,6 @@ export type PersonImagesRequest = {
   profiles: { file_path: string }[];
 };
 
-export type SignupUser = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-export type LoginUser = {
-  email: string;
-  password: string;
-};
-
 export type User = {
   id: string;
   firstName: string;
@@ -115,3 +97,24 @@ export interface GenreLibraryEntry {
   GenreId: number;
   isSelected: boolean;
 }
+
+// write a zod schema for login and provide correct error messages if the user enters the wrong email or password
+export const loginSchema = z.object({
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters long'),
+});
+
+//  write a zod schema for signup and provide correct error messages
+export const signUpSchema = z.object({
+  firstName: z.string().min(2, 'First name must be at least 2 characters long'),
+  lastName: z.string().min(2, 'Last name must be at least 2 characters long'),
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters long'),
+  confirmPassword: z
+    .string()
+    .min(8, 'Password must be at least 8 characters long'),
+});
+
+export type SignupUser = z.infer<typeof signUpSchema>;
+
+export type LoginUser = z.infer<typeof loginSchema>;
