@@ -54,7 +54,7 @@ export function useLoginMutation() {
 // it sends a delete request to the server to delete the cookie
 // =====================================================================
 
-async function logoutUser(navigate: any) {
+async function logoutUser() {
   // Make a request to logout endpoint
   try {
     const { data } = await axios.delete(
@@ -73,10 +73,9 @@ async function logoutUser(navigate: any) {
 
 export function useLogoutMutation() {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const mutation = useMutation({
-    mutationFn: () => logoutUser(navigate),
-    onSuccess: data => queryClient.invalidateQueries('checkAuth'),
+    mutationFn: () => logoutUser(),
+    onSuccess: data => queryClient.invalidateQueries(['checkAuth']),
   });
 
   return mutation;
