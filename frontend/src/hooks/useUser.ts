@@ -72,16 +72,13 @@ async function logoutUser(navigate: any) {
       `http://localhost:8000/api/1.0/user/logout`,
       { withCredentials: true }
     );
-
+    // Navigate to the login page after successful logout
+    navigate('/login');
+    window.location.reload();
     return data;
   } catch (error) {
-    console.log(error);
     // Handle error if needed
-  } finally {
-    setTimeout(() => {
-      navigate('/login');
-    }, 1000);
-    // Navigate to the login page after successful logout
+    console.log(error);
   }
 }
 
@@ -95,7 +92,6 @@ export function useLogoutMutation() {
   // Redirect to the login page if the user is logged out
   useEffect(() => {
     if (mutation.isSuccess) {
-      navigate('/login');
     }
   }, [mutation.isSuccess, navigate]);
   return mutation;
