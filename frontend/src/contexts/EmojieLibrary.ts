@@ -35,7 +35,7 @@ export const emojieLibrary = [
     isSelected: false,
   },
   {
-    Genre: 'Factual Film',
+    Genre: 'Documentary',
     Emojie: '🎥',
     id: 6,
     GenreId: 99,
@@ -98,7 +98,7 @@ export const emojieLibrary = [
     isSelected: false,
   },
   {
-    Genre: 'Science Fiction',
+    Genre: 'Sci-Fi',
     Emojie: '👽',
     id: 15,
     GenreId: 878,

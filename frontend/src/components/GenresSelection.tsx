@@ -5,8 +5,8 @@ import GenreBtn from './GenreBtn';
 function GenresSelection() {
   const { genreCounter, genreLibrary } = useGenreContext();
   return (
-    <div className="flex flex-col px-5 pt-6 pb-6 gap-10 bg-[#1C1C27] w-full dark:bg-white">
-      <div className="grid text-center grid-cols-4 gap-8">
+    <div className="flex flex-col px-5 pt-6 pb-6 bg-[#1C1C27] w-full dark:bg-white">
+      <div className="grid text-center items-start grid-cols-4 gap-8">
         {genreLibrary.map(param => (
           <GenreBtn
             emojie={param.Emojie}
@@ -17,11 +17,11 @@ function GenresSelection() {
           ></GenreBtn>
         ))}
       </div>
-      <div className="flex flex-row gap-1">
+      <div className="flex flex-row gap-1 mt-9">
         <p className="text-white dark:text-dark-light">{genreCounter}</p>
         <p className="text-white/40 dark:text-dark-light">Genres selected</p>
       </div>
-      <Link to={'/'} className="w-full rounded-lg bg-yellow text-center py-4">
+      <Link to={'/'} className="w-full rounded-lg bg-yellow text-center py-4 mt-3">
         Confirm selected Genres
       </Link>
     </div>
