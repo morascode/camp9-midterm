@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import {
   checkAuthController,
+  editProfileController,
+  getSingleUserController,
   loginController,
   logoutController,
   signupController,
 } from '../controllers/user.controllers';
 import { validateBody, validateParams } from '../middleware/validateResource';
-import { userValidation } from '../validate/userValidation';
+import { editUserValidation, userValidation } from '../validate/userValidation';
 import { loginValidation } from '../validate/loginValidation';
 import {
   bookmarkParamsValidation,
@@ -43,6 +45,23 @@ router.delete('/logout', logoutController);
 //@access Public
 
 router.get('/checkauth', checkAuthController);
+
+//@route GET /api/1.0/user/:id
+//@desc Get a single user
+//@access Private
+
+router.get('/', isAuth, getSingleUserController);
+
+//@route PATCH /api/1.0/user/editprofile
+//@desc Edit user profile
+//@access Private
+
+router.patch(
+  '/editprofile',
+  isAuth,
+  validateBody(editUserValidation),
+  editProfileController
+);
 
 //@route GET /api/1.0/user/bookmarks
 //@desc fetches all the bookmarks for the currently logged in user

@@ -1,8 +1,6 @@
 import React from 'react';
-import Checkbox from './Checkbox';
 import SingleInputField from './SingleInputField';
 import { useState } from 'react';
-import Radio from './Radio';
 import Button from './Button';
 import { useSignupMutation } from '../hooks/useUser';
 import { SignupUser } from '../utilities/types';
@@ -10,8 +8,6 @@ import { SignupUser } from '../utilities/types';
 type SignUpForm = React.FormHTMLAttributes<HTMLFormElement>;
 
 function SignUpForm() {
-  const [selectedOption, setSelectedOption] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
   const [inputValues, setInputValues] = useState<SignupUser>({
     firstName: '',
     lastName: '',
@@ -20,15 +16,7 @@ function SignUpForm() {
     confirmPassword: '',
   });
 
-  const { isLoading, isError, data, error, mutate } = useSignupMutation();
-  console.log(data, isLoading, isError, error);
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
-  };
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value);
-  };
+  const { mutate } = useSignupMutation();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,10 +24,14 @@ function SignUpForm() {
   }
 
   return (
-    <form onSubmit={e => handleSubmit(e)} noValidate>
+    <form
+      onSubmit={e => handleSubmit(e)}
+      noValidate
+      className="flex flex-col gap-5"
+    >
       <SingleInputField
         svg="name"
-        placeholder="firstname"
+        placeholder="First name"
         type="text"
         id="firstname"
         inputValue={inputValues.firstName}
@@ -48,7 +40,7 @@ function SignUpForm() {
         }
       ></SingleInputField>
       <SingleInputField
-        placeholder={'your lastname'}
+        placeholder={'Last name'}
         svg={'name'}
         type="text"
         id="lastname"
@@ -69,7 +61,7 @@ function SignUpForm() {
       ></SingleInputField>
 
       <SingleInputField
-        placeholder={'Enter your Password'}
+        placeholder={'Password'}
         svg="key"
         type="password"
         id="password"
@@ -79,7 +71,7 @@ function SignUpForm() {
         }
       ></SingleInputField>
       <SingleInputField
-        placeholder={'Enter your Password'}
+        placeholder={'Repeat your password'}
         svg="key"
         type="password"
         id="confirmPassword"
@@ -88,30 +80,7 @@ function SignUpForm() {
           setInputValues({ ...inputValues, confirmPassword: e.target.value })
         }
       ></SingleInputField>
-      <div className=" flex flex-row justify-around">
-        <div className="flex flex-col">
-          <Radio
-            name="age"
-            label="I'm over 18"
-            value="adult"
-            checked={selectedOption === 'adult' ? true : false}
-            onChange={handleRadioChange}
-          ></Radio>
-          <Radio
-            name="age"
-            label="I'm under 18"
-            value="child"
-            checked={selectedOption === 'child' ? true : false}
-            onChange={handleRadioChange}
-          ></Radio>
-        </div>
-        <Checkbox
-          label="student"
-          name="student"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-        ></Checkbox>
-      </div>
+
       <Button type="submit" size="md">
         Sign Up
       </Button>
