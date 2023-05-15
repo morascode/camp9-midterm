@@ -19,6 +19,16 @@ function SignUpForm() {
   });
 
   const { isLoading, isError, data, error, mutate } = useSignupMutation();
+<<<<<<< HEAD
+=======
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(event.target.value);
+  };
+>>>>>>> main
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
