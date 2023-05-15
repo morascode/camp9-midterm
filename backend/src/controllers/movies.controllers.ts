@@ -25,7 +25,7 @@ export const getAllmovies = async (
       page: pages / 20 + 1,
       total_pages: moviesCount,
       results: allmovies,
-      genres: allmovies[0].genres,
+      genres: allmovies.length > 0 ? allmovies[0].genres : [],
     });
   } else {
     const moviesCount = await prisma.movie.count({
@@ -59,7 +59,7 @@ export const getAllmovies = async (
       page: pages / 20 + 1,
       total_pages: moviesCount,
       results: movies,
-      genres: movies[0].genres,
+      genres: movies.length > 0 ? movies[0].genres : [],
     });
   }
 };
