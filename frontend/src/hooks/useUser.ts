@@ -1,12 +1,15 @@
 import axios, { AxiosError } from 'axios';
 import { LoginUser, SignupUser, User } from '../utilities/types';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
 // =====================================================================
 // useSignupMutation type, query function and hook
 // =====================================================================
 type SignupResponse = {
   token: string;
 };
+
 async function signupUser(user: SignupUser) {
   const { data } = await axios.post(
     `http://localhost:8000/api/1.0/user/signup`,
@@ -37,8 +40,10 @@ async function loginUser(user: LoginUser) {
 }
 
 export function useLoginMutation() {
+  const queryClient = useQueryClient();
   const mutation = useMutation<LoginResponse, AxiosError, LoginUser>({
     mutationFn: user => loginUser(user),
+    onSuccess: data => queryClient.invalidateQueries(['checkAuth']),
   });
 
   return mutation;
@@ -50,17 +55,26 @@ export function useLoginMutation() {
 // =====================================================================
 
 async function logoutUser() {
-  const { data } = await axios.delete(
-    `http://localhost:8000/api/1.0/user/logout`,
-    { withCredentials: true }
-  );
-  return data;
+  // Make a request to logout endpoint
+  try {
+    const { data } = await axios.delete(
+      `http://localhost:8000/api/1.0/user/logout`,
+      { withCredentials: true }
+    );
+    return data;
+  } catch (error) {
+    // Handle error if needed
+    console.log(error);
+  }
 }
 
 export function useLogoutMutation() {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: logoutUser,
+    mutationFn: () => logoutUser(),
+    onSuccess: data => queryClient.invalidateQueries(['checkAuth']),
   });
+
   return mutation;
 }
 
@@ -69,7 +83,6 @@ async function checkAuth() {
     `http://localhost:8000/api/1.0/user/checkauth`,
     { withCredentials: true }
   );
-
   return data;
 }
 

@@ -6,13 +6,12 @@ import { useEffect } from 'react';
 
 export default function LogInLayout() {
   const navigate = useNavigate();
-  const { isSuccess, isLoading } = useCheckAuthQuery();
-
+  const { data, isLoading } = useCheckAuthQuery();
   useEffect(() => {
-    if (isSuccess) {
+    if (data?.auth) {
       navigate('/');
     }
-  }, [isSuccess]);
+  }, [data?.auth, navigate]);
 
   if (isLoading) {
     return <span>Loading...</span>;
