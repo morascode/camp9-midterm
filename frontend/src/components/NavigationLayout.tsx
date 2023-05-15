@@ -17,8 +17,10 @@ function NavigationLayout() {
     return <span>Loading...</span>;
   }
   if (isError) {
+    console.log(isError);
     navigate('/login');
   }
+
   return (
     <>
       <main>

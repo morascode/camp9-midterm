@@ -1,6 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import { LoginUser, SignupUser, User } from '../utilities/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { QueryCache } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 // =====================================================================
 // useSignupMutation type, query function and hook
 // =====================================================================
@@ -49,18 +52,53 @@ export function useLoginMutation() {
 // it sends a delete request to the server to delete the cookie
 // =====================================================================
 
-async function logoutUser() {
-  const { data } = await axios.delete(
-    `http://localhost:8000/api/1.0/user/logout`,
-    { withCredentials: true }
-  );
-  return data;
+async function logoutUser(navigate) {
+  const queryCache = new QueryCache({
+    onError: error => {
+      console.log(error);
+    },
+    onSuccess: data => {
+      console.log(data);
+    },
+    onSettled: (data, error) => {
+      console.log(data, error);
+    },
+  });
+
+  queryCache.clear();
+  // Make a request to logout endpoint
+  try {
+    const { data } = await axios.delete(
+      `http://localhost:8000/api/1.0/user/logout`,
+      { withCredentials: true }
+    );
+
+    // Navigate to the login page after successful logout
+    navigate('/login');
+
+    // Reload the page after navigation (optional)
+    window.location.reload();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    // Handle error if needed
+  }
 }
 
 export function useLogoutMutation() {
+  const navigate = useNavigate();
   const mutation = useMutation({
-    mutationFn: logoutUser,
+    mutationFn: () => logoutUser(navigate),
   });
+
+  // Listen for changes in the authentication status
+  // Redirect to the login page if the user is logged out
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      navigate('/login');
+    }
+  }, [mutation.isSuccess, navigate]);
   return mutation;
 }
 

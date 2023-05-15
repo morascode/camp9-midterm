@@ -7,6 +7,7 @@ import { useLogoutMutation } from '../hooks/useUser';
 function Account() {
   const navigation = useNavigate();
   const { mutate } = useLogoutMutation();
+
   return (
     <div className="flex flex-col h-screen">
       <HeaderPage children="Account Settings" />
@@ -127,7 +128,7 @@ function Account() {
       <div className="mt-auto p-8">
         <Button
           onClick={() => {
-            mutate(), navigation('/login');
+            mutate();
           }}
         >
           Logout
