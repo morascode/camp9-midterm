@@ -10,20 +10,59 @@ export const getAllmovies = async (
   next: NextFunction
 ) => {
   const pages = (parseInt(req.query.page as string) - 1) * 20;
-  const movies = await prisma.movie.findMany({});
-  const allmovies = await prisma.movie.findMany({
-    skip: pages,
-    take: 20,
-    include: {
-      genres: true,
-    },
-  });
-  res.send({
-    page: pages / 20 + 1,
-    total_pages: Math.ceil(movies.length / 20),
-    results: allmovies,
-    genres: allmovies[0].genres,
-  });
+  const genres = req.query.with_genres as string;
+  const genreArray = genres.split(',').map(id => Number(id));
+  const moviesCount = await prisma.movie.count();
+  console.log(genreArray);
+  if (genreArray[0] === 0 && genreArray.length === 1) {
+    const allmovies = await prisma.movie.findMany({
+      skip: pages,
+      take: 20,
+      include: {
+        genres: true,
+      },
+    });
+    res.send({
+      page: pages / 20 + 1,
+      total_pages: moviesCount,
+      results: allmovies,
+      genres: allmovies[0].genres,
+    });
+  } else {
+    const moviesCount = await prisma.movie.count({
+      where: {
+        genres: {
+          some: {
+            id: {
+              in: genreArray,
+            },
+          },
+        },
+      },
+    });
+    const movies = await prisma.movie.findMany({
+      skip: pages,
+      take: 20,
+      where: {
+        genres: {
+          some: {
+            id: {
+              in: genreArray,
+            },
+          },
+        },
+      },
+      include: {
+        genres: true,
+      },
+    });
+    res.send({
+      page: pages / 20 + 1,
+      total_pages: moviesCount,
+      results: movies,
+      genres: movies[0].genres,
+    });
+  }
 };
 
 export const getMovieDetailsController = async (
