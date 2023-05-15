@@ -1,8 +1,6 @@
 import React from 'react';
-import Checkbox from './Checkbox';
 import SingleInputField from './SingleInputField';
 import { useState } from 'react';
-import Radio from './Radio';
 import Button from './Button';
 import { useSignupMutation } from '../hooks/useUser';
 import { SignupUser } from '../utilities/types';
@@ -18,17 +16,7 @@ function SignUpForm() {
     confirmPassword: '',
   });
 
-  const { isLoading, isError, data, error, mutate } = useSignupMutation();
-<<<<<<< HEAD
-=======
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
-  };
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value);
-  };
->>>>>>> main
+  const { mutate } = useSignupMutation();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

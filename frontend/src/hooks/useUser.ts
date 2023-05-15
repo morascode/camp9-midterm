@@ -19,7 +19,6 @@ export function useSignupMutation() {
   const mutation = useMutation<SignupResponse, AxiosError, SignupUser>({
     mutationFn: user => signupUser(user),
   });
-
   return mutation;
 }
 // =====================================================================
