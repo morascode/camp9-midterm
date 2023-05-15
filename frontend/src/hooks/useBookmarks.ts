@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react';
 
 async function getBookmarkedMovies() {
   const response = await axios.get<MovieLocalDB[]>(
-    `${import.meta.env.VITE_BACKEND_URL}/user/bookmarks/`,
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/user/bookmarks/`,
     { withCredentials: true }
   );
   return response.data;
 }
 async function patchBookmark(movieId: number, createBookmark: boolean) {
   const response = await axios.patch(
-    `${import.meta.env.VITE_BACKEND_URL}/user/bookmarks/${movieId}/`,
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/user/bookmarks/${movieId}/`,
     { createBookmark: createBookmark },
     { withCredentials: true }
   );
