@@ -14,12 +14,6 @@ const router = Router();
 
 router.get('/search', getMovieBySearchQueryController);
 
-//@route GET /api/1.0/movies/:movieId
-//@desc Get movie details
-//@access Public
-
-router.get('/:movieId', getMovieDetailsController);
-
 //@route GET /api/1.0/movies/now-playing
 //@desc Get movie in general
 //@access Public
@@ -31,5 +25,11 @@ router.get('/', getNowPlayingMoviesController);
 //@access Public
 
 router.get('/allmovies', getAllmovies);
+
+//@route GET /api/1.0/movies/:movieId
+//@desc Get movie details
+//@access Public
+
+router.get('/:movieId', getMovieDetailsController);
 
 export default router;

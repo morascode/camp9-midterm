@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 function Movies() {
   const { isError, isLoading, data, fetchNextPage, hasNextPage } =
     useGetMovies();
-  console.log(data);
   if (isError) {
     return (
       <h1 className="typography-primary text-white">
@@ -43,7 +42,7 @@ function Movies() {
                     return null;
                   } else {
                     return (
-                      <Link to={`/movies/${movie.id}`} key={index}>
+                      <Link to={`/movies/${movie.tmdbId}`} key={index}>
                         <div className="h-auto">
                           <img
                             src={`https://image.tmdb.org/t/p/original/${image}`}

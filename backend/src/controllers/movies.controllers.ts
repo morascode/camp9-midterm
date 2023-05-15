@@ -10,9 +10,7 @@ export const getAllmovies = async (
   next: NextFunction
 ) => {
   const pages = (parseInt(req.query.page as string) - 1) * 20;
-  console.log(pages);
   const movies = await prisma.movie.findMany({});
-  console.log(movies);
   const allmovies = await prisma.movie.findMany({
     skip: pages,
     take: 20,
@@ -20,8 +18,6 @@ export const getAllmovies = async (
       genres: true,
     },
   });
-  console.log(allmovies);
-  console.log(req.query);
   res.send({
     page: pages / 20 + 1,
     total_pages: Math.ceil(movies.length / 20),
@@ -36,9 +32,8 @@ export const getMovieDetailsController = async (
   next: NextFunction
 ) => {
   const movieId = req.params.movieId;
-
   const movie = await prisma.movie.findUnique({
-    where: { tmdbId: Number(movieId) },
+    where: { tmdbId: parseInt(movieId) },
     include: {
       genres: true,
       credits: true,
