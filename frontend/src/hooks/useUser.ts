@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { LoginUser, SignupUser } from '../utilities/types';
+import { LoginUser, SignupUser, User } from '../utilities/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 // =====================================================================
 // useSignupMutation type, query function and hook
@@ -81,3 +81,35 @@ export function useCheckAuthQuery() {
   });
   return query;
 }
+
+type EditProfileResponse = { token: string };
+
+async function editProfile(user: User) {
+  const { data } = await axios.patch<EditProfileResponse>(
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/user/editprofile`,
+    user,
+    { withCredentials: true }
+  );
+  return data;
+}
+
+export function useEditProfileMutation() {
+  const mutation = useMutation<EditProfileResponse, AxiosError, User>({
+    mutationFn: user => editProfile(user),
+  });
+
+  return mutation;
+}
+
+const getSingleUser = async () => {
+  const { data } = await axios.get<User>(
+    `${import.meta.env.VITE_SERVER_URL}/api/1.0/user`,
+    { withCredentials: true }
+  );
+
+  return data;
+};
+
+export const useGetSingleUser = () => {
+  return useQuery<User>(['user'], () => getSingleUser());
+};
