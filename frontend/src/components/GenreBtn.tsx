@@ -29,7 +29,7 @@ function GenreBtn(props: Props) {
       >
         {props.emojie}
       </div>
-      <p className="text-white-dimmed dark:text-dark">{props.genre}</p>
+      <p className="text-white-dimmed typography-secondary dark:text-dark">{props.genre}</p>
     </div>
   );
 }
