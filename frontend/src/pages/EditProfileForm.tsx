@@ -40,7 +40,7 @@ function EditProfileInputForm() {
   }
 
   return (
-    <form className="flex flex-col gap-36 px-4 h-full content-between justify-between">
+    <form onSubmit={handleSubmit  } className="flex flex-col gap-36 px-4 h-full content-between justify-between">
       <div className="flex flex-col gap-5 p-4">
         <div>
           <label
