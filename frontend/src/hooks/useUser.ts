@@ -52,7 +52,7 @@ export function useLoginMutation() {
 // it sends a delete request to the server to delete the cookie
 // =====================================================================
 
-async function logoutUser(navigate) {
+async function logoutUser(navigate: any) {
   const queryCache = new QueryCache({
     onError: error => {
       console.log(error);
@@ -73,16 +73,15 @@ async function logoutUser(navigate) {
       { withCredentials: true }
     );
 
-    // Navigate to the login page after successful logout
-    navigate('/login');
-
-    // Reload the page after navigation (optional)
-    window.location.reload();
-
     return data;
   } catch (error) {
     console.log(error);
     // Handle error if needed
+  } finally {
+    setTimeout(() => {
+      navigate('/login');
+    }, 1000);
+    // Navigate to the login page after successful logout
   }
 }
 
@@ -107,7 +106,7 @@ async function checkAuth() {
     `http://localhost:8000/api/1.0/user/checkauth`,
     { withCredentials: true }
   );
-
+  console.log(data);
   return data;
 }
 
