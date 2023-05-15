@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import type { MovieLocalDB } from '../utilities/types';
+import type { Movie_DB } from '../utilities/types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 async function getBookmarkedMovies() {
-  const response = await axios.get<MovieLocalDB[]>(
+  const response = await axios.get<Movie_DB[]>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/user/bookmarks/`,
     { withCredentials: true }
   );

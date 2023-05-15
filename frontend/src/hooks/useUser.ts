@@ -17,7 +17,7 @@ async function signupUser(user: SignupUser) {
 
 export function useSignupMutation() {
   const mutation = useMutation<SignupResponse, AxiosError, SignupUser>({
-    mutationFn: user => signupUser(user),
+    mutationFn: (user: SignupUser) => signupUser(user),
   });
   return mutation;
 }
