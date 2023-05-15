@@ -105,8 +105,8 @@ export async function fetchNowPlayingMovies(): Promise<void> {
           update: { cast: { set: credits.cast }, crew: { set: credits.crew } },
           create: {
             tmdbId: credits.id,
-            cast: { set: credits.cast },
-            crew: { set: credits.crew },
+            cast: credits.cast,
+            crew: credits.crew,
             movie: { connect: { id: movieRecord.id } },
           },
         });

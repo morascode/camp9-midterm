@@ -114,12 +114,10 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BookmarkedMoviesProvider>
-        <EmojieProvider>
-          <RouterProvider router={router} />
-        </EmojieProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </BookmarkedMoviesProvider>
+      <EmojieProvider>
+        <RouterProvider router={router} />
+      </EmojieProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );

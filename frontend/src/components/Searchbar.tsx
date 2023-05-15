@@ -2,60 +2,31 @@ import { Fragment, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { useGetMoviesBySearchQuery } from '../hooks/useMovies';
+import {
+  useGetMoviesBySearchQuery,
+  useGetNowPlayingMovies,
+} from '../hooks/useMovies';
 import { Movie } from '../utilities/types';
 import { useNavigate } from 'react-router-dom';
-import { useGetMovies } from '../hooks/useMovies';
+import { useGenreContext } from '../contexts/GenreContext';
 
 export default function SearchBar() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<Movie | null>(null);
   const [query, setQuery] = useState('');
 
-  const { data: dataMoviesByQuery } = useGetMoviesBySearchQuery(query);
+  const { genreIDs } = useGenreContext();
+  const genreIDsString = genreIDs.join('-');
 
-  const {
-    isLoading: isLoadingNowPlayingMovies,
-    isError: isErrorNowPlayingMovies,
-    data: dataNowPlayingMovies,
-  } = useGetMovies();
+  const { data: moviesByQuery } = useGetMoviesBySearchQuery(query);
 
-  if (isLoadingNowPlayingMovies) {
-    return <span>Loading...</span>;
-  }
+  const { data: playingNowMovies } = useGetNowPlayingMovies(genreIDsString);
 
-  if (isErrorNowPlayingMovies) {
-    return <span>Error!</span>;
-  }
-
-  if (typeof dataNowPlayingMovies == 'string') {
-    return <span>Error!</span>;
-  }
-
-  const nowPlayingMovies = dataNowPlayingMovies.pages[0].results;
-
-  const moviesByQuery = dataMoviesByQuery?.results || [];
-
-  const moviesByQueryWithoutDuplicates = moviesByQuery.filter(
-    movie =>
-      !nowPlayingMovies.some(nowPlayingMovie => nowPlayingMovie.id === movie.id)
-  );
-
-  const movies = [...nowPlayingMovies, ...moviesByQueryWithoutDuplicates];
-
-  const filteredMovies =
-    query === ''
-      ? movies
-      : movies.filter(movie =>
-          movie.title
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, ''))
-        );
+  const movies = query === '' ? playingNowMovies : moviesByQuery;
 
   function handleSubmitMovie(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter' && selected) {
-      navigate(`/movies/${selected.id}`);
+      navigate(`/movies/${selected.tmdbId}`);
     }
   }
 
@@ -94,15 +65,11 @@ export default function SearchBar() {
             afterLeave={() => setQuery('')}
           >
             <Combobox.Options className="absolute w-full mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
-              {filteredMovies.length === 0 && query !== '' ? (
-                <div className="relative cursor-default select-none py-2 px-4 text-dark-light">
-                  Nothing found.
-                </div>
-              ) : (
-                filteredMovies.map(movie => (
+              {movies &&
+                movies.map((movie: Movie) => (
                   <Combobox.Option
-                    onClick={() => navigate(`/movies/${movie.id}`)}
-                    key={movie.id}
+                    onClick={() => navigate(`/movies/${movie.tmdbId}`)}
+                    key={movie.tmdbId}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
                         active ? 'bg-yellow text-white' : 'text-gray-900'
@@ -131,8 +98,7 @@ export default function SearchBar() {
                       </>
                     )}
                   </Combobox.Option>
-                ))
-              )}
+                ))}
             </Combobox.Options>
           </Transition>
         </div>

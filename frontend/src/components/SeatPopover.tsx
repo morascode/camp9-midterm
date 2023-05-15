@@ -15,8 +15,6 @@ function SeatPopover() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  console.log(searchParams.get('date'));
-
   async function bookTicketHandler() {
     const seats = seatObject.seatIds;
     const date = searchParams.get('date');

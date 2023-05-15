@@ -37,12 +37,12 @@ function Movies() {
             return (
               <div className="grid grid-rows-2 grid-cols-2 gap-5" key={index}>
                 {page.results.map((movie, index) => {
-                  let image = movie.poster_path;
-                  if (movie.poster_path === null) {
+                  let image = movie.posterPath;
+                  if (movie.posterPath === null) {
                     return null;
                   } else {
                     return (
-                      <Link to={`/movies/${movie.id}`} key={index}>
+                      <Link to={`/movies/${movie.tmdbId}`} key={index}>
                         <div className="h-auto">
                           <img
                             src={`https://image.tmdb.org/t/p/original/${image}`}

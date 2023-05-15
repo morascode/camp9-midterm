@@ -2,7 +2,6 @@ import { createUsers } from './seed/createUser';
 import { fetchNowPlayingMovies } from './seed/fetchMovies';
 
 const { PrismaClient } = require('@prisma/client');
-const faker = require('faker');
 
 const prisma = new PrismaClient();
 

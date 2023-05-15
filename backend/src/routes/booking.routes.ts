@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { bookingController } from '../controllers/booking.controller';
 import { bookingValidation } from '../validate/bookingValidation';
-import { validate } from '../middleware/validateResource';
+import { validateBody } from '../middleware/validateResource';
 import { isAuth } from '../middleware/isAuth';
 
 const router = Router();
@@ -10,6 +10,11 @@ const router = Router();
 //@desc booking movie by user
 //@access Public // private ?
 
-router.post('/', validate(bookingValidation), isAuth, bookingController);
+router.post(
+  '/booking',
+  validateBody(bookingValidation),
+  isAuth,
+  bookingController
+);
 
-export default router
+export default router;
