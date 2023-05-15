@@ -26,7 +26,6 @@ export type TicketProps = {
 };
 
 export type MovieDetailDbResponse = {
-  map(arg0: (movie: any, index: any) => void): import('react').ReactNode;
   title: string;
   backdropPath: string;
   releaseDate: string;
@@ -40,8 +39,8 @@ export type MovieDetailDbResponse = {
   id: number;
   imdbId: string;
   credits: {
-    cast: { set: TMDBCast[] };
-    crew: { set: TMDBCrew[] };
+    cast: TMDBCast[];
+    crew: TMDBCrew[];
   };
 };
 

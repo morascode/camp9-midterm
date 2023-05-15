@@ -22,12 +22,13 @@ function SeatPopover() {
 
     const bookingResponseObject = { seats, date, time, movieId: id };
     try {
-      await axios.post(
+      const { data } = await axios.post(
         `http://localhost:8000/api/1.0/booking`,
         bookingResponseObject,
         { withCredentials: true }
       );
-      navigate('/ticket');
+      console.log(data);
+      navigate(`/ticket/${data.id}/${id}`);
     } catch (err) {}
   }
 
@@ -74,11 +75,10 @@ function SeatPopover() {
                 100
             ) / 100}
           </div>
-          <Link className="w-[215px]" to={'/success'}>
-            <Button className="" onClick={bookTicketHandler}>
-              Book Ticket
-            </Button>
-          </Link>
+
+          <Button className="" onClick={bookTicketHandler}>
+            Book Ticket
+          </Button>
         </div>
       </div>
     </>

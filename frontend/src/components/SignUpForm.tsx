@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SingleInputField from './SingleInputField';
 import { useState } from 'react';
 import Button from './Button';
@@ -22,9 +22,11 @@ function SignUpForm() {
 
   const navigate = useNavigate();
 
-  if (isSuccess) {
-    navigate('/');
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    }
+  }, [isSuccess]);
 
   if (isError) {
     return <div>Something went wrong</div>;

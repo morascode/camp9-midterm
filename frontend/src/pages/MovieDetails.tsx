@@ -11,9 +11,11 @@ function MovieDetails() {
   const movieId = parseInt(useParams().id!);
   const { isBookmarked, toggleBookmark } = useBookmarks(movieId);
   const { data, isLoading, isError } = useGetMovieDetails(movieId);
+  console.log(data);
   if (isLoading) {
     return <p>loading...</p>;
   }
+  console.log(data);
   if (isError === true) {
     throw new Error('no data found');
   }

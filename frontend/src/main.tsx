@@ -20,7 +20,7 @@ import ChangePassword from './pages/ChangePassword';
 import FavoriteGenres from './pages/FavoriteGenres';
 import EditProfile from './pages/EditProfile';
 import BookmarkedMovies from './pages/BookmarkedMovies';
-import BookmarkedMoviesProvider from './contexts/BookmarkedMoviesContext';
+//import BookmarkedMoviesProvider from './contexts/BookmarkedMoviesContext';
 import FullPageLayout from './components/FullPageLayout';
 import LogInLayout from './components/LogInLayout';
 
@@ -76,11 +76,7 @@ export const router = createBrowserRouter([
         element: <SelectSeats />,
       },
       {
-        path: '/success',
-        element: <h1>BOOKING SUCCESSFULL</h1>, // insert your page here
-      },
-      {
-        path: '/ticket',
+        path: '/ticket/:bookingId/:movieId',
         element: <Ticket />,
       },
       {

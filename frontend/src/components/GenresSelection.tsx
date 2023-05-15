@@ -21,9 +21,6 @@ function GenresSelection() {
         <p className="text-white dark:text-dark-light">{genreCounter}</p>
         <p className="text-white/40 dark:text-dark-light">Genres selected</p>
       </div>
-      <Link to={'/'} className="w-full rounded-lg bg-yellow text-center py-4 mt-3">
-        Confirm selected Genres
-      </Link>
     </div>
   );
 }

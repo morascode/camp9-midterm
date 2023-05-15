@@ -4,6 +4,22 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+export const getBookingController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const bookingId = req.params.id;
+  const booking = await prisma.booking.findUnique({
+    where: { id: bookingId },
+    include: {
+      seats: true,
+      screening: true,
+    },
+  });
+  res.send(booking);
+};
+
 export const bookingController = async (
   req: Request<{}, {}, Booking>,
   res: Response,

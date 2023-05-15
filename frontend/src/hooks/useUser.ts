@@ -13,14 +13,17 @@ type SignupResponse = {
 async function signupUser(user: SignupUser) {
   const { data } = await axios.post(
     `http://localhost:8000/api/1.0/user/signup`,
-    user
+    user,
+    { withCredentials: true }
   );
   return data;
 }
 
 export function useSignupMutation() {
+  const queryClient = useQueryClient();
   const mutation = useMutation<SignupResponse, AxiosError, SignupUser>({
     mutationFn: (user: SignupUser) => signupUser(user),
+    onSuccess: data => queryClient.invalidateQueries(['checkAuth']),
   });
   return mutation;
 }

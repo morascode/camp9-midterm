@@ -1,15 +1,23 @@
 import { QRCodeSVG } from 'qrcode.react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { AddToCalendarButton } from 'add-to-calendar-button-react';
 import Button from '../components/Button';
 import { useGetMovieDetails } from '../hooks/useMovies';
+import { useBookingQuery } from '../hooks/useBookingUser';
+import { da } from 'date-fns/locale';
 
 function Ticket() {
-  const id = 502356; //Mock as SuperMario. please change to useParams() when you are ready to test
-
-  const { data, isLoading } = useGetMovieDetails(id);
-
-  if (isLoading || !data) {
+  const { bookingId, movieId } = useParams<{
+    bookingId: string;
+    movieId: string;
+  }>();
+  const { isLoading, data } = useBookingQuery(bookingId!);
+  const { isLoading: isLoadingMovie, data: movieData } = useGetMovieDetails(
+    +movieId!
+  );
+  console.log(movieData);
+  console.log(data);
+  if (isLoading || isLoadingMovie || !movieData || !data) {
     return <div>Loading...</div>;
   }
 
@@ -22,7 +30,7 @@ function Ticket() {
         <div>
           {/* This div holds the movie poster and the movie information. it is needed in order to place the poster and the data together */}
           <img
-            src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/w500${movieData.backdropPath}`}
             alt="Movie Poster"
             className="rounded-t-[12px]  object-cover w-full h-[160px]"
           />
@@ -30,7 +38,7 @@ function Ticket() {
           <div className="grid">
             {/* This grid holds the Ticket information */}
             <h2 className="typography-title dark:text-dark-light pt-2 pb-6 px-6">
-              {data.title}
+              {movieData.title}
             </h2>
 
             <div className="flex justify-between px-6 ">
@@ -38,23 +46,31 @@ function Ticket() {
               <div className="grid">
                 <span className="text-xs font-medium">Date</span>
                 <p className="font-semibold text-white dark:text-dark">
-                  08 jan
+                  {data.screening.date}
                 </p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Time</span>
-                <p className="font-semibold text-white dark:text-dark">12:30</p>
+                <p className="font-semibold text-white dark:text-dark">
+                  {data.screening.time}
+                </p>
               </div>
               <div className="grid">
                 <span className="text-xs font-medium">Price</span>
-                <p className="font-semibold text-white dark:text-dark">56,00</p>
+                <p className="font-semibold text-white dark:text-dark">
+                  {(+data.totalPrice).toFixed(2)}
+                </p>
               </div>
             </div>
             <div className="flex pt-2 px-6 place-content-between ">
               <div className="grid">
                 <span className="text-xs font-medium">Seats</span>
                 <p className="font-semibold text-white dark:text-dark">
-                  c-3,c-4,c-5
+                  {data.seats
+                    .map((seat: any) => {
+                      return `${seat.row}-${seat.number}`;
+                    })
+                    .join(', ')}
                 </p>
               </div>
               <div className="grid justify-items-center  ">

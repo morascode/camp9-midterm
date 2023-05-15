@@ -23,9 +23,11 @@ function LogInForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  if (isSuccess) {
-    navigate('/');
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    }
+  }, [isSuccess]);
 
   if (isError) {
     return <div>Something went wrong</div>;
