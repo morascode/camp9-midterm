@@ -91,27 +91,29 @@ function Credits() {
           next={() =>
             setVisibleCast(oldvalue => oldvalue + visibleCastIncrement)
           }
-          hasMore={data.credits[crewOrCast].length > visibleCast}
+          hasMore={data.credits[crewOrCast].set.length > visibleCast}
           loader={<h5>Loading...</h5>}
           dataLength={visibleCast}
         >
           <section className="pt-0 pb-9 px-6 mb-2">
             <ul className="flex flex-col text-white gap-4">
-              {data.credits[crewOrCast].map((castMember, indexOfCastMember) => {
-                if (indexOfCastMember < visibleCast)
-                  return (
-                    <CreditsListItem
-                      key={castMember.credit_id}
-                      id={castMember.id}
-                      actorName={castMember.name}
-                      character={
-                        'character' in castMember
-                          ? castMember.character
-                          : castMember.job
-                      }
-                    />
-                  );
-              })}
+              {data.credits[crewOrCast].set.map(
+                (castMember, indexOfCastMember) => {
+                  if (indexOfCastMember < visibleCast)
+                    return (
+                      <CreditsListItem
+                        key={castMember.credit_id}
+                        id={castMember.id}
+                        actorName={castMember.name}
+                        character={
+                          'character' in castMember
+                            ? castMember.character
+                            : castMember.job
+                        }
+                      />
+                    );
+                }
+              )}
             </ul>
             {pageFooter}
           </section>

@@ -13,7 +13,6 @@ export const getAllmovies = async (
   const genres = req.query.with_genres as string;
   const genreArray = genres.split(',').map(id => Number(id));
   const moviesCount = await prisma.movie.count();
-  console.log(genreArray);
   if (genreArray[0] === 0 && genreArray.length === 1) {
     const allmovies = await prisma.movie.findMany({
       skip: pages,

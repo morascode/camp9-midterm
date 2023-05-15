@@ -1,4 +1,9 @@
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import Button from './Button';
 import { SeatsContext } from '../contexts/SeatsContext';
 import { useContext } from 'react';
@@ -10,25 +15,20 @@ function SeatPopover() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  console.log(searchParams.get('date'));
-
   async function bookTicketHandler() {
     const seats = seatObject.seatIds;
     const date = searchParams.get('date');
     const time = searchParams.get('time');
 
     const bookingResponseObject = { seats, date, time, movieId: id };
-    console.log(bookingResponseObject);
     try {
       await axios.post(
         `http://localhost:8000/api/1.0/booking`,
         bookingResponseObject,
         { withCredentials: true }
       );
-      navigate("/ticket");
-    } catch(err) {
-
-    }
+      navigate('/ticket');
+    } catch (err) {}
   }
 
   return (

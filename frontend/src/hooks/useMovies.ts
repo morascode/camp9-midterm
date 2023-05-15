@@ -38,7 +38,6 @@ async function getMovies(pageNumber: number, selectedGenreIDs: Array<number>) {
   const response = await axios.get<MovieDbResponse>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies/allmovies${queryString}`
   );
-  console.log(response.data);
   return response.data;
 }
 // useGetMovies hook gets 20 movies per fetch
