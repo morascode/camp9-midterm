@@ -61,9 +61,6 @@ async function logoutUser() {
       `http://localhost:8000/api/1.0/user/logout`,
       { withCredentials: true }
     );
-    // Navigate to the login page after successful logout
-    // window.history.replaceState(null, '', '/login');
-    //navigate('/login');
     return data;
   } catch (error) {
     // Handle error if needed
@@ -86,7 +83,6 @@ async function checkAuth() {
     `http://localhost:8000/api/1.0/user/checkauth`,
     { withCredentials: true }
   );
-  console.log(data);
   return data;
 }
 
