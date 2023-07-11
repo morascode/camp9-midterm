@@ -2,7 +2,6 @@ import axios from 'axios';
 import {
   MovieDbResponse,
   MovieDetailDbResponse,
-  Movie_DB,
   PersonImagesRequest,
 } from '../utilities/types';
 import { useGenreContext } from '../contexts/GenreContext';
@@ -135,7 +134,7 @@ export function useGetPersonImages(personId: number) {
 
 // this function fetches movies with or without given genres from the database
 async function getNowPlayingMovies(genreIds: string) {
-  const response = await axios.get<Movie_DB[]>(
+  const response = await axios.get<MovieDbResponse[]>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies?genres=${genreIds}`
   );
   return response.data;

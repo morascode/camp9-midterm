@@ -13,7 +13,7 @@ export type SeatSection = 'front' | 'middle' | 'back';
 
 export function Seat(props: Props) {
   const [selected, setSelected] = useState(false);
-  const { seatObject, setSeatObject } = useContext(SeatsContext);
+  const { seatObject } = useContext(SeatsContext);
 
   function handleSeatObject(type: string, n: number, newSeatId: string) {
     let newSeatIds;
@@ -60,11 +60,11 @@ export function Seat(props: Props) {
         switch (selected) {
           case false:
             setSelected(true);
-            setSeatObject(handleSeatObject(props.type, +1, props.seatId));
+            // setSeatObject(handleSeatObject(props.type, +1, props.seatId));
             break;
           case true:
             setSelected(false);
-            setSeatObject(handleSeatObject(props.type, -1, props.seatId));
+            // setSeatObject(handleSeatObject(props.type, -1, props.seatId));
             break;
         }
       }}

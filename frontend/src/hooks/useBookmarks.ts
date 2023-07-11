@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import type { Movie_DB } from '../utilities/types';
+import type { MovieDbResponse, Movie } from '../utilities/types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { string } from 'zod';
 
 async function getBookmarkedMovies() {
-  const response = await axios.get<Movie_DB[]>(
+  const response = await axios.get<MovieDbResponse>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/user/bookmarks/`,
     { withCredentials: true }
   );
@@ -37,7 +38,7 @@ export function useBookmarks(id?: number) {
   }, [query]);
   function checkIsBookmarked() {
     return Boolean(
-      query.data?.find(movie => {
+      query.data?.find((movie: Movie) => {
         return movie.tmdbId === id;
       })
     );

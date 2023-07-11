@@ -39,8 +39,8 @@ export type MovieDetailDbResponse = {
   id: number;
   imdbId: string;
   credits: {
-    cast: TMDBCast[];
-    crew: TMDBCrew[];
+    cast: { set: TMDBCast[] };
+    crew: { set: TMDBCrew[] };
   };
 };
 
