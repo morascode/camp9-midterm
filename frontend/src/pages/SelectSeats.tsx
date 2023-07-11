@@ -5,14 +5,14 @@ import SeatPopover from '../components/SeatPopover';
 import { SeatsContext } from '../contexts/SeatsContext';
 
 function SelectSeats() {
-  const [seatObject, setSeatObject] = useState({
+  const [seatObject] = useState({
     frontSeatsCount: 0,
     middleSeatsCount: 0,
     backSeatsCount: 0,
-    seatIds: []
+    seatIds: [],
   });
   return (
-    <SeatsContext.Provider value={{seatObject, setSeatObject}}>
+    <SeatsContext.Provider value={{ seatObject }}>
       <div>
         <div className="flex flex-col items-center my-8">
           <HeaderPage children={'Select Seats'} />

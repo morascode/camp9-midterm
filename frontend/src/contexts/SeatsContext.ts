@@ -6,11 +6,11 @@ export const SeatsContext = createContext({
     frontSeatsCount: 0,
     middleSeatsCount: 0,
     backSeatsCount: 0,
-    seatIds: []
+    seatIds: [],
   },
-  setSeatObject: React.Dispatch<React.SetStateAction<{
-    front: number;
-    middle: number;
-    back: number;
-}>> 
+  //   setSeatObject: React.Dispatch<React.SetStateAction<{
+  //     front: number;
+  //     middle: number;
+  //     back: number;
+  // }>>
 });

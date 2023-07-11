@@ -26,34 +26,28 @@ function ChangePassword() {
       </div>
       <hr className="bg-white opacity-40 ml-[5%] mr-[5%] dark:bg-dark" />
       <form className="px-8" action="" onSubmit={() => {}}>
-        <h2 className="text-white pt-4 dark:text-dark-light">
-          Passwort
-        </h2>
+        <h2 className="text-white pt-4 dark:text-dark-light">Passwort</h2>
         <SingleInputFieldLogIn
           placeholder={'Enter your Password'}
           svg={false}
           type="password"
           id=""
-          inputValue=""
-          setInputValue={() => {}}
+          // inputValue=""
+          // setInputValue={() => {}}
         ></SingleInputFieldLogIn>
-        <h2 className="text-white pt-4 dark:text-dark-light ">
-          {' '}
-          New Password
-        </h2>
+        <h2 className="text-white pt-4 dark:text-dark-light "> New Password</h2>
         <SingleInputFieldLogIn
           placeholder={'Enter New Password'}
           svg={false}
           type="password"
           id=""
-          inputValue=""
-          setInputValue={() => {}}
+          // inputValue=""
+          // setInputValue={() => {}}
         ></SingleInputFieldLogIn>
-
       </form>
       <div className="p-8 mt-auto w-full">
-          <Button>Save Changes</Button>
-        </div>
+        <Button>Save Changes</Button>
+      </div>
     </div>
   );
 }

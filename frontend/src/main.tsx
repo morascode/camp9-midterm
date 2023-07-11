@@ -20,7 +20,6 @@ import ChangePassword from './pages/ChangePassword';
 import FavoriteGenres from './pages/FavoriteGenres';
 import EditProfile from './pages/EditProfile';
 import BookmarkedMovies from './pages/BookmarkedMovies';
-//import BookmarkedMoviesProvider from './contexts/BookmarkedMoviesContext';
 import FullPageLayout from './components/FullPageLayout';
 import LogInLayout from './components/LogInLayout';
 

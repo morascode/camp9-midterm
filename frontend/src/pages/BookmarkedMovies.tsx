@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useBookmarks } from '../hooks/useBookmarks';
-import { MovieLocalDB } from '../utilities/types';
+import { Movie } from '../utilities/types';
 export default function BookmarkedMovies() {
   const { query } = useBookmarks();
   const { data, isError, isLoading } = query;
@@ -29,7 +29,7 @@ export default function BookmarkedMovies() {
   } else
     return (
       <div className="grid grid-rows-2 grid-cols-2 gap-5 px-5 py-8">
-        {data.map((movie: MovieLocalDB, index: number) => {
+        {data.map((movie: Movie, index: number) => {
           let image = movie.posterPath;
           return (
             <Link to={`/movies/${movie.tmdbId}`} key={index}>
