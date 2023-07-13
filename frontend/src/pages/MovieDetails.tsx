@@ -75,7 +75,7 @@ function MovieDetails() {
         </p>
         <a
           className="typography-body text-orange-500 underline mt-2"
-          href={`https://www.imdb.com/title/${data?.imdbId}`}
+          href={`https://www.themoviedb.org/movie/${data?.tmdbId}`}
           target="_blank"
         >
           Read more

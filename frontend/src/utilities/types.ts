@@ -37,7 +37,7 @@ export type MovieDetailDbResponse = {
   voteAverage: number;
   overview: string;
   id: number;
-  imdbId: string;
+  tmdbId: string;
   credits: {
     cast: { set: TMDBCast[] };
     crew: { set: TMDBCrew[] };
