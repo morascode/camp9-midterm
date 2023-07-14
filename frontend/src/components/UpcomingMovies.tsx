@@ -38,7 +38,7 @@ function UpcomingMovies() {
                   movie.posterPath ? 'visible' : 'hidden'
                 )}
                 src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
-                alt={movie.title}
+                alt={`Poster for the movie ${movie.title}`}
               />
             </Link>
           </div>

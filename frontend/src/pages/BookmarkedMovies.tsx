@@ -39,12 +39,11 @@ export default function BookmarkedMovies() {
           let image = movie.posterPath;
           return (
             <Link to={`/movies/${movie.tmdbId}`} key={index}>
-              <div className="h-auto">
-                <img
-                  alt="movie poster"
-                  src={`https://image.tmdb.org/t/p/original/${image}`}
-                ></img>
-              </div>
+              <img
+                className="rounded-md object-cover h-full w-full"
+                alt={`Poster for the movie ${movie.title}`}
+                src={`https://image.tmdb.org/t/p/original/${image}`}
+              ></img>
             </Link>
           );
         })}

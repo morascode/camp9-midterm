@@ -38,14 +38,17 @@ function Movies() {
           endMessage={
             <p style={{ textAlign: 'center' }}>
               <b className="typography-primary text-white">
-                Yay! You have seen it all
+                Yay! You have seen all the movies we have in our database!
               </b>
             </p>
           }
         >
           {data.pages.map((page, index) => {
             return (
-              <div className="grid grid-rows-2 grid-cols-2 gap-5" key={index}>
+              <div
+                className="grid grid-rows-2 grid-cols-2 gap-5 mb-5"
+                key={index}
+              >
                 {page.results.map((movie, index) => {
                   let image = movie.posterPath;
                   if (movie.posterPath === null) {
@@ -53,11 +56,11 @@ function Movies() {
                   } else {
                     return (
                       <Link to={`/movies/${movie.tmdbId}`} key={index}>
-                        <div className="h-auto">
-                          <img
-                            src={`https://image.tmdb.org/t/p/original/${image}`}
-                          ></img>
-                        </div>
+                        <img
+                          className="rounded-md object-cover h-full w-full"
+                          alt={`Poster for the movie ${movie.title}`}
+                          src={`https://image.tmdb.org/t/p/original/${image}`}
+                        />
                       </Link>
                     );
                   }

@@ -42,9 +42,9 @@ function MovieDetails() {
       />
       <div className="px-5 pb-7 flex flex-col">
         <img
+          alt={`Image for the movie ${data.title}`}
           className="rounded-md object-cover w-full h-48"
           src={`https://image.tmdb.org/t/p/w500${data.backdropPath}`}
-          alt={data.title}
         />
         <h2 className="typography-title mt-5">{data.title}</h2>
         <div className="mt-3 flex justify-between">
