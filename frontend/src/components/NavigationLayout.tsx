@@ -8,6 +8,8 @@ import {
 import { useCheckAuthQuery } from '../hooks/useUser';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
+import UseAnimations from 'react-useanimations';
+import loading from 'react-useanimations/lib/loading';
 
 function NavigationLayout() {
   const navigate = useNavigate();
@@ -22,7 +24,15 @@ function NavigationLayout() {
   }, [data?.auth, navigate]);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return (
+      <div className="flex gap-2 px-5 py-8 items-end">
+        <UseAnimations
+          animation={loading}
+          strokeColor="rgba(255, 255, 255, 0.4)"
+        />
+        <h4 className="typography-title text-white-dimmed">Loading.....</h4>
+      </div>
+    );
   }
 
   return (

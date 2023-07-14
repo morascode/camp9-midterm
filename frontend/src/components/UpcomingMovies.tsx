@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useGetNowPlayingMovies } from '../hooks/useMovies';
 import { useGenreContext } from '../contexts/GenreContext';
 import clsx from 'clsx';
+import loading from 'react-useanimations/lib/loading';
+import UseAnimations from 'react-useanimations';
 
 function UpcomingMovies() {
   const { genreIDs } = useGenreContext();
@@ -9,7 +11,19 @@ function UpcomingMovies() {
 
   const { data } = useGetNowPlayingMovies(genreIDsString);
 
-  if (!data) return <span>Loading...</span>;
+  if (!data)
+    return (
+      <>
+        <h2 className="typography-title dark:text-dark">Upcoming Movies</h2>
+        <div className="flex gap-2 my-3">
+          <UseAnimations
+            animation={loading}
+            strokeColor="rgba(255, 255, 255, 0.4)"
+          />
+          <h4 className="typography-title text-white-dimmed">Loading.....</h4>
+        </div>
+      </>
+    );
 
   return (
     <>

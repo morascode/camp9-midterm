@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useBookmarks } from '../hooks/useBookmarks';
 import { Movie } from '../utilities/types';
+import UseAnimations from 'react-useanimations';
+import loading from 'react-useanimations/lib/loading';
 export default function BookmarkedMovies() {
   const { query } = useBookmarks();
   const { data, isError, isLoading } = query;
@@ -14,8 +16,12 @@ export default function BookmarkedMovies() {
     );
   } else if (isLoading) {
     return (
-      <div className="px-5 py-8">
-        <h1 className="typography-primary text-white">Loading...</h1>
+      <div className="flex gap-2 px-5 py-8 items-end">
+        <UseAnimations
+          animation={loading}
+          strokeColor="rgba(255, 255, 255, 0.4)"
+        />
+        <h4 className="typography-title text-white-dimmed">Loading.....</h4>
       </div>
     );
   } else if (data.length === 0) {

@@ -5,6 +5,8 @@ import Button from '../components/Button';
 import { useGetMovieDetails } from '../hooks/useMovies';
 import { useBookingQuery } from '../hooks/useBookingUser';
 import { da } from 'date-fns/locale';
+import UseAnimations from 'react-useanimations';
+import loading from 'react-useanimations/lib/loading';
 
 function Ticket() {
   const { bookingId, movieId } = useParams<{
@@ -18,7 +20,15 @@ function Ticket() {
   console.log(movieData);
   console.log(data);
   if (isLoading || isLoadingMovie || !movieData || !data) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex gap-2 px-5 py-8 items-end">
+        <UseAnimations
+          animation={loading}
+          strokeColor="rgba(255, 255, 255, 0.4)"
+        />
+        <h4 className="typography-title text-white-dimmed">Loading.....</h4>
+      </div>
+    );
   }
 
   return (
