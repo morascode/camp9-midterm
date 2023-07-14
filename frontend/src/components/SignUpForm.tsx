@@ -7,6 +7,8 @@ import { LoginUser, SignupUser, signUpSchema } from '../utilities/types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
+import UseAnimations from 'react-useanimations';
+import loading from 'react-useanimations/lib/loading';
 
 type SignUpForm = React.FormHTMLAttributes<HTMLFormElement>;
 
@@ -33,7 +35,15 @@ function SignUpForm() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex gap-2 px-5 py-8 items-end">
+        <UseAnimations
+          animation={loading}
+          strokeColor="rgba(255, 255, 255, 0.4)"
+        />
+        <h4 className="typography-title text-white-dimmed">Loading.....</h4>
+      </div>
+    );
   }
 
   const onSubmit = (data: SignupUser) => {
