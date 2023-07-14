@@ -6,6 +6,8 @@ import { useLoginMutation } from '../hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import UseAnimations from 'react-useanimations';
+import loading from 'react-useanimations/lib/loading';
 
 type LogInForm = React.FormHTMLAttributes<HTMLFormElement>;
 
@@ -34,7 +36,15 @@ function LogInForm() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex gap-2 px-5 items-end">
+        <UseAnimations
+          animation={loading}
+          strokeColor="rgba(255, 255, 255, 0.4)"
+        />
+        <h4 className="typography-title text-white-dimmed">Loading.....</h4>
+      </div>
+    );
   }
 
   const onSubmit = (data: LoginUser) => {

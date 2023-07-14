@@ -8,6 +8,7 @@ import HeaderPage from '../components/HeaderPage';
 import { useBookmarks } from '../hooks/useBookmarks';
 import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid';
 
 function MovieDetails() {
   const movieId = parseInt(useParams().id!);
@@ -93,11 +94,12 @@ function MovieDetails() {
           {data?.overview.slice(0, 150) + '...'}
         </p>
         <a
-          className="typography-body text-orange-500 underline mt-2"
+          className="typography-body text-orange-500 mt-2"
           href={`https://www.themoviedb.org/movie/${data?.tmdbId}`}
           target="_blank"
         >
-          Read more
+          <span className="underline">Read more</span>{' '}
+          <ArrowTopRightOnSquareIcon className="h-4 inline mb-1" />
         </a>
       </div>
       <div className="mt-auto px-5">
