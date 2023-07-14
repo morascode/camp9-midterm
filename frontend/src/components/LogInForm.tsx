@@ -37,7 +37,7 @@ function LogInForm() {
 
   if (isLoading) {
     return (
-      <div className="flex gap-2 px-5 items-end">
+      <div className="flex gap-2 items-end">
         <UseAnimations
           animation={loading}
           strokeColor="rgba(255, 255, 255, 0.4)"
@@ -80,6 +80,20 @@ function LogInForm() {
           Log In
         </Button>
       </form>
+      <div className="flex gap-2 w-full items-center py-6">
+        <div className="border-white-dimmed-heavy border-b flex-1 h-0"></div>
+        <div className="typography-body">or</div>
+        <div className="border-white-dimmed-heavy border-b flex-1"></div>
+      </div>
+      <Button
+        variant="secondary"
+        size="md"
+        onClick={() =>
+          mutate({ email: 'guest@guest.com', password: 'guest123' })
+        }
+      >
+        Proceed as guest
+      </Button>
     </>
   );
 }
