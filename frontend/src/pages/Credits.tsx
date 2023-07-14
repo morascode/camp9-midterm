@@ -23,34 +23,41 @@ function Credits() {
   // header component with the cast/crew buttons
   const pageHeader = (
     <>
-      <HeaderPage>Cast & Crew</HeaderPage>
-      <div className="text-white flex justify-between px-5 pt-2 pb-7 bg-dark select-none sticky top-[76px] h-[25px] z-10 box-content">
-        <CreditsButton
-          status={crewOrCast === 'cast' ? 'active' : 'passive'}
-          onClick={() => {
-            window.scrollTo(0, 0); // instantly scrolls to the top
-            setCrewOrCast('cast'); // makes the list items of the cast members render
-            setVisibleCast(visibleCastIncrement); // resets the amount of visible cast members to the inital value
-          }}
-        >
-          Cast
-        </CreditsButton>
-        <CreditsButton
-          status={crewOrCast === 'crew' ? 'active' : 'passive'}
-          onClick={() => {
-            window.scrollTo(0, 0); // instantly scrolls to the top
-            setCrewOrCast('crew'); // makes the list items of the cast members render
-            setVisibleCast(visibleCastIncrement); // resets the amount of visible cast members to the inital value
-          }}
-        >
-          Crew
-        </CreditsButton>
+      <div className="w-screen h-4 fixed -top-2 left-0 bg-dark"></div>
+      <div className="sticky top-0 z-10">
+        <HeaderPage>Cast & Crew</HeaderPage>
+        <div className="text-white flex justify-between px-5 pt-2 pb-5 bg-dark select-none h-[25px] box-content">
+          <CreditsButton
+            status={crewOrCast === 'cast' ? 'active' : 'passive'}
+            onClick={() => {
+              window.scrollTo(0, 0); // instantly scrolls to the top
+              setCrewOrCast('cast'); // makes the list items of the cast members render
+              setVisibleCast(visibleCastIncrement); // resets the amount of visible cast members to the inital value
+            }}
+          >
+            Cast
+          </CreditsButton>
+          <CreditsButton
+            status={crewOrCast === 'crew' ? 'active' : 'passive'}
+            onClick={() => {
+              window.scrollTo(0, 0); // instantly scrolls to the top
+              setCrewOrCast('crew'); // makes the list items of the cast members render
+              setVisibleCast(visibleCastIncrement); // resets the amount of visible cast members to the inital value
+            }}
+          >
+            Crew
+          </CreditsButton>
+        </div>
+        <div className="h-3 w-full bg-gradient-to-b from-dark"></div>
       </div>
     </>
   );
   //footer component, the little dark stripe at the bottom
   const pageFooter = (
-    <footer className="w-screen h-10 bg-dark fixed -bottom-2 left-0"></footer>
+    <footer className="w-screen fixed -bottom-2 left-0">
+      <div className="h-8 bg-gradient-to-t from-dark relative top-1"></div>
+      <div className="h-8 bg-dark"></div>
+    </footer>
   );
   //
   // JSX returns

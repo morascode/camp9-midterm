@@ -40,8 +40,9 @@ function NavigationLayout() {
       <main>
         <Outlet />
       </main>
-      <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0 bg-dark dark:text-dark dark:bg-white-dimmed">
-        <nav>
+      <footer className="w-full fixed -bottom-2">
+        <div className="h-4 w-full bg-gradient-to-t from-dark relative top-1"></div>
+        <nav className="pt-8 pb-10 px-16 text-white-dimmed  bg-dark dark:text-dark dark:bg-white-dimmed">
           <ul className="flex flex-row justify-between max-w-xs m-auto ">
             <li>
               <NavLink to="/">
