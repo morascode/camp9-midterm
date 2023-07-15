@@ -8,11 +8,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
+import Cookies from 'js-cookie';
+import { useQueryClient } from '@tanstack/react-query';
 
 type LogInForm = React.FormHTMLAttributes<HTMLFormElement>;
 
 function LogInForm() {
   const { mutate, isLoading, isError, isSuccess } = useLoginMutation();
+  const queryClient = useQueryClient();
 
   const navigate = useNavigate();
 
@@ -24,12 +27,6 @@ function LogInForm() {
   } = useForm<LoginUser>({
     resolver: zodResolver(loginSchema),
   });
-
-  useEffect(() => {
-    if (isSuccess) {
-      navigate('/');
-    }
-  }, [isSuccess]);
 
   if (isError) {
     return <div>Something went wrong</div>;
@@ -88,9 +85,11 @@ function LogInForm() {
       <Button
         variant="secondary"
         size="md"
-        onClick={() =>
-          mutate({ email: 'guest@guest.com', password: 'guest123' })
-        }
+        onClick={() => {
+          Cookies.set('guest', 'true');
+          queryClient.invalidateQueries(['checkAuth']);
+          navigate('/');
+        }}
       >
         Proceed as guest
       </Button>

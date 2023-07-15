@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { LoginUser, SignupUser, User } from '../utilities/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 // =====================================================================
 // useSignupMutation type, query function and hook
@@ -58,16 +58,21 @@ export function useLoginMutation() {
 // =====================================================================
 
 async function logoutUser() {
-  // Make a request to logout endpoint
-  try {
-    const { data } = await axios.delete(
-      `http://localhost:8000/api/1.0/user/logout`,
-      { withCredentials: true }
-    );
-    return data;
-  } catch (error) {
-    // Handle error if needed
-    console.log(error);
+  if (Cookies.get('guest')) {
+    Cookies.remove('guest');
+    return 'Guest logged out.';
+  } else {
+    // Make a request to logout endpoint
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:8000/api/1.0/user/logout`,
+        { withCredentials: true }
+      );
+      return data;
+    } catch (error) {
+      // Handle error if needed
+      console.log(error);
+    }
   }
 }
 
@@ -82,11 +87,15 @@ export function useLogoutMutation() {
 }
 
 async function checkAuth() {
-  const { data } = await axios.get(
-    `http://localhost:8000/api/1.0/user/checkauth`,
-    { withCredentials: true }
-  );
-  return data;
+  if (Cookies.get('guest')) {
+    return { auth: true };
+  } else {
+    const { data } = await axios.get(
+      `http://localhost:8000/api/1.0/user/checkauth`,
+      { withCredentials: true }
+    );
+    return data;
+  }
 }
 
 export function useCheckAuthQuery() {
@@ -118,12 +127,21 @@ export function useEditProfileMutation() {
 }
 
 const getSingleUser = async () => {
-  const { data } = await axios.get<User>(
-    `${import.meta.env.VITE_SERVER_URL}/api/1.0/user`,
-    { withCredentials: true }
-  );
+  if (Cookies.get('guest')) {
+    return {
+      id: 'none',
+      firstName: 'Guest',
+      lastName: 'none',
+      email: 'none',
+    };
+  } else {
+    const { data } = await axios.get<User>(
+      `${import.meta.env.VITE_SERVER_URL}/api/1.0/user`,
+      { withCredentials: true }
+    );
 
-  return data;
+    return data;
+  }
 };
 
 export const useGetSingleUser = () => {
