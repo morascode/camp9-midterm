@@ -8,6 +8,17 @@ import Button from './Button';
 import { SeatsContext } from '../contexts/SeatsContext';
 import { useContext } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+
+type Ticket = {
+  id: string;
+  seats: never[];
+  screening: {
+    date: string | null;
+    time: string | null;
+  };
+  movieId?: string;
+};
 
 function SeatPopover() {
   const { seatObject } = useContext(SeatsContext);
@@ -21,15 +32,34 @@ function SeatPopover() {
     const time = searchParams.get('time');
 
     const bookingResponseObject = { seats, date, time, movieId: id };
-    try {
-      const { data } = await axios.post(
-        `http://localhost:8000/api/1.0/booking`,
-        bookingResponseObject,
-        { withCredentials: true }
-      );
-      console.log(data);
-      navigate(`/ticket/${data.id}/${id}`);
-    } catch (err) {}
+    // if user is logged in as guest
+    if (Cookies.get('guest')) {
+      const guestTickets = localStorage.getItem('tickets');
+      if (guestTickets) {
+        const ticket: Ticket = {
+          id: crypto.randomUUID(),
+          seats: seats,
+          movieId: id,
+          screening: { date: date, time: time },
+        };
+        const newTickets = JSON.parse(guestTickets) as Ticket[];
+        newTickets.push(ticket);
+        localStorage.setItem('tickets', JSON.stringify(newTickets));
+        navigate(`/ticket/${ticket.id}/${id}`);
+      }
+    }
+    // if user is logged in with an account
+    else {
+      try {
+        const { data } = await axios.post(
+          `http://localhost:8000/api/1.0/booking`,
+          bookingResponseObject,
+          { withCredentials: true }
+        );
+        console.log(data);
+        navigate(`/ticket/${data.id}/${id}`);
+      } catch (err) {}
+    }
   }
 
   return (

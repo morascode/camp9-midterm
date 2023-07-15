@@ -14,7 +14,6 @@ function MovieDetails() {
   const movieId = parseInt(useParams().id!);
   const { isBookmarked, toggleBookmark } = useBookmarks(movieId);
   const { data, isLoading, isError } = useGetMovieDetails(movieId);
-  console.log(data);
   if (isLoading) {
     return (
       <article className="h-screen w-screen">
@@ -39,7 +38,7 @@ function MovieDetails() {
         isLiked={isBookmarked}
         children="Movie Details"
         hasHeartButton={true}
-        onHeartButtonClick={toggleBookmark}
+        onHeartButtonClick={() => toggleBookmark(data)}
       />
       <div className="px-5 pb-7 flex flex-col">
         <img

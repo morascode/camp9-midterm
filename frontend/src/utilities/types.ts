@@ -28,6 +28,7 @@ export type TicketProps = {
 export type MovieDetailDbResponse = {
   title: string;
   backdropPath: string;
+  posterPath: string;
   releaseDate: string;
   genres: Array<{
     id: number;
@@ -37,7 +38,7 @@ export type MovieDetailDbResponse = {
   voteAverage: number;
   overview: string;
   id: number;
-  tmdbId: string;
+  tmdbId: number;
   credits: {
     cast: { set: TMDBCast[] };
     crew: { set: TMDBCrew[] };

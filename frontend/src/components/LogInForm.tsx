@@ -86,7 +86,17 @@ function LogInForm() {
         variant="secondary"
         size="md"
         onClick={() => {
-          Cookies.set('guest', 'true');
+          Cookies.set(
+            'guest',
+            JSON.stringify({
+              id: 'none',
+              firstName: 'Guest',
+              lastName: 'none',
+              email: 'none',
+            })
+          );
+          localStorage.setItem('bookmarks', JSON.stringify([]));
+          localStorage.setItem('tickets', JSON.stringify([]));
           queryClient.invalidateQueries(['checkAuth']);
           navigate('/');
         }}

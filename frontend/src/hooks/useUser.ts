@@ -60,6 +60,8 @@ export function useLoginMutation() {
 async function logoutUser() {
   if (Cookies.get('guest')) {
     Cookies.remove('guest');
+    localStorage.removeItem('bookmarks');
+    localStorage.removeItem('tickets');
     return 'Guest logged out.';
   } else {
     // Make a request to logout endpoint
@@ -80,7 +82,11 @@ export function useLogoutMutation() {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: () => logoutUser(),
-    onSuccess: data => queryClient.invalidateQueries(['checkAuth']),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['checkAuth']);
+      queryClient.invalidateQueries(['movies', 'bookmarked']);
+      queryClient.invalidateQueries(['user']);
+    },
   });
 
   return mutation;
@@ -127,13 +133,9 @@ export function useEditProfileMutation() {
 }
 
 const getSingleUser = async () => {
-  if (Cookies.get('guest')) {
-    return {
-      id: 'none',
-      firstName: 'Guest',
-      lastName: 'none',
-      email: 'none',
-    };
+  const guestCookie = Cookies.get('guest');
+  if (guestCookie) {
+    return JSON.parse(guestCookie) as User;
   } else {
     const { data } = await axios.get<User>(
       `${import.meta.env.VITE_SERVER_URL}/api/1.0/user`,

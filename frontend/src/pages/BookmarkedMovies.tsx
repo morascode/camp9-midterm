@@ -34,7 +34,7 @@ export default function BookmarkedMovies() {
     );
   } else
     return (
-      <div className="grid grid-rows-2 grid-cols-2 gap-5 px-5 py-8">
+      <div className="grid grid-rows-2 grid-cols-2 gap-5 px-5 pt-8 pb-24">
         {data.map((movie: Movie, index: number) => {
           let image = movie.posterPath;
           return (
