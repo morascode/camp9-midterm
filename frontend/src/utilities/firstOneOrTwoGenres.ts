@@ -1,6 +1,6 @@
-import { MovieDetailDbResponse } from './types';
+import { MovieDetails } from './types';
 
-export function firstOneOrTwoGenres(data: MovieDetailDbResponse | null) {
+export function firstOneOrTwoGenres(data: MovieDetails | null) {
   if (data) {
     if (data.genres.length === 1) {
       return data.genres[0].name;

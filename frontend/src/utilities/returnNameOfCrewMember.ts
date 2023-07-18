@@ -1,8 +1,8 @@
-import { MovieDetailDbResponse } from './types';
+import { MovieDetails } from './types';
 
 export function returnNameOfCrewMember(
   crewMember: 'Director' | 'Screenplay',
-  data: MovieDetailDbResponse
+  data: MovieDetails
 ) {
   let crewMemberObject = data.credits.crew.set.find(i => i.job === crewMember);
   if (typeof crewMemberObject !== 'undefined') {

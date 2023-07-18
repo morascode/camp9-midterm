@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useBookmarks } from '../hooks/useBookmarks';
-import { Movie } from '../utilities/types';
+import { Movie, MovieDetails } from '../utilities/types';
 import UseAnimations from 'react-useanimations';
 import loading from 'react-useanimations/lib/loading';
 export default function BookmarkedMovies() {
@@ -35,7 +35,7 @@ export default function BookmarkedMovies() {
   } else
     return (
       <div className="grid grid-rows-2 grid-cols-2 gap-5 px-5 pt-8 pb-24">
-        {data.map((movie: Movie, index: number) => {
+        {data.map((movie: Movie | MovieDetails, index: number) => {
           let image = movie.posterPath;
           return (
             <Link to={`/movies/${movie.tmdbId}`} key={index}>

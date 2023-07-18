@@ -1,9 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type {
-  MovieDbResponse,
-  Movie,
-  MovieDetailDbResponse,
-} from '../utilities/types';
+import type { Movie, MovieDetails } from '../utilities/types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
@@ -13,7 +9,9 @@ async function getBookmarkedMovies() {
   if (Cookies.get('guest')) {
     const guestBookmarks = localStorage.getItem('bookmarks');
     if (guestBookmarks) {
-      return JSON.parse(guestBookmarks) as MovieDetailDbResponse[];
+      return JSON.parse(guestBookmarks) as MovieDetails[];
+    } else {
+      throw new Error('No bookmarks found.');
     }
   }
   // if user is logged in with an account
@@ -51,14 +49,14 @@ export function useBookmarks(id?: number) {
       }
     }
   }, [query]);
-  function checkIsBookmarked(): Movie | MovieDetailDbResponse | undefined {
+  function checkIsBookmarked(): Movie | MovieDetails | undefined {
     if (query.data) {
       return (query.data as any[]).find((movie: { tmdbId: number }) => {
         return movie.tmdbId === id;
       });
     }
   }
-  async function toggleBookmark(movie: MovieDetailDbResponse) {
+  async function toggleBookmark(movie: MovieDetails) {
     // if user is logged in as guest
     if (Cookies.get('guest') && query.data) {
       const newBookmarks = [...query.data];

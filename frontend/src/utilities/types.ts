@@ -25,7 +25,7 @@ export type TicketProps = {
   movieDate: string;
 };
 
-export type MovieDetailDbResponse = {
+export type MovieDetails = {
   title: string;
   backdropPath: string;
   posterPath: string;

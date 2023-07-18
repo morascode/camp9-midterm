@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   MovieDbResponse,
-  MovieDetailDbResponse,
+  MovieDetails,
   PersonImagesRequest,
 } from '../utilities/types';
 import { useGenreContext } from '../contexts/GenreContext';
@@ -88,7 +88,7 @@ export function useGetMoviesBySearchQuery(searchQuery: string) {
 // fetches details for a single movie based on a given movie ID
 async function getMovieDetails(movieId: number) {
   // the axios GET request
-  const response = await axios.get<MovieDetailDbResponse>(
+  const response = await axios.get<MovieDetails>(
     `${import.meta.env.VITE_SERVER_URL}/api/1.0/movies/${movieId}`
   );
   return response.data;

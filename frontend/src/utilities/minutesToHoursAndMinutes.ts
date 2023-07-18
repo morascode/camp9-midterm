@@ -1,7 +1,7 @@
-import { MovieDetailDbResponse } from './types';
+import { MovieDetails } from './types';
 
 export function minutesToHoursAndMinutes(
-  data: MovieDetailDbResponse | null
+  data: MovieDetails | null
 ): string | undefined {
   if (data && typeof data.runtime === 'number') {
     if (data.runtime < 60) {
