@@ -3,7 +3,7 @@
 @tailwind utilities;
 /* Contents of this file:
   * 1.0 - TAILWIND BASE LAYER
-  * * 1.1 - FONT IMPORTS - our sweet Inter font in weights of 500 and 700
+  * * 1.1 - FONT IMPORTS - our sweet  Inter font in weights of 500 and 700
   * 2.0 - TAILWIND COMPONENTS LAYER 
   * * 2.1 - BODY TAG - just sets the background color to "dark"
   * * 2.2 - TYPOGRAPHY COMPONENTS - classes to be used for all typography in the app
