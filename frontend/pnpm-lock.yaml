@@ -1,8 +1,4 @@
-lockfileVersion: '6.1'
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
+lockfileVersion: '6.0'
 
 dependencies:
   '@headlessui/react':
@@ -52,7 +48,7 @@ dependencies:
     version: 3.1.0(react@18.2.0)
   query:
     specifier: github:tanstack/react-query
-    version: github.com/tanstack/react-query/878d85e44c984822e2e868af94003ec260ddf80f
+    version: github.com/tanstack/react-query/118801df342881021c2bb6c8add5bb11b6dd944a
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -8621,9 +8617,13 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
-  github.com/tanstack/react-query/878d85e44c984822e2e868af94003ec260ddf80f:
-    resolution: {commit: 878d85e44c984822e2e868af94003ec260ddf80f, repo: git+ssh://git@github.com/tanstack/react-query.git, type: git}
+  github.com/tanstack/react-query/118801df342881021c2bb6c8add5bb11b6dd944a:
+    resolution: {commit: 118801df342881021c2bb6c8add5bb11b6dd944a, repo: git+ssh://git@github.com/tanstack/react-query.git, type: git}
     name: query
     version: 0.0.0
     requiresBuild: true
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
